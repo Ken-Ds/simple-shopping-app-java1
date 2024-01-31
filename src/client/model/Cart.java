@@ -1,4 +1,6 @@
-package admin.model;
+package client.model;
+
+import admin.model.Product;
 
 import java.util.ArrayList;
 import java.util.List;
