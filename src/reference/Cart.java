@@ -1,6 +1,6 @@
-package client.model;
+package reference;
 
-import admin.model.Product;
+import dataType.Product;
 
 import java.util.ArrayList;
 import java.util.List;

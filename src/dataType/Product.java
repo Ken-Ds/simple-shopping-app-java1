@@ -1,4 +1,4 @@
-package admin.model;
+package dataType;
 
 public class Product {
     private int id;
