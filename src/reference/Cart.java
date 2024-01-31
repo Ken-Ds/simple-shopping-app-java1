@@ -1,16 +1,17 @@
 package reference;
 
 import dataType.Product;
+import dataType.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Cart {
     private List<Product> products;
-    private Client client;
+    private User user;
 
-    public Cart(Client client) {
-        this.client = client;
+    public Cart(User user) {
+        this.user = user;
         this.products = new ArrayList<>();
     }
 
@@ -26,7 +27,7 @@ public class Cart {
         return products;
     }
 
-    public Client getClient() {
-        return client;
+    public User getUser() {
+        return user;
     }
 }

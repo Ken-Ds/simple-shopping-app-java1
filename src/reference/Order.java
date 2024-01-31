@@ -1,15 +1,16 @@
 package reference;
 
 import dataType.Product;
+import dataType.User;
 
 import java.util.List;
 
 public class Order {
     private  List<Product> products;
-    private  Client client;
+    private User user;
 
-    public Order(Client client, List<Product> products) {
-        this.client = client;
+    public Order(User user, List<Product> products) {
+        this.user = user;
         this.products = products;
     }
 
@@ -17,14 +18,14 @@ public class Order {
         return products;
     }
 
-    public Client getClient() {
-        return client;
+    public User getClient() {
+        return user;
     }
     public void setProducts(List<Product> products){
         this.products = products;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setClient(User client) {
+        this.user = client;
     }
 }

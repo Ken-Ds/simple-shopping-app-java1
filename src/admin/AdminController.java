@@ -1,7 +1,9 @@
 package admin;
 
 public class AdminController {
-    public AdminController(){
+    private AdminModel adminModel;
+    public  AdminView adminView;
+    public AdminController(AdminModel model, AdminView view){
 
     }
 }
