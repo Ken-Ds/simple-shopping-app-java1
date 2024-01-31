@@ -20,4 +20,11 @@ public class Order {
     public Client getClient() {
         return client;
     }
+    public void setProducts(List<Product> products){
+        this.products = products;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
 }

@@ -1,9 +1,9 @@
 package admin.model;
 
 public abstract class User {
-    private final int id;
-    private final String name;
-    private final String email;
+    private int id;
+    private  String name;
+    private  String email;
 
     public User(int id, String name, String email) {
         this.id = id;
@@ -21,6 +21,22 @@ public abstract class User {
 
     public String getEmail() {
         return email;
+    }
+    public void setId(int id){
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 
     public abstract String getRole();
