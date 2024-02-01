@@ -1,10 +1,13 @@
 package user;
 import common.Product;
 public class UserModel {
+
+
     public Product addProduct(Product product){
-        return new Product();
+        return product;
     }
 
     public void deleteProduct(int id){
     }
+
 }
