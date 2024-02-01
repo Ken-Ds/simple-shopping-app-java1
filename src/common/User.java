@@ -1,4 +1,4 @@
-package dataType;
+package common;
 
 import java.util.List;
 

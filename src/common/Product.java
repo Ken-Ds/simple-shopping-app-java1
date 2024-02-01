@@ -1,4 +1,4 @@
-package dataType;
+package common;
 
 public class Product {
     private int id;

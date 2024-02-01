@@ -1,5 +1,4 @@
-package reference;
-
+package common;
 import dataType.Product;
 import dataType.User;
 

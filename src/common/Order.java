@@ -1,7 +1,4 @@
-package reference;
-
-import dataType.Product;
-import dataType.User;
+package common;
 
 import java.util.List;
 
@@ -28,4 +25,5 @@ public class Order {
     public void setClient(User client) {
         this.user = client;
     }
+
 }
