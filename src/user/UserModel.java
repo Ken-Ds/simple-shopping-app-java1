@@ -1,7 +1,10 @@
 package user;
 
 public class UserModel {
-    public UserModel(){
+    public Product addProduct(Product product){
 
+    }
+
+    public void deleteProduct(int id){
     }
 }
