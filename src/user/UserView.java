@@ -1,5 +1,7 @@
 package user;
+import common.Product;
 
+import java.util.Scanner;
 public class UserView {
 
     private Scanner kbd = new Scanner(System.in);
@@ -22,7 +24,6 @@ public class UserView {
         String name = kbd.nextLine();
         System.out.print("Enter the id: ");
         int id = Integer.parseInt(kbd.nextLine());
-
     }
 
     public void showDeleteProduct(){

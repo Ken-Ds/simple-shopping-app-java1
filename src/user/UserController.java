@@ -1,6 +1,8 @@
 package user;
+import java.util.Scanner;
 
 public class UserController {
+    private Scanner kbd = new Scanner(System.in);
     private UserModel userModel;
     public UserView userView;
     public UserController(UserModel model, UserView view){
@@ -12,7 +14,7 @@ public class UserController {
         switch (choice){
             case 1:
 
-                userModel.addProduct(view.showAddProduct();
+                userModel.addProduct(view.showAddProduct());
                 break;
             case 2:
                 userView.showDeleteProduct();
