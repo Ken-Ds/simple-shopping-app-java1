@@ -22,6 +22,9 @@ public class UserController {
                 model.deleteProduct(delID);
                 break;
             case 3:
+                userView.showOrderProduct();
+                int showOrderProduct = kbd.nextInt();
+                model.addProduct(showOrderProduct);
                 break;
             case 4:
                 break;
