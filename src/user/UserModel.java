@@ -9,8 +9,6 @@ public class UserModel {
 
     public void deleteProduct(int id){
     }
-    public void addProduct(int addProduct){
-
+    public void showOrderProduct(int orderProduct){
     }
-
 }

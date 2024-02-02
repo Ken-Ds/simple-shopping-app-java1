@@ -1,4 +1,6 @@
 package user;
+import common.Product;
+
 import java.util.Scanner;
 
 public class UserController {
@@ -23,9 +25,8 @@ public class UserController {
                 break;
             case 3:
                 userView.showOrderProduct();
-                int showOrderProduct = kbd.nextInt();
-                model.addProduct(showOrderProduct);
-
+                int orderProduct = kbd.nextInt();
+                model.showOrderProduct(orderProduct);
                 break;
             case 4:
                 break;

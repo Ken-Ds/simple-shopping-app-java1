@@ -35,16 +35,34 @@ public class UserView {
 
     public void showDeleteProduct() {
         System.out.println("----------DELETE PRODUCT----------");
+        System.out.print("Enter the name of the product: ");
+        String name = kbd.nextLine();
         System.out.print("Enter the id of the product: ");
+        int id = Integer.parseInt(kbd.nextLine());
     }
 
-    public void oderProduct() {
+    public void showOrderProduct() {
         System.out.println("----------ORDER PRODUCT----------");
-        System.out.print("Enter the id of the product: ");
+        System.out.print("Enter the name of the product: ");
+        String name = kbd.nextLine();
+        System.out.print("Product ID: ");
+        int id = Integer.parseInt(kbd.nextLine());
+        System.out.println("Product price: ");
+        //float price = Float.parseFloat(kbd.nextLine());
+        System.out.println("Product description: ");
+        //String description = kbd.nextLine();
+
     }
 
     public void checkProductsInCart() {
         System.out.println("----------CHECK PRODUCT IN CART----------");
-        System.out.print("Enter the id of the product: ");
+        System.out.print("Product name: ");
+        String name = kbd.nextLine();
+        System.out.print("Product ID: ");
+        int id = Integer.parseInt(kbd.nextLine());
+        System.out.print("Product price: ");
+        //float price =  Float.parseFloat(kbd.nextLine());
+        System.out.print("Product description: ");
+        //String description = kbd.nextLine();
     }
 }
