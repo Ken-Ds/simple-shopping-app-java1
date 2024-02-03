@@ -1,6 +1,4 @@
 package user;
-import common.Product;
-
 import java.util.Scanner;
 
 public class UserController {
@@ -15,7 +13,6 @@ public class UserController {
         int choice = Integer.parseInt(kbd.nextLine());
         switch (choice){
             case 1:
-
                 userModel.addProduct(view.showAddProduct());
                 break;
             case 2:
