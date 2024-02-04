@@ -26,6 +26,9 @@ public class UserController {
                 model.showOrderProduct(orderProduct);
                 break;
             case 4:
+                userView.checkProductsInCart();
+                int checkProduct = kbd.nextInt();
+                model.checkProductsInCart(checkProduct);
                 break;
             case 5:
                 System.exit(0);
