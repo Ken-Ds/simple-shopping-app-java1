@@ -48,9 +48,9 @@ public class UserView {
         System.out.print("Product ID: ");
         int id = Integer.parseInt(kbd.nextLine());
         System.out.println("Product price: ");
-        //float price = Float.parseFloat(kbd.nextLine());
+        Double price = Double.parseFloat(kbd.nextLine());
         System.out.println("Product description: ");
-        //String description = kbd.nextLine();
+        String description = kbd.nextLine();
 
     }
 
@@ -61,8 +61,8 @@ public class UserView {
         System.out.print("Product ID: ");
         int id = Integer.parseInt(kbd.nextLine());
         System.out.print("Product price: ");
-        //float price =  Float.parseFloat(kbd.nextLine());
+        double price =  Double.parseDouble(kbd.nextLine());
         System.out.print("Product description: ");
-        //String description = kbd.nextLine();
+        String description = kbd.nextLine();
     }
 }
