@@ -1,0 +1,14 @@
+<data>
+    <account>
+        <id>00000</id>
+        <username>admin</username>
+        <password>12345</password>
+        <cart></cart>
+    </account>
+    <account>
+        <id>00001</id>
+        <username>Freddie</username>
+        <password>kahitanona</password>
+        <cart></cart>
+    </account>
+</data>

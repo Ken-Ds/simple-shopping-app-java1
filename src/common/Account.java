@@ -1,28 +1,22 @@
 package common;
 
-import java.util.List;
-
-public class User {
+public class Account {
     private int id;
-    private  String name;
     private  String username;
 
     private String password;
 
+    private Cart cart;
 
-    public User(int id, String name, String username, String password) {
+    public Account(int id, String username, String password, Cart cart) {
         this.id = id;
-        this.name = name;
         this.username = username;
         this.password = password;
+        this.cart = cart;
     }
 
     public int getId() {
         return id;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public String getUsername() {
@@ -33,12 +27,12 @@ public class User {
         return password;
     }
 
-    public void setId(int id){
-        this.id = id;
+    public Cart getCart(){
+        return cart;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setId(int id){
+        this.id = id;
     }
 
     public void setUsername(String username) {
@@ -47,6 +41,10 @@ public class User {
 
     public void setPassword(String password){
         this.password = password;
+    }
+
+    public void setCart(Cart cart){
+        this.cart = cart;
     }
 
     @Override

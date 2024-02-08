@@ -1,33 +1,19 @@
 package server.model;
-
-import java.io.ServerSocket;
-import java.io.Socket;
+import java.net.ServerSocket;
+import java.net.Socket;
 
 public class Server{
 
     public void startServer(){
         int port = 2000;
-
+        System.out.println("Server is running");
         try(ServerSocket ServerSocket = new ServerSocket(port)){
-            
             while (true){
                 Socket clientSocket = ServerSocket.accept();
-
-                Thread thread = new
+                System.out.println("New Connection");
             }
-        }
-    }
-
-    public class ClientHandler extends Thread{
-        private final Socket clientSocket;
-
-        public ClientHandler(Socket socket){
-            this.clientSocket = socket;
-        }
-
-        @Override
-        public void run(){
-    
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

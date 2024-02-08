@@ -1,16 +1,12 @@
 package common;
-import dataType.Product;
-import dataType.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Cart {
     private List<Product> products;
-    private User user;
 
-    public Cart(User user) {
-        this.user = user;
+    public Cart(Account user) {
         this.products = new ArrayList<>();
     }
 
@@ -26,7 +22,4 @@ public class Cart {
         return products;
     }
 
-    public User getUser() {
-        return user;
-    }
 }
