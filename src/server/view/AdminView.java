@@ -110,6 +110,7 @@ public class AdminView extends JFrame {
         });
 
         GroupLayout jPanel2Layout = new GroupLayout(jPanel2);
+        setResizable(false);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
                 jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)

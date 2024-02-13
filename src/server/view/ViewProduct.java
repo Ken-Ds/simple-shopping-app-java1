@@ -64,6 +64,7 @@ public class ViewProduct extends JFrame {
         });
 
         GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
+        setResizable(false);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
                 jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)

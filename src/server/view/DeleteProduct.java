@@ -57,6 +57,7 @@ public class DeleteProduct extends JFrame {
         });
 
         GroupLayout jPanel2Layout = new GroupLayout(jPanel2);
+        setResizable(false);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
                 jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -132,6 +133,7 @@ public class DeleteProduct extends JFrame {
 
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
+        setResizable(false);
         layout.setHorizontalGroup(
                 layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
@@ -147,7 +149,7 @@ public class DeleteProduct extends JFrame {
         );
 
         pack();
-    }
+    }// </editor-fold>
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
@@ -185,4 +187,7 @@ public class DeleteProduct extends JFrame {
             }
         });
     }
+
+
+
 }

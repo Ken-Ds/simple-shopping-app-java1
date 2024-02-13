@@ -19,8 +19,8 @@ public class EditProduct extends JFrame {
         JLabel idLabel1 = new JLabel();
         JLabel idLabel2 = new JLabel();
         JTextField idTextField1 = new JTextField();
+        JButton editButton = new JButton();
         JButton backButton = new JButton();
-        JButton backButton1 = new JButton();
         JComboBox<String> statusComboBox = new JComboBox<>();
         JScrollPane jScrollPane1 = new JScrollPane();
         JTable jTable1 = new JTable();
@@ -60,17 +60,17 @@ public class EditProduct extends JFrame {
             }
         });
 
-        backButton.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12)); // NOI18N
-        backButton.setText("Edit");
-        backButton.addActionListener(new java.awt.event.ActionListener() {
+        editButton.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12)); // NOI18N
+        editButton.setText("Edit");
+        editButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButtonActionPerformed(evt);
+                editButtonActionPerformed(evt);
             }
         });
 
-        backButton1.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12)); // NOI18N
-        backButton1.setText("Back");
-        backButton1.addActionListener(new java.awt.event.ActionListener() {
+        backButton.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12)); // NOI18N
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backButton1ActionPerformed(evt);
             }
@@ -84,6 +84,7 @@ public class EditProduct extends JFrame {
         });
 
         GroupLayout jPanel2Layout = new GroupLayout(jPanel2);
+        setResizable(false);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
                 jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -112,8 +113,8 @@ public class EditProduct extends JFrame {
                         .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(71, 71, 71)
                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addComponent(backButton1, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(backButton, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(backButton, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(editButton, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -134,9 +135,9 @@ public class EditProduct extends JFrame {
                                         .addComponent(idLabel2)
                                         .addComponent(statusComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addComponent(backButton)
+                                .addComponent(editButton)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
-                                .addComponent(backButton1)
+                                .addComponent(backButton)
                                 .addGap(33, 33, 33))
         );
 
@@ -208,7 +209,7 @@ public class EditProduct extends JFrame {
         );
 
         pack();
-    }// </editor-fold>
+    }
 
     private void idTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
@@ -218,8 +219,8 @@ public class EditProduct extends JFrame {
         // TODO add your handling code here:
     }
 
-    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // to do
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        //to do
     }
 
     private void backButton1ActionPerformed(java.awt.event.ActionEvent evt) {
