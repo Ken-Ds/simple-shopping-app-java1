@@ -1,2 +1,32 @@
 <data>
+        
+    <product>
+                
+        <id>00001</id>
+                
+        <name>Bag</name>
+                
+        <price>400.00</price>
+                
+        <description>Yes</description>
+                
+        <status>Sold</status>
+            
+    </product>
+        
+    <product>
+                
+        <id>00002</id>
+                
+        <name>Phone</name>
+                
+        <price>7800.00</price>
+                
+        <description>LOOOPY</description>
+                
+        <status>Pending</status>
+            
+    </product>
+        
+
 </data>

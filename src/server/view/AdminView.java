@@ -1,9 +1,14 @@
 package server.view;
+import common.ParseXMLFile;
+import common.Product;
+import org.w3c.dom.NodeList;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class AdminView extends JFrame {
-
+    private ParseXMLFile parseXMLFile = new ParseXMLFile();
+    private NodeList list = parseXMLFile.readXMLProduct();
 
     public AdminView() {
         initComponents();
@@ -224,5 +229,6 @@ public class AdminView extends JFrame {
             }
         });
     }
+
 
 }

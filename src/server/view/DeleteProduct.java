@@ -1,11 +1,22 @@
 package server.view;
+import server.model.SetJTable;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 
 public class DeleteProduct extends JFrame {
-
+    SetJTable set = new SetJTable();
+    JPanel jPanel2 = new JPanel();
+    JLabel titleProduct = new JLabel();
+    JButton backButton = new JButton();
+    JTextField idTextField = new JTextField();
+    JLabel idLabel = new JLabel();
+    JButton deleteButton = new JButton();
+    JScrollPane jScrollPane2 = new JScrollPane();
+    JTable jTable1 = new JTable();
 
     public DeleteProduct() {
         initComponents();
@@ -13,14 +24,7 @@ public class DeleteProduct extends JFrame {
 
     private void initComponents() {
 
-        JPanel jPanel2 = new JPanel();
-        JLabel titleProduct = new JLabel();
-        JButton backButton = new JButton();
-        JTextField idTextField = new JTextField();
-        JLabel idLabel = new JLabel();
-        JButton deleteButton = new JButton();
-        JScrollPane jScrollPane2 = new JScrollPane();
-        JTable jTable1 = new JTable();
+        jTable1.setModel(set.setTable());
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -33,13 +37,13 @@ public class DeleteProduct extends JFrame {
         backButton.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12)); // NOI18N
         backButton.setText("Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(ActionEvent evt) {
                 backButtonActionPerformed(evt);
             }
         });
 
         idTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(ActionEvent evt) {
                 idTextFieldActionPerformed(evt);
             }
         });
@@ -51,7 +55,7 @@ public class DeleteProduct extends JFrame {
         deleteButton.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12)); // NOI18N
         deleteButton.setText("Delete Product");
         deleteButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(ActionEvent evt) {
                 deleteButtonActionPerformed(evt);
             }
         });
@@ -97,32 +101,6 @@ public class DeleteProduct extends JFrame {
                                 .addGap(39, 39, 39))
         );
 
-        jTable1.setModel(new DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null}
-                },
-                new String [] {
-                        "Product ID", "Name", "Price", "Status"
-                }
-        ) {
-            Class[] types = new Class [] {
-                    java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                    false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
         jScrollPane2.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
@@ -151,16 +129,17 @@ public class DeleteProduct extends JFrame {
         pack();
     }// </editor-fold>
 
-    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {
+    private void backButtonActionPerformed(ActionEvent evt) {
         this.dispose();
         new AdminView().setVisible(true);
     }
 
-    private void idTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
+    public void idTextFieldActionPerformed(ActionEvent evt) {
         // TODO add your handling code here:
     }
 
-    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {
+
+    private void deleteButtonActionPerformed(ActionEvent evt) {
         // TODO add your handling code here:
     }
 
@@ -188,6 +167,7 @@ public class DeleteProduct extends JFrame {
         });
     }
 
-
-
+    public String returnId(){
+        return idTextField.getText();
+    }
 }

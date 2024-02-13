@@ -15,7 +15,7 @@ public class Cart {
     }
 
     public void removeProduct(int productId) {
-        products.removeIf(product -> product.getId() == productId);
+        products.removeIf(product -> product.getId().equals(productId));
     }
 
     public List<Product> getProducts() {

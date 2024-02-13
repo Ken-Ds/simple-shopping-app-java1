@@ -1,7 +1,10 @@
 package server.view;
 
+import server.model.SetJTable;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 public class EditProduct extends JFrame {
 
@@ -10,7 +13,7 @@ public class EditProduct extends JFrame {
     }
 
     private void initComponents() {
-
+        SetJTable set = new SetJTable();
         JPanel jPanel1 = new JPanel();
         JPanel jPanel2 = new JPanel();
         JLabel titleProduct = new JLabel();
@@ -24,6 +27,7 @@ public class EditProduct extends JFrame {
         JComboBox<String> statusComboBox = new JComboBox<>();
         JScrollPane jScrollPane1 = new JScrollPane();
         JTable jTable1 = new JTable();
+        jTable1.setModel(set.setTable());
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -41,7 +45,7 @@ public class EditProduct extends JFrame {
         idLabel.setText("Name            :");
 
         idTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(ActionEvent evt) {
                 idTextFieldActionPerformed(evt);
             }
         });
@@ -55,7 +59,7 @@ public class EditProduct extends JFrame {
         idLabel2.setText("Status            :");
 
         idTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(ActionEvent evt) {
                 idTextField1ActionPerformed(evt);
             }
         });
@@ -63,7 +67,7 @@ public class EditProduct extends JFrame {
         editButton.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12)); // NOI18N
         editButton.setText("Edit");
         editButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(ActionEvent evt) {
                 editButtonActionPerformed(evt);
             }
         });
@@ -71,14 +75,14 @@ public class EditProduct extends JFrame {
         backButton.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12)); // NOI18N
         backButton.setText("Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(ActionEvent evt) {
                 backButton1ActionPerformed(evt);
             }
         });
 
         statusComboBox.setModel(new DefaultComboBoxModel<>(new String[] { "Available", "Not Available" }));
         statusComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(ActionEvent evt) {
                 statusComboBoxActionPerformed(evt);
             }
         });
@@ -141,32 +145,6 @@ public class EditProduct extends JFrame {
                                 .addGap(33, 33, 33))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null}
-                },
-                new String [] {
-                        "Product ID", "Name", "Price", "Status"
-                }
-        ) {
-            Class[] types = new Class [] {
-                    java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                    false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
@@ -211,24 +189,24 @@ public class EditProduct extends JFrame {
         pack();
     }
 
-    private void idTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
+    private void idTextFieldActionPerformed(ActionEvent evt) {
         // TODO add your handling code here:
     }
 
-    private void idTextField1ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void idTextField1ActionPerformed(ActionEvent evt) {
         // TODO add your handling code here:
     }
 
-    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {
+    private void editButtonActionPerformed(ActionEvent evt) {
         //to do
     }
 
-    private void backButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void backButton1ActionPerformed(ActionEvent evt) {
         this.dispose();
         new ViewProduct().setVisible(true);
     }
 
-    private void statusComboBoxActionPerformed(java.awt.event.ActionEvent evt) {
+    private void statusComboBoxActionPerformed(ActionEvent evt) {
         // TODO add your handling code here:
     }
     public static void main(String[] args) {

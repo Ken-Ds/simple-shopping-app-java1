@@ -7,6 +7,10 @@ public class LogIn extends JFrame {
 
     public LogIn() {
         initComponents();
+        setTitle("UPHILL App");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setVisible(true);
     }
 
     private void initComponents() {

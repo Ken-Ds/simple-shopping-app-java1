@@ -1,19 +1,22 @@
 package common;
 
 public class Product {
-    private int id;
+    private String id;
     private String name;
-    private float price;
+    private String price;
     private String description;
 
-    public Product(int id, String name, float price, String description) {
+    private String status;
+
+    public Product(String id, String name, String price, String description, String status) {
         this.id = id;
         this.name = name;
         this.price = price;
-        this.description = description;
+        this.description =description;
+        this.status = status;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -21,7 +24,7 @@ public class Product {
         return name;
     }
 
-    public float getPrice() {
+    public String getPrice() {
         return price;
     }
 
@@ -33,7 +36,7 @@ public class Product {
         this.description = description;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -41,9 +44,18 @@ public class Product {
         this.name = name;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(String price) {
         this.price = price;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
 }
 
 

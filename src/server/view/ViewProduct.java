@@ -1,14 +1,24 @@
 package server.view;
 
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import server.model.SetJTable;
+
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 public class ViewProduct extends JFrame {
-    public ViewProduct() {
+
+    private DefaultTableModel model;
+    public ViewProduct(){
         initComponents();
     }
     private void initComponents() {
-
+        SetJTable set = new SetJTable();
         JPanel jPanel1 = new JPanel();
         JLabel idLabel = new JLabel();
         JLabel titleProduct = new JLabel();
@@ -19,6 +29,7 @@ public class ViewProduct extends JFrame {
         JPanel jPanel2 = new JPanel();
         JScrollPane jScrollPane1 = new JScrollPane();
         JTable jTable1 = new JTable();
+        jTable1.setModel(set.setTable());
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -34,7 +45,7 @@ public class ViewProduct extends JFrame {
         titleProduct.setText("View Product");
 
         idTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(ActionEvent evt) {
                 idTextFieldActionPerformed(evt);
             }
         });
@@ -42,7 +53,7 @@ public class ViewProduct extends JFrame {
         searchProductButton.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12)); // NOI18N
         searchProductButton.setText("Search Product");
         searchProductButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(ActionEvent evt) {
                 searchProductButtonActionPerformed(evt);
             }
         });
@@ -50,7 +61,7 @@ public class ViewProduct extends JFrame {
         backButton.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12)); // NOI18N
         backButton.setText("Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(ActionEvent evt) {
                 backButtonActionPerformed(evt);
             }
         });
@@ -58,7 +69,7 @@ public class ViewProduct extends JFrame {
         editButton.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12)); // NOI18N
         editButton.setText("Edit");
         editButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(ActionEvent evt) {
                 editButtonActionPerformed(evt);
             }
         });
@@ -108,32 +119,6 @@ public class ViewProduct extends JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null}
-                },
-                new String [] {
-                        "Product ID", "Name", "Price", "Status"
-                }
-        ) {
-            Class[] types = new Class [] {
-                    java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                    false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
@@ -172,23 +157,24 @@ public class ViewProduct extends JFrame {
         pack();
     }
 
-    private void idTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
+    private void idTextFieldActionPerformed(ActionEvent evt) {
         // TODO add your handling code here:
     }
 
-    private void searchProductButtonActionPerformed(java.awt.event.ActionEvent evt) {
+    private void searchProductButtonActionPerformed(ActionEvent evt) {
         // TODO add your handling code here:
     }
 
-    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {
+    private void backButtonActionPerformed(ActionEvent evt) {
         this.dispose();
         new AdminView().setVisible(true);
     }
 
-    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {
+    private void editButtonActionPerformed(ActionEvent evt) {
         this.dispose();
         new EditProduct().setVisible(true);
     }
+
 
     public static void main(String[] args) {
         try {
@@ -204,5 +190,5 @@ public class ViewProduct extends JFrame {
         }
         java.awt.EventQueue.invokeLater(() -> new ViewProduct().setVisible(true));
     }
-
 }
+

@@ -1,27 +1,33 @@
 package server.view;
+import common.ParseXMLFile;
+import server.model.SetJTable;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 public class AddProduct extends JFrame {
+    private SetJTable set = new SetJTable();
+    private JPanel jPanel2 = new JPanel();
+    private JLabel labelName = new JLabel();
+    private JLabel titleProduct = new JLabel();
+    private JLabel labelID = new JLabel();
+    private JLabel labelDescription = new JLabel();
+    private JTextField txtDescript = new JTextField();
+    private JButton btnBack = new JButton();
+    private JLabel priceLabel = new JLabel();
+    private JTextField txtQuantity = new JTextField();
+    private JTextField txtName = new JTextField();
+    public JButton btnAddList = new JButton();
+    private JScrollPane jScrollPane2 = new JScrollPane();
+    private JTable jTable1 = new JTable();
 
     public AddProduct() {
         initComponents();
     }
     private void initComponents() {
 
-        JPanel jPanel2 = new JPanel();
-        JLabel labelName = new JLabel();
-        JLabel titleProduct = new JLabel();
-        JLabel labelID = new JLabel();
-        JLabel labelDescription = new JLabel();
-        JTextField txtDescript = new JTextField();
-        JButton btnBack = new JButton();
-        JLabel priceLabel = new JLabel();
-        JTextField txtQuantity = new JTextField();
-        JTextField txtName = new JTextField();
-        JButton btnAddList = new JButton();
-        JScrollPane jScrollPane2 = new JScrollPane();
-        JTable jTable1 = new JTable();
+        jTable1.setModel(set.setTable());
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,7 +49,7 @@ public class AddProduct extends JFrame {
         labelDescription.setText("Description:");
 
         txtDescript.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(ActionEvent evt) {
                 txtDescriptActionPerformed(evt);
             }
         });
@@ -51,7 +57,7 @@ public class AddProduct extends JFrame {
         btnBack.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12)); // NOI18N
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
@@ -61,13 +67,13 @@ public class AddProduct extends JFrame {
         priceLabel.setText("Price           :");
 
         txtQuantity.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(ActionEvent evt) {
                 txtQuantityActionPerformed(evt);
             }
         });
 
         txtName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(ActionEvent evt) {
                 txtNameActionPerformed(evt);
             }
         });
@@ -75,7 +81,7 @@ public class AddProduct extends JFrame {
         btnAddList.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12)); // NOI18N
         btnAddList.setText("Add to List");
         btnAddList.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(ActionEvent evt) {
                 btnAddListActionPerformed(evt);
             }
         });
@@ -141,32 +147,6 @@ public class AddProduct extends JFrame {
                                 .addGap(22, 22, 22))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null}
-                },
-                new String [] {
-                        "Product ID", "Name", "Price", "Status"
-                }
-        ) {
-            Class[] types = new Class [] {
-                    java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                    false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
         jScrollPane2.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
@@ -193,25 +173,24 @@ public class AddProduct extends JFrame {
         pack();
     }
 
-    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {
+    private void txtNameActionPerformed(ActionEvent evt) {
         // TODO add your handling code here:
     }
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {
+    private void btnBackActionPerformed(ActionEvent evt) {
         this.dispose();
         new AdminView().setVisible(true);
     }
 
-    private void txtDescriptActionPerformed(java.awt.event.ActionEvent evt) {
+    private void txtDescriptActionPerformed(ActionEvent evt) {
         // TODO add your handling code here:
     }
 
-    private void txtQuantityActionPerformed(java.awt.event.ActionEvent evt) {
+    private void txtQuantityActionPerformed(ActionEvent evt) {
         // TODO add your handling code here:
     }
 
-    private void btnAddListActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+    public void btnAddListActionPerformed(ActionEvent evt) {
     }
 
     public static void main(String[] args) {
@@ -222,5 +201,15 @@ public class AddProduct extends JFrame {
         });
     }
 
+    public String returnName(){
+        return txtName.getText();
+    }
 
+    public String returnPrice(){
+        return txtQuantity.getText();
+    }
+
+    public String returnDescription(){
+        return txtDescript.getText();
+    }
 }
