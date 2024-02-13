@@ -1,22 +1,22 @@
 package server.view;
-import server.model.SetJTable;
+import common.SetJTable;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
+private SetJTable set = new SetJTable();
+private JPanel jPanel2 = new JPanel();
+private JLabel titleProduct = new JLabel();
+private JButton backButton = new JButton();
+private JTextField idTextField = new JTextField();
+private JLabel idLabel = new JLabel();
+private JButton deleteButton = new JButton();
+private JScrollPane jScrollPane2 = new JScrollPane();
+private JTable jTable1 = new JTable();
 
 public class DeleteProduct extends JFrame {
-    SetJTable set = new SetJTable();
-    JPanel jPanel2 = new JPanel();
-    JLabel titleProduct = new JLabel();
-    JButton backButton = new JButton();
-    JTextField idTextField = new JTextField();
-    JLabel idLabel = new JLabel();
-    JButton deleteButton = new JButton();
-    JScrollPane jScrollPane2 = new JScrollPane();
-    JTable jTable1 = new JTable();
+
 
     public DeleteProduct() {
         initComponents();

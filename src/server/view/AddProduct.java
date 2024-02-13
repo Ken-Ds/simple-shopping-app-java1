@@ -1,7 +1,4 @@
 package server.view;
-import common.ParseXMLFile;
-import server.model.SetJTable;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -190,7 +187,8 @@ public class AddProduct extends JFrame {
         // TODO add your handling code here:
     }
 
-    public void btnAddListActionPerformed(ActionEvent evt) {
+    private void btnAddListActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
     }
 
     public static void main(String[] args) {

@@ -15,6 +15,7 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 
 public class ParseXMLFile {
+
     public NodeList readXMLProduct(){
         NodeList nodes = null;
         try {
@@ -32,6 +33,7 @@ public class ParseXMLFile {
     }
 
     public void addXMLProduct(String name, String price, String description){
+        CreateId createId = new CreateId();
         try{
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = docFactory.newDocumentBuilder();
@@ -43,7 +45,7 @@ public class ParseXMLFile {
             rootElement.appendChild(newProduct);
 
             Element idElement = document.createElement("id");
-            idElement.appendChild(document.createTextNode("00003"));
+            idElement.appendChild(document.createTextNode(createId.createId()));
             newProduct.appendChild(idElement);
 
             Element nameElement = document.createElement("name");
@@ -66,7 +68,6 @@ public class ParseXMLFile {
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(document);
             StreamResult result = new StreamResult(new File("src/res/products.xml"));
-            transformer.setOutputProperty(OutputKeys.INDENT,"yes");
             transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION,"yes");
             transformer.transform(source,result);
         }catch (Exception e){

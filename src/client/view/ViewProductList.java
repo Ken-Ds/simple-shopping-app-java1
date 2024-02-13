@@ -1,36 +1,28 @@
 package client.view;
+import common.SetJTable;
+
 import javax.swing.*;
 import java.awt.*;
 public class ViewProductList extends JFrame{
     public ViewProductList() {
         initComponents();
     }
-
+    private JPanel jPanel1 = new JPanel();
+    private JScrollPane jScrollPane1 = new JScrollPane();
+    private JTable jTable1 = new JTable();
+    private JLabel jLabel1 = new JLabel();
+    private JTextField txtName = new JTextField();
+    private JButton btnSearch = new JButton();
+    private JButton backButton = new JButton();
     private void initComponents() {
-
-        JPanel jPanel1 = new JPanel();
-        JScrollPane jScrollPane1 = new JScrollPane();
-        JTable jTable1 = new JTable();
-        JLabel jLabel1 = new JLabel();
-        JTextField txtName = new JTextField();
-        JButton btnSearch = new JButton();
-        JButton backButton = new JButton();
+        SetJTable setJTable = new SetJTable();
+        jTable1.setModel(setJTable.setTable());
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
+
         jPanel1.setBackground(new java.awt.Color(110, 110, 110));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null}
-                },
-                new String [] {
-                        "Title 1", "Title 2", "Title 3", "Title 4"
-                }
-        ));
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setFont(new java.awt.Font("Sitka Display", Font.BOLD, 16)); // NOI18N

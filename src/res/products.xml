@@ -1,32 +1,30 @@
 <data>
-        
     <product>
-                
-        <id>00001</id>
-                
+        <id>0</id>
         <name>Bag</name>
-                
         <price>400.00</price>
-                
         <description>Yes</description>
-                
         <status>Sold</status>
-            
     </product>
-        
     <product>
-                
-        <id>00002</id>
-                
+        <id>1</id>
         <name>Phone</name>
-                
         <price>7800.00</price>
-                
         <description>LOOOPY</description>
-                
         <status>Pending</status>
-            
     </product>
-        
-
-</data>
+    <product>
+        <id>2</id>
+        <name>Rock</name>
+        <price>20</price>
+        <description>Rocks</description>
+        <status>On Sale</status>
+    </product>
+    <product>
+        <id>3</id>
+        <name>asd</name>
+        <price>asd</price>
+        <description>asd</description>
+        <status>On Sale</status>
+    </product>
+<product><id>4</id><name>Rock</name><price>50</price><description>Loop</description><status>On Sale</status></product></data>

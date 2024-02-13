@@ -1,6 +1,6 @@
 package server.view;
 
-import server.model.SetJTable;
+import common.SetJTable;
 
 import javax.swing.*;
 import java.awt.*;
