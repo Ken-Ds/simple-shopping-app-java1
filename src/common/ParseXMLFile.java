@@ -16,6 +16,39 @@ import java.io.File;
 
 public class ParseXMLFile {
 
+    /**
+     * Checks Account is in the accounts.xml file
+     * @param checkUsername
+     * @param checkPassword
+     * @return boolean if account is valid
+     */
+    public boolean checkAccount(String checkUsername, String checkPassword){
+        NodeList nodes = null;
+        try {
+            File inputFile = new File("src/res/accounts.xml");
+            DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = docBuilderFactory.newDocumentBuilder();
+            Document document = documentBuilder.parse(inputFile);
+            document.getDocumentElement().normalize();
+
+            nodes = document.getElementsByTagName("account");
+            for (int i = 0; i < nodes.getLength(); i++) {
+                Node node = nodes.item(i);
+                Element element = (Element) node;;
+                String id = element.getElementsByTagName("id").item(0).getTextContent();
+                String username = element.getElementsByTagName("username").item(0).getTextContent();
+                String password = element.getElementsByTagName("password").item(0).getTextContent();
+                String cart = element.getElementsByTagName("cart").item(0).getTextContent();
+                if(username.equalsIgnoreCase(checkUsername) && password.equalsIgnoreCase(checkPassword)){
+                    return true;
+                }
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public NodeList readXMLProduct(){
         NodeList nodes = null;
         try {
