@@ -1,9 +1,22 @@
 package client.view;
 
+import client.model.Connect;
+import common.Account;
+
 import javax.swing.*;
 import java.awt.*;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 public class LogIn extends JFrame {
+    JPanel jPanel1 = new JPanel();
+    JPanel jPanel2 = new JPanel();
+    JLabel jLabel1 = new JLabel();
+    JLabel jLabel2 = new JLabel();
+    JTextField txtUsername = new JTextField();
+    JLabel jLabel3 = new JLabel();
+    JTextField jTextField1 = new JTextField();
+    JButton btnLogIn = new JButton();
 
     public LogIn() {
         initComponents();
@@ -15,14 +28,7 @@ public class LogIn extends JFrame {
 
     private void initComponents() {
 
-        JPanel jPanel1 = new JPanel();
-        JPanel jPanel2 = new JPanel();
-        JLabel jLabel1 = new JLabel();
-        JLabel jLabel2 = new JLabel();
-        JTextField txtUsername = new JTextField();
-        JLabel jLabel3 = new JLabel();
-        JTextField jTextField1 = new JTextField();
-        JButton btnLogIn = new JButton();
+
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -124,9 +130,25 @@ public class LogIn extends JFrame {
         pack();
     }
 
+    /**
+     * Logic of socket connection from client to server
+     * // TODO move this logic
+     * @param evt
+     */
     private void btnLogInActionPerformed(java.awt.event.ActionEvent evt) {
-        this.dispose();
-        new UserView().setVisible(true);
+        try {
+            Connect connect = new Connect();
+            ObjectOutputStream writer = new ObjectOutputStream(connect.createConnection().getOutputStream());
+            String username = txtUsername.getText();
+            String password = jTextField1.getText();
+            Account account = new Account(0, username, password, null);
+            System.out.println(account.toString());
+            writer.writeObject(account);
+            this.dispose();
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
 
