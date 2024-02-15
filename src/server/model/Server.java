@@ -1,4 +1,5 @@
 package server.model;
+import client.model.CheckIfUser;
 import common.Account;
 import common.ParseXMLFile;
 
@@ -7,31 +8,28 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class Server{
+public class Server {
 
-    public void startServer(){
-        int port = 2000;
+    public void startServer() {
+        int port = 2023;
         System.out.println("Server is running");
-        try(ServerSocket ServerSocket = new ServerSocket(port)){
-            while (true){
-                Socket clientSocket = ServerSocket.accept();
+        try (ServerSocket serverSocket = new ServerSocket(port)) {
+            while (true) {
+                Socket clientSocket = serverSocket.accept();
 
-                if(clientSocket.isConnected()){
+                if (clientSocket.isConnected()) {
                     System.out.println("Client is connected!");
                 }
-
 
                 // TODO Move logic to a different class
                 ObjectInputStream reader = new ObjectInputStream(clientSocket.getInputStream());
                 ObjectOutputStream writer = new ObjectOutputStream(clientSocket.getOutputStream());
 
                 Account account = (Account) reader.readObject();
-                String username = account.getUsername();
-                String password = account.getPassword();
-                ParseXMLFile parseXMLFile = new ParseXMLFile();
-                if(parseXMLFile.checkAccount(username, password)){
+                CheckIfUser authenticator = new CheckIfUser();
+                if (authenticator.authenticate(account)) {
                     System.out.println("Authenticated");
-                }else {
+                } else {
                     System.out.println("No Account Found!");
                 }
 
@@ -41,5 +39,4 @@ public class Server{
             e.printStackTrace();
         }
     }
-
 }
