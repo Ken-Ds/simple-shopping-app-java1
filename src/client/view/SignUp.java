@@ -1,9 +1,22 @@
 package client.view;
 
+import client.model.AddUser;
+import client.model.Connect;
+import common.Account;
+
 import javax.swing.*;
 import java.awt.*;
+import java.io.ObjectOutputStream;
 
 public class SignUp extends JFrame {
+    JPanel jPanel1 = new JPanel();
+    JPanel jPanel2 = new JPanel();
+    JLabel jLabel1 = new JLabel();
+    JLabel jLabel2 = new JLabel();
+    JTextField txtUsername = new JTextField();
+    JLabel jLabel3 = new JLabel();
+    JTextField jTextField1 = new JTextField();
+    JButton btnSignUp = new JButton();
 
     public SignUp() {
         initComponents();
@@ -15,14 +28,6 @@ public class SignUp extends JFrame {
 
     private void initComponents() {
 
-        JPanel jPanel1 = new JPanel();
-        JPanel jPanel2 = new JPanel();
-        JLabel jLabel1 = new JLabel();
-        JLabel jLabel2 = new JLabel();
-        JTextField txtUsername = new JTextField();
-        JLabel jLabel3 = new JLabel();
-        JTextField jTextField1 = new JTextField();
-        JButton btnSignUp = new JButton();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -125,8 +130,20 @@ public class SignUp extends JFrame {
     }
 
     private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {
-        this.dispose();
-        new UserView().setVisible(true);
+        try {
+            Connect connect = new Connect();
+            ObjectOutputStream writer = new ObjectOutputStream(connect.createConnection().getOutputStream());
+            String username = txtUsername.getText();
+            String password = jTextField1.getText();
+            AddUser addUser = new AddUser();
+            addUser.addAccount(username, password);
+            System.out.println(addUser.toString());
+            writer.writeObject(addUser);
+            this.dispose();
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
 

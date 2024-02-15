@@ -16,6 +16,7 @@ import java.io.File;
 
 public class ParseXMLFile {
 
+
     /**
      * Checks Account is in the accounts.xml file
      * @param checkUsername
@@ -48,7 +49,35 @@ public class ParseXMLFile {
         }
         return false;
     }
+    public void addAccount (String username, String password) {
+        try {
+            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = docFactory.newDocumentBuilder();
 
+            Document document = documentBuilder.parse("src/res/accounts.xml");
+            Element rootElement = document.getDocumentElement();
+
+            Element newAccount = document.createElement("account");
+            rootElement.appendChild(newAccount);
+
+            Element usernameElement = document.createElement("username");
+            usernameElement.appendChild(document.createTextNode(username));
+            newAccount.appendChild(usernameElement);
+
+            Element passwordElement = document.createElement("password");
+            passwordElement.appendChild(document.createTextNode(password));
+            newAccount.appendChild(passwordElement);
+
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(document);
+            StreamResult result = new StreamResult(new File("src/res/accounts.xml"));
+            transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+            transformer.transform(source, result);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public NodeList readXMLProduct(){
         NodeList nodes = null;
         try {

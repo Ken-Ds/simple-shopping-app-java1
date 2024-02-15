@@ -1,4 +1,5 @@
 package server.model;
+import client.model.AddUser;
 import client.model.CheckIfUser;
 import common.Account;
 import common.ParseXMLFile;
@@ -21,11 +22,12 @@ public class Server {
                     System.out.println("Client is connected!");
                 }
 
-                // TODO Move logic to a different class
                 ObjectInputStream reader = new ObjectInputStream(clientSocket.getInputStream());
                 ObjectOutputStream writer = new ObjectOutputStream(clientSocket.getOutputStream());
 
                 Account account = (Account) reader.readObject();
+                AddUser addUser = new AddUser();
+                addUser.addAccount(account.getUsername(), account.getPassword());
                 CheckIfUser authenticator = new CheckIfUser();
                 if (authenticator.authenticate(account)) {
                     System.out.println("Authenticated");
