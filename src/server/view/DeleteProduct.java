@@ -5,18 +5,18 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-private SetJTable set = new SetJTable();
-private JPanel jPanel2 = new JPanel();
-private JLabel titleProduct = new JLabel();
-private JButton backButton = new JButton();
-private JTextField idTextField = new JTextField();
-private JLabel idLabel = new JLabel();
-private JButton deleteButton = new JButton();
-private JScrollPane jScrollPane2 = new JScrollPane();
-private JTable jTable1 = new JTable();
 
 public class DeleteProduct extends JFrame {
 
+    private SetJTable set = new SetJTable();
+    private JPanel jPanel2 = new JPanel();
+    private JLabel titleProduct = new JLabel();
+    private JButton backButton = new JButton();
+    private JTextField idTextField = new JTextField();
+    private JLabel idLabel = new JLabel();
+    private JButton deleteButton = new JButton();
+    private JScrollPane jScrollPane2 = new JScrollPane();
+    private JTable jTable1 = new JTable();
 
     public DeleteProduct() {
         initComponents();

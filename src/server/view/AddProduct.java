@@ -1,10 +1,12 @@
 package server.view;
+import server.model.SetJTable;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class AddProduct extends JFrame {
-    private SetJTable set = new SetJTable();
+   private SetJTable set = new SetJTable();
     private JPanel jPanel2 = new JPanel();
     private JLabel labelName = new JLabel();
     private JLabel titleProduct = new JLabel();
@@ -24,7 +26,7 @@ public class AddProduct extends JFrame {
     }
     private void initComponents() {
 
-        jTable1.setModel(set.setTable());
+      jTable1.setModel(set.setTable());
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
