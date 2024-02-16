@@ -15,33 +15,28 @@ public class ViewUsers extends JFrame {
     private JButton backButton = new JButton();
     private JScrollPane jScrollPane1 = new JScrollPane();
     private JTable jTable1 = new JTable();
+
     public ViewUsers() {
         initComponents();
     }
-    private void initComponents() {
 
+    private void initComponents() {
         jTable1.setModel(set.setViewUserTable());
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
-
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
         jPanel3.setBackground(new java.awt.Color(100, 122, 103));
-
         viewUserLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
         viewUserLabel.setForeground(new java.awt.Color(255, 255, 255));
         viewUserLabel.setText("View User");
-
         userIDLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 13)); // NOI18N
         userIDLabel.setForeground(new java.awt.Color(255, 255, 255));
         userIDLabel.setText("User ID    :");
-
         userIDTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userIDTextFieldActionPerformed(evt);
             }
         });
-
         searchButton.setText("Search");
         searchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -49,7 +44,11 @@ public class ViewUsers extends JFrame {
             }
         });
         backButton.setText("Back");
-
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
         GroupLayout jPanel3Layout = new GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -67,7 +66,9 @@ public class ViewUsers extends JFrame {
                                                 .addGap(14, 14, 14))))
                         .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(56, 56, 56)
-                                .addComponent(searchButton)
+                                .addGroup(jPanel3Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(searchButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(backButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -81,10 +82,11 @@ public class ViewUsers extends JFrame {
                                         .addComponent(userIDTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addComponent(searchButton)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(backButton)
+                                .addGap(49, 49, 49))
         );
         jScrollPane1.setViewportView(jTable1);
-
         GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -103,7 +105,6 @@ public class ViewUsers extends JFrame {
                                 .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 293, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -114,18 +115,17 @@ public class ViewUsers extends JFrame {
                 layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
         pack();
-    }// </editor-fold>
-
+    }
     private void userIDTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
-
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
     }
-
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        this.dispose();
+        new AdminView().setVisible(true);
+    }
     public static void main(String[] args) {
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
