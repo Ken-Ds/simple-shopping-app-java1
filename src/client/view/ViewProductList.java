@@ -4,9 +4,7 @@ import common.SetJTable;
 import javax.swing.*;
 import java.awt.*;
 public class ViewProductList extends JFrame{
-    public ViewProductList() {
-        initComponents();
-    }
+    private SetJTable set = new SetJTable();
     private JPanel jPanel1 = new JPanel();
     private JScrollPane jScrollPane1 = new JScrollPane();
     private JTable jTable1 = new JTable();
@@ -14,9 +12,12 @@ public class ViewProductList extends JFrame{
     private JTextField txtName = new JTextField();
     private JButton btnSearch = new JButton();
     private JButton backButton = new JButton();
+    public ViewProductList() {
+        initComponents();
+    }
+
     private void initComponents() {
-        SetJTable setJTable = new SetJTable();
-        jTable1.setModel(setJTable.setTable());
+        jTable1.setModel(set.setClientTable());
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 

@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 
 
 public class DeleteProduct extends JFrame {
-
     private SetJTable set = new SetJTable();
     private JPanel jPanel2 = new JPanel();
     private JLabel titleProduct = new JLabel();
@@ -30,11 +29,11 @@ public class DeleteProduct extends JFrame {
 
         jPanel2.setBackground(new java.awt.Color(100, 122, 103));
 
-        titleProduct.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        titleProduct.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18));
         titleProduct.setForeground(new java.awt.Color(255, 255, 255));
         titleProduct.setText("Delete Product");
 
-        backButton.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12)); // NOI18N
+        backButton.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12));
         backButton.setText("Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -48,11 +47,11 @@ public class DeleteProduct extends JFrame {
             }
         });
 
-        idLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 13)); // NOI18N
+        idLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 13));
         idLabel.setForeground(new java.awt.Color(255, 255, 255));
         idLabel.setText("ID               :");
 
-        deleteButton.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12)); // NOI18N
+        deleteButton.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12));
         deleteButton.setText("Delete Product");
         deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -127,7 +126,7 @@ public class DeleteProduct extends JFrame {
         );
 
         pack();
-    }// </editor-fold>
+    }
 
     private void backButtonActionPerformed(ActionEvent evt) {
         this.dispose();

@@ -1,10 +1,9 @@
 package server.view;
-import server.model.SetJTable;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-
+import common.SetJTable;
 public class AddProduct extends JFrame {
    private SetJTable set = new SetJTable();
     private JPanel jPanel2 = new JPanel();

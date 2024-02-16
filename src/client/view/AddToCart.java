@@ -1,40 +1,31 @@
 package client.view;
 
+import common.SetJTable;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class AddToCart  extends JFrame {
+    private SetJTable set = new SetJTable();
+    private JPanel jPanel1 = new JPanel();
+    private JScrollPane jScrollPane1 = new JScrollPane();
+    private JTable jTable1 = new JTable();
+    private JButton deleteToCartButton = new JButton();
+    private JButton editProductButton = new JButton();
+    private JPanel jPanel2 = new JPanel();
+    private JButton backButton = new JButton();
+    private JLabel jLabel1 = new JLabel();
 
     public AddToCart() {
         initComponents();
     }
 
     private void initComponents() {
-
-        JPanel jPanel1 = new JPanel();
-        JScrollPane jScrollPane1 = new JScrollPane();
-        JTable jTable1 = new JTable();
-        JButton deleteToCartButton = new JButton();
-        JButton editProductButton = new JButton();
-        JPanel jPanel2 = new JPanel();
-        JButton backButton = new JButton();
-        JLabel jLabel1 = new JLabel();
-
+        jTable1.setModel(set.setClientTable());
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(110, 110, 110));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null}
-                },
-                new String [] {
-                        "Title 1", "Title 2", "Title 3", "Title 4"
-                }
-        ));
         jScrollPane1.setViewportView(jTable1);
 
         deleteToCartButton.setText("Delete to Cart");

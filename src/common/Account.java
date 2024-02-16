@@ -16,7 +16,6 @@ public class Account implements Serializable {
         this.password = password;
         this.cart = cart;
     }
-
     public int getId() {
         return id;
     }

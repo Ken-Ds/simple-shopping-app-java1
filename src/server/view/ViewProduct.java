@@ -9,22 +9,23 @@ import java.awt.event.ActionEvent;
 
 public class ViewProduct extends JFrame {
 
+    private SetJTable set = new SetJTable();
+    private JPanel jPanel1 = new JPanel();
+    private JLabel idLabel = new JLabel();
+    private JLabel titleProduct = new JLabel();
+    private JTextField idTextField = new JTextField();
+    private JButton searchProductButton = new JButton();
+    private JButton backButton = new JButton();
+    private JButton editButton = new JButton();
+    private JPanel jPanel2 = new JPanel();
+    private JScrollPane jScrollPane1 = new JScrollPane();
+    private JTable jTable1 = new JTable();
     private DefaultTableModel model;
     public ViewProduct(){
         initComponents();
     }
     private void initComponents() {
-        SetJTable set = new SetJTable();
-        JPanel jPanel1 = new JPanel();
-        JLabel idLabel = new JLabel();
-        JLabel titleProduct = new JLabel();
-        JTextField idTextField = new JTextField();
-        JButton searchProductButton = new JButton();
-        JButton backButton = new JButton();
-        JButton editButton = new JButton();
-        JPanel jPanel2 = new JPanel();
-        JScrollPane jScrollPane1 = new JScrollPane();
-        JTable jTable1 = new JTable();
+
         jTable1.setModel(set.setTable());
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

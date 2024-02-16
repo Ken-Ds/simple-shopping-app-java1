@@ -3,20 +3,19 @@ import javax.swing.*;
 import java.awt.*;
 
 public class UserView  extends JFrame {
+    private JPanel jPanel2 = new JPanel();
+    private JPanel jPanel1 = new JPanel();
+    private JLabel jLabel2 = new JLabel();
+    private JLabel jLabel3 = new JLabel();
+    private JLabel jLabel1 = new JLabel();
+    private JButton btnAddToCart = new JButton();
+    private JButton btnViewProduct = new JButton();
+    private JButton btnLogOut = new JButton();
 
     public UserView() {
         initComponents();
     }
     private void initComponents() {
-
-        JPanel jPanel2 = new JPanel();
-        JPanel jPanel1 = new JPanel();
-        JLabel jLabel2 = new JLabel();
-        JLabel jLabel3 = new JLabel();
-        JLabel jLabel1 = new JLabel();
-        JButton btnAddToCart = new JButton();
-        JButton btnViewProduct = new JButton();
-        JButton btnLogOut = new JButton();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -24,11 +23,11 @@ public class UserView  extends JFrame {
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
-        jLabel2.setFont(new java.awt.Font("Sitka Display", Font.BOLD, 36)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Sitka Display", Font.BOLD, 30)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("AND GO UPHILL");
 
-        jLabel3.setFont(new java.awt.Font("Sitka Display", Font.BOLD, 36)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Sitka Display", Font.BOLD, 30)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("RUN THE MILL ");
 

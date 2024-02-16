@@ -7,26 +7,27 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class EditProduct extends JFrame {
+    private SetJTable set = new SetJTable();
+    private JPanel jPanel1 = new JPanel();
+    private JPanel jPanel2 = new JPanel();
+    private JLabel titleProduct = new JLabel();
+    private JLabel idLabel = new JLabel();
+    private JTextField idTextField = new JTextField();
+    private JLabel idLabel1 = new JLabel();
+    private JLabel idLabel2 = new JLabel();
+    private JTextField idTextField1 = new JTextField();
+    private JButton editButton = new JButton();
+    private JButton backButton = new JButton();
+    private JComboBox<String> statusComboBox = new JComboBox<>();
+    private JScrollPane jScrollPane1 = new JScrollPane();
+    private JTable jTable1 = new JTable();
 
     public EditProduct() {
         initComponents();
     }
 
     private void initComponents() {
-        SetJTable set = new SetJTable();
-        JPanel jPanel1 = new JPanel();
-        JPanel jPanel2 = new JPanel();
-        JLabel titleProduct = new JLabel();
-        JLabel idLabel = new JLabel();
-        JTextField idTextField = new JTextField();
-        JLabel idLabel1 = new JLabel();
-        JLabel idLabel2 = new JLabel();
-        JTextField idTextField1 = new JTextField();
-        JButton editButton = new JButton();
-        JButton backButton = new JButton();
-        JComboBox<String> statusComboBox = new JComboBox<>();
-        JScrollPane jScrollPane1 = new JScrollPane();
-        JTable jTable1 = new JTable();
+
         jTable1.setModel(set.setTable());
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

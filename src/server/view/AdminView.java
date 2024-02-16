@@ -1,6 +1,5 @@
 package server.view;
 import common.ParseXMLFile;
-import common.Product;
 import org.w3c.dom.NodeList;
 
 import javax.swing.*;
@@ -9,6 +8,19 @@ import java.awt.*;
 public class AdminView extends JFrame {
     private ParseXMLFile parseXMLFile = new ParseXMLFile();
     private NodeList list = parseXMLFile.readXMLProduct();
+    private JPanel jPanel2 = new JPanel();
+    private JButton exitButton = new JButton();
+    private JButton deleteProductButton = new JButton();
+    private JButton editProductButton = new JButton();
+    private JLabel labelUphill = new JLabel();
+    private JButton addProductButton = new JButton();
+    private JLabel labelAdminName = new JLabel();
+    private JLabel labelSeller = new JLabel();
+    private JPanel jPanel1 = new JPanel();
+    private JLabel labelWelcome = new JLabel();
+    private JButton viewProductButton = new JButton();
+    private JButton viewUserButton = new JButton();
+
 
     public AdminView() {
         initComponents();
@@ -21,24 +33,12 @@ public class AdminView extends JFrame {
 
     private void initComponents() {
 
-        JPanel jPanel2 = new JPanel();
-        JButton exitButton = new JButton();
-        JButton deleteProductButton = new JButton();
-        JButton editProductButton = new JButton();
-        JLabel labelUphill = new JLabel();
-        JButton addProductButton = new JButton();
-        JLabel labelAdminName = new JLabel();
-        JLabel labelSeller = new JLabel();
-        JPanel jPanel1 = new JPanel();
-        JLabel labelWelcome = new JLabel();
-        JButton viewProductButton = new JButton();
-
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(100, 122, 103));
 
-        exitButton.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12));
+        exitButton.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12)); // NOI18N
         exitButton.setText("Exit");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,8 +114,15 @@ public class AdminView extends JFrame {
             }
         });
 
+        viewUserButton.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12)); // NOI18N
+        viewUserButton.setText("View Users");
+        viewUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewUserButtonActionPerformed(evt);
+            }
+        });
+
         GroupLayout jPanel2Layout = new GroupLayout(jPanel2);
-        setResizable(false);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
                 jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -138,7 +145,8 @@ public class AdminView extends JFrame {
                                                         .addComponent(deleteProductButton, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(editProductButton, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(exitButton, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(viewProductButton, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE))
+                                                        .addComponent(viewProductButton, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(viewUserButton, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE))
                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)))
                                 .addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         );
@@ -160,8 +168,10 @@ public class AdminView extends JFrame {
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(editProductButton, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(viewUserButton, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(exitButton, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(82, Short.MAX_VALUE))
+                                .addContainerGap(47, Short.MAX_VALUE))
                         .addComponent(jPanel1, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -179,7 +189,7 @@ public class AdminView extends JFrame {
         );
 
         pack();
-    }
+    }// </editor-fold>
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
@@ -205,7 +215,14 @@ public class AdminView extends JFrame {
         new EditProduct().setVisible(true);
     }
 
+    private void viewUserButtonActionPerformed(java.awt.event.ActionEvent evt) {
+       this.dispose();
+       new ViewUsers().setVisible(true);
+    }
 
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -223,6 +240,9 @@ public class AdminView extends JFrame {
         } catch (UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(AdminView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+
+        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new AdminView().setVisible(true);
@@ -230,5 +250,8 @@ public class AdminView extends JFrame {
         });
     }
 
-
 }
+
+
+
+

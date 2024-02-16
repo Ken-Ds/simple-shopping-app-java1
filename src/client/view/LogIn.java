@@ -9,14 +9,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class LogIn extends JFrame {
-    JPanel jPanel1 = new JPanel();
-    JPanel jPanel2 = new JPanel();
-    JLabel jLabel1 = new JLabel();
-    JLabel jLabel2 = new JLabel();
-    JTextField txtUsername = new JTextField();
-    JLabel jLabel3 = new JLabel();
-    JTextField jTextField1 = new JTextField();
-    JButton btnLogIn = new JButton();
+    private JPanel jPanel1 = new JPanel();
+    private JPanel jPanel2 = new JPanel();
+    private JLabel jLabel1 = new JLabel();
+    private JLabel jLabel2 = new JLabel();
+    private JTextField txtUsername = new JTextField();
+    private JLabel jLabel3 = new JLabel();
+    private JTextField jTextField1 = new JTextField();
+    private JButton btnLogIn = new JButton();
 
     public LogIn() {
         initComponents();
@@ -27,8 +27,6 @@ public class LogIn extends JFrame {
     }
 
     private void initComponents() {
-
-
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 

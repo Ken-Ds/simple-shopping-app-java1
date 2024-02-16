@@ -93,6 +93,21 @@ public class ParseXMLFile {
         }
         return nodes;
     }
+    public NodeList readXMLClient(){
+        NodeList clientNodes = null;
+        try{
+            File inputFile = new File("src/res/accounts.xml");
+            DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = docBuilderFactory.newDocumentBuilder();
+            Document document = documentBuilder.parse(inputFile);
+            document.getDocumentElement().normalize();
+            clientNodes = document.getElementsByTagName("account");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return clientNodes;
+    }
+
 
     public void addXMLProduct(String name, String price, String description){
         CreateId createId = new CreateId();
