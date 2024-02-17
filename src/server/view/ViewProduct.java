@@ -154,12 +154,12 @@ public class ViewProduct extends JFrame {
         pack();
     }
 
-    private void idTextFieldActionPerformed(ActionEvent evt) {
-        // TODO add your handling code here:
+     private void idTextFieldActionPerformed(ActionEvent evt) {
+        controller.handleIdTextField(evt);
     }
 
     private void searchProductButtonActionPerformed(ActionEvent evt) {
-        // TODO add your handling code here:
+        controller.handleSearchProductButton(evt);
     }
 
     private void backButtonActionPerformed(ActionEvent evt) {

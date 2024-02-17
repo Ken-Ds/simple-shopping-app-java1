@@ -19,4 +19,13 @@ public class Controller {
         parseXMLFile = new ParseXMLFile();
         adminModel.server.startServer();
     }
+      
+    public void handleIdTextField(ActionEvent evt) {
+        String id = view.getIdTextField().getText();
+        // TODO: Add handling code for idTextField
+    }
+
+    public void handleSearchProductButton(ActionEvent evt) {
+        // TODO: Add handling code for searchProductButton
+    }
 }
