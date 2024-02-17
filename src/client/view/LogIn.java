@@ -162,13 +162,19 @@ public class LogIn extends JFrame {
     private void btnLogInActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             Connect connect = new Connect();
-            ObjectOutputStream writer = new ObjectOutputStream(connect.createConnection().getOutputStream());
+            connect.createConnection();
             String username = txtUsername.getText();
             String password = jTextField1.getText();
             Account account = new Account(0, username, password, null);
             System.out.println(account.toString());
-            writer.writeObject(account);
+            connect.sendMessage(account);
+            Boolean isAccount = (Boolean) connect.receiveMessage();
             this.dispose();
+            if(isAccount){
+                new UserView().setVisible(true);
+            }else {
+                new LogIn().setVisible(true);
+            }
         }
         catch (Exception e){
             System.out.println(e.getMessage());

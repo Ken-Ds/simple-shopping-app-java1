@@ -1,5 +1,6 @@
 package server.view;
 
+import common.ParseXMLFile;
 import common.SetJTable;
 
 import javax.swing.*;
@@ -199,12 +200,14 @@ public class EditProduct extends JFrame {
     }
 
     private void editButtonActionPerformed(ActionEvent evt) {
-        //to do
+        new ParseXMLFile().editXMLProduct(returnID(),returnPrice(),returnStatus());
+        this.dispose();
+        new EditProduct().setVisible(true);
     }
 
     private void backButton1ActionPerformed(ActionEvent evt) {
         this.dispose();
-        new ViewProduct().setVisible(true);
+        new ViewProduct(new SetJTable().setTable()).setVisible(true);
     }
 
     private void statusComboBoxActionPerformed(ActionEvent evt) {
@@ -234,4 +237,15 @@ public class EditProduct extends JFrame {
         });
     }
 
+    public String returnID(){
+        return idTextField.getText();
+    }
+
+    public String returnPrice(){
+        return idTextField1.getText();
+    }
+
+    public String returnStatus(){
+        return statusComboBox.getSelectedItem().toString();
+    }
 }

@@ -130,14 +130,12 @@ public class SignUp extends JFrame {
     private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             Connect connect = new Connect();
-            ObjectOutputStream writer = new ObjectOutputStream(connect.createConnection().getOutputStream());
             String username = txtUsername.getText();
             String password = jTextField1.getText();
             AddUser addUser = new AddUser();
             addUser.addAccount(username, password);
             System.out.println(addUser.toString());
-            writer.writeObject(addUser);
-            this.dispose();
+            connect.sendMessage(addUser);
         }
         catch (Exception e){
             System.out.println(e.getMessage());

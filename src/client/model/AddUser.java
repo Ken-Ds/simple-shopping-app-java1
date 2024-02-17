@@ -11,7 +11,4 @@ public class AddUser {
         parseXMLFile.addAccount(username, password);
 
     }
-
-
-
 }

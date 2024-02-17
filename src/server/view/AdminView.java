@@ -1,9 +1,11 @@
 package server.view;
 import common.ParseXMLFile;
+import common.SetJTable;
 import org.w3c.dom.NodeList;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Set;
 
 public class AdminView extends JFrame {
     private ParseXMLFile parseXMLFile = new ParseXMLFile();
@@ -207,7 +209,7 @@ public class AdminView extends JFrame {
 
     private void viewProductButtonActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
-        new ViewProduct().setVisible(true);
+        new ViewProduct(new SetJTable().setTable()).setVisible(true);
     }
 
     private void editProductButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -217,7 +219,7 @@ public class AdminView extends JFrame {
 
     private void viewUserButtonActionPerformed(java.awt.event.ActionEvent evt) {
        this.dispose();
-       new ViewUsers().setVisible(true);
+       new ViewUsers(new SetJTable().setViewUserTable()).setVisible(true);
     }
 
     /**

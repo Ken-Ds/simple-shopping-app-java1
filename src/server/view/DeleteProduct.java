@@ -1,4 +1,5 @@
 package server.view;
+import common.ParseXMLFile;
 import common.SetJTable;
 
 import javax.swing.*;
@@ -139,7 +140,9 @@ public class DeleteProduct extends JFrame {
 
 
     private void deleteButtonActionPerformed(ActionEvent evt) {
-        // TODO add your handling code here:
+        new ParseXMLFile().deleteXMLProduct(returnId());
+        this.dispose();
+        new DeleteProduct().setVisible(true);
     }
 
     public static void main(String[] args) {

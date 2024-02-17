@@ -2,6 +2,7 @@ package client.view;
 import common.SetJTable;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 public class ViewProductList extends JFrame{
     private SetJTable set = new SetJTable();

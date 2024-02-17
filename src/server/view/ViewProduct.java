@@ -9,7 +9,9 @@ import java.awt.event.ActionEvent;
 
 public class ViewProduct extends JFrame {
 
+
     private SetJTable set = new SetJTable();
+
     private JPanel jPanel1 = new JPanel();
     private JLabel idLabel = new JLabel();
     private JLabel titleProduct = new JLabel();
@@ -21,12 +23,12 @@ public class ViewProduct extends JFrame {
     private JScrollPane jScrollPane1 = new JScrollPane();
     private JTable jTable1 = new JTable();
     private DefaultTableModel model;
-    public ViewProduct(){
-        initComponents();
+    public ViewProduct(DefaultTableModel dTB){
+        initComponents(dTB);
     }
-    private void initComponents() {
+    private void initComponents(DefaultTableModel defaultTableModels) {
 
-        jTable1.setModel(set.setTable());
+        jTable1.setModel(defaultTableModels);
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -155,11 +157,12 @@ public class ViewProduct extends JFrame {
     }
 
      private void idTextFieldActionPerformed(ActionEvent evt) {
-        controller.handleIdTextField(evt);
+
     }
 
     private void searchProductButtonActionPerformed(ActionEvent evt) {
-        controller.handleSearchProductButton(evt);
+        this.dispose();
+        new ViewProduct(set.searchByIDProductTable(returnIDSearch())).setVisible(true);
     }
 
     private void backButtonActionPerformed(ActionEvent evt) {
@@ -172,20 +175,8 @@ public class ViewProduct extends JFrame {
         new EditProduct().setVisible(true);
     }
 
-
-    public static void main(String[] args) {
-        try {
-            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | UnsupportedLookAndFeelException | InstantiationException |
-                 IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewProduct.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        java.awt.EventQueue.invokeLater(() -> new ViewProduct().setVisible(true));
+    public String returnIDSearch() {
+        return idTextField.getText();
     }
 }
 

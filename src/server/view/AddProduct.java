@@ -3,6 +3,8 @@ package server.view;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+
+import common.ParseXMLFile;
 import common.SetJTable;
 public class AddProduct extends JFrame {
    private SetJTable set = new SetJTable();
@@ -189,7 +191,9 @@ public class AddProduct extends JFrame {
     }
 
     private void btnAddListActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        new ParseXMLFile().addXMLProduct(returnName(),returnPrice(),returnDescription());
+        this.dispose();
+        new AddProduct().setVisible(true);
     }
 
     public static void main(String[] args) {

@@ -2,6 +2,7 @@ package server.view;
 import common.SetJTable;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class ViewUsers extends JFrame {
@@ -16,12 +17,12 @@ public class ViewUsers extends JFrame {
     private JScrollPane jScrollPane1 = new JScrollPane();
     private JTable jTable1 = new JTable();
 
-    public ViewUsers() {
-        initComponents();
+    public ViewUsers(DefaultTableModel dTB) {
+        initComponents(dTB);
     }
 
-    private void initComponents() {
-        jTable1.setModel(set.setViewUserTable());
+    private void initComponents(DefaultTableModel defaultTableModel) {
+        jTable1.setModel(defaultTableModel);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -121,32 +122,15 @@ public class ViewUsers extends JFrame {
         // TODO add your handling code here:
     }
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        this.dispose();
+        new ViewUsers(set.searchByIDUserTable(returnSearchID())).setVisible(true);
     }
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
         new AdminView().setVisible(true);
     }
-    public static void main(String[] args) {
-        try {
-            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewUsers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewUsers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewUsers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewUsers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ViewUsers().setVisible(true);
-            }
-        });
+
+    public String returnSearchID(){
+        return userIDTextField.getText();
     }
 }

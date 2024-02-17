@@ -57,8 +57,13 @@ public class ParseXMLFile {
             Document document = documentBuilder.parse("src/res/accounts.xml");
             Element rootElement = document.getDocumentElement();
 
+
             Element newAccount = document.createElement("account");
             rootElement.appendChild(newAccount);
+
+            Element idElement = document.createElement("id");
+            idElement.appendChild(document.createTextNode(new CreateId().createIdAccount()));
+            newAccount.appendChild(idElement);
 
             Element usernameElement = document.createElement("username");
             usernameElement.appendChild(document.createTextNode(username));
@@ -122,7 +127,7 @@ public class ParseXMLFile {
             rootElement.appendChild(newProduct);
 
             Element idElement = document.createElement("id");
-            idElement.appendChild(document.createTextNode(createId.createId()));
+            idElement.appendChild(document.createTextNode(createId.createIdProduct()));
             newProduct.appendChild(idElement);
 
             Element nameElement = document.createElement("name");
@@ -181,7 +186,6 @@ public class ParseXMLFile {
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(document);
             StreamResult result = new StreamResult("src/res/products.xml");
-            transformer.setOutputProperty(OutputKeys.INDENT,"yes");
             transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION,"yes");
 
             transformer.transform(source,result);
@@ -199,24 +203,20 @@ public class ParseXMLFile {
             Element rootElement = document.getDocumentElement();
 
             NodeList productList = document.getElementsByTagName("product");
-            for(int x = 0; x < productList.getLength(); x++){
+            for (int x = 0; x < productList.getLength(); x++) {
                 Node node = productList.item(x);
-                if(node.getNodeType() == Node.ELEMENT_NODE){
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element product = (Element) node;
                     String name = product.getElementsByTagName("name")
                             .item(0)
                             .getTextContent();
-                    if(name.equals(searchName)){
+                    if (name.equals(searchName)) {
                         NodeList childNodes = product.getChildNodes();
-                        for(int y = 0; y < childNodes.getLength(); y++){
+                        for (int y = 0; y < childNodes.getLength(); y++) {
                             Node node1 = childNodes.item(y);
-                            if(node1.getNodeType() == Node.ELEMENT_NODE){
-                                Element element = (Element) node;
-                                if(element.getTagName().equals("price")){
-                                    element.setTextContent(price);
-                                } else if (element.getTagName().equals("status")){
-                                    element.setTextContent(status);
-                                }
+                            if (node1.getNodeType() == Node.ELEMENT_NODE && node1.getNodeName().equals("price") || node1.getNodeName().equals("status")) {
+                                Element element = (Element) node1;
+                                element.setTextContent(node1.getNodeName().equals("price") ? price : status);
                             }
                         }
                         break;
@@ -227,13 +227,11 @@ public class ParseXMLFile {
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(document);
             StreamResult result = new StreamResult("src/res/products.xml");
-            transformer.setOutputProperty(OutputKeys.INDENT,"yes");
-            transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION,"yes");
+            transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
 
-            transformer.transform(source,result);
+            transformer.transform(source, result);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 }

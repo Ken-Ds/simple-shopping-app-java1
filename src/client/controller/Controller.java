@@ -11,6 +11,5 @@ public class Controller {
     public Controller(MainModel model, MainView view){
         clientModel = model;
         clientView = view;
-        clientModel.connect.createConnection();
     }
 }
