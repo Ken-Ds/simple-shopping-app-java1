@@ -5,6 +5,7 @@ import common.Product;
 import common.SetJTable;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -21,12 +22,13 @@ public class ViewProductList extends JFrame {
 
     ArrayList<Product> productList = new ArrayList<>();
 
-    public ViewProductList() {
-        initComponents();
+    public ViewProductList(DefaultTableModel dft) {
+        initComponents(dft);
     }
 
-    private void initComponents() {
-        jTable1.setModel(set.setClientTable());
+    private void initComponents(DefaultTableModel defaultTableModel) {
+        jTable1.setModel(defaultTableModel);
+        setResizable(false);
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -109,7 +111,11 @@ public class ViewProductList extends JFrame {
         new UserView().setVisible(true);
     }
     private void searchButton(java.awt.event.ActionEvent evt){
-
+        this.dispose();
+        new ViewProductList(set.searchByNameProductTable(returnNameSearch())).setVisible(true);
+    }
+    public String returnNameSearch() {
+        return txtName.getText();
     }
     private void addToCartButton(java.awt.event.ActionEvent evt){
         int selectedRow = jTable1.getSelectedRow();
@@ -129,14 +135,5 @@ public class ViewProductList extends JFrame {
             // No row selected, display an error message or handle the case appropriately
             JOptionPane.showMessageDialog(this, "Please select a product to add to cart.");
         }
-    }
-
-    public static void main(String[] args) {
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ViewProductList().setVisible(true);
-            }
-        });
     }
 }

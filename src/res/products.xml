@@ -1,11 +1,5 @@
 <data>
-    <product>
-        <id>0</id>
-        <name>Pen</name>
-        <price>10</price>
-        <description>Yes</description>
-        <status>Available</status>
-    </product>
+    
     <product>
         <id>1</id>
         <name>Phone</name>

@@ -1,8 +1,10 @@
 package client.view;
 
 import common.SetJTable;
+import server.view.ViewProduct;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class ViewCart extends JFrame {
@@ -19,16 +21,18 @@ public class ViewCart extends JFrame {
     private JLabel labelNameSearch = new JLabel();
     private JLabel labelNameDelete = new JLabel();
     private SetJTable set = new SetJTable();
+    private DefaultTableModel model;
 
-    public ViewCart() {
-        initComponents();
+    public ViewCart(DefaultTableModel dtm) {
+        initComponents(dtm);
     }
 
-    private void initComponents() {
-
+    private void initComponents(DefaultTableModel defaultTableModel) {
+        setResizable(false);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         jPanel1.setBackground(new java.awt.Color(110, 110, 110));
-        jTable1.setModel(set.setClientTable());
+
+        jTable1.setModel(defaultTableModel);
         jScrollPane1.setViewportView(jTable1);
 
         buttonDelete.setText("Delete from Cart");
@@ -61,7 +65,7 @@ public class ViewCart extends JFrame {
         buttonBack.setText("Back");
         buttonBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backbutton(evt);
+                backButton(evt);
             }
         });
 
@@ -151,41 +155,18 @@ public class ViewCart extends JFrame {
 
         pack();
     }
-    private void backbutton(java.awt.event.ActionEvent evt){
+    private void backButton(java.awt.event.ActionEvent evt){
         this.dispose();
         new UserView().setVisible(true);
-
     }
     private void deleteButton(java.awt.event.ActionEvent evt){
-
+        //TODO
     }
     private void searchButton(java.awt.event.ActionEvent evt){
-
+        this.dispose();
+        new ViewCart(set.searchByNameProductTable(returnNameSearch())).setVisible(true);
     }
-
-
-    public static void main(String[] args) {
-        try {
-            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewCart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewCart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewCart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewCart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ViewCart().setVisible(true);
-            }
-        });
+    public String returnNameSearch() {
+        return textSearchName.getText();
     }
 }

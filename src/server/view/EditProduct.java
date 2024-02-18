@@ -29,9 +29,6 @@ public class EditProduct extends JFrame {
 
     private void initComponents() {
         jTable1.setModel(set.setTable());
-
-
-
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
@@ -75,7 +72,7 @@ public class EditProduct extends JFrame {
             }
         });
 
-        statusComboBox.setModel(new DefaultComboBoxModel<>(new String[] { "Available", "Not Available", " " }));
+        statusComboBox.setModel(new DefaultComboBoxModel<>(new String[] { "Available", "Not Available"}));
         statusComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);

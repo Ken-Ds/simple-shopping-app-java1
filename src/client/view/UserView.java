@@ -1,4 +1,6 @@
 package client.view;
+import common.SetJTable;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -19,7 +21,7 @@ public class UserView  extends JFrame {
         initComponents();
     }
     private void initComponents() {
-
+        setResizable(false);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         jPanel2.setBackground(new java.awt.Color(110, 110, 110));
@@ -160,12 +162,12 @@ public class UserView  extends JFrame {
 
     private void btnViewProductActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
-        new ViewProductList().setVisible(true);
+        new ViewProductList(new SetJTable().setClientTable()).setVisible(true);
     }
 
     private void btnAddToCartActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
-        new ViewCart().setVisible(true);
+        new ViewCart(new SetJTable().setClientTable()).setVisible(true);
     }
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {
