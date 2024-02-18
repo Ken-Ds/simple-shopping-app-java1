@@ -4,10 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cart {
+    private final Account user;
     private List<Product> products;
 
-    public Cart(Account user) {
-        this.products = new ArrayList<>();
+    public Cart(Account user, ArrayList<Product> products) {
+        this.products = products;
+        this.user = user;
+
+    }
+
+    public Account getUser() {
+        return user;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     public void addProduct(Product product) {
