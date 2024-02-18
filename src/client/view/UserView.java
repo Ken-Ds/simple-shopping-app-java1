@@ -17,10 +17,10 @@ public class UserView  extends JFrame {
     private JLabel labelName = new JLabel();
 
 
-    public UserView() {
-        initComponents();
+    public UserView(int userId, String userName) {
+        initComponents(userId,userName);
     }
-    private void initComponents() {
+    private void initComponents(int id, String name) {
         setResizable(false);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,11 +86,11 @@ public class UserView  extends JFrame {
 
         labelName.setFont(new java.awt.Font("Sitka Display", Font.BOLD, 20)); // NOI18N
         labelName.setForeground(new java.awt.Color(255, 255, 255));
-        labelName.setText("Emman ");
+        labelName.setText("Name: "+name);
 
         labelID.setFont(new java.awt.Font("Sitka Display", Font.BOLD, 14)); // NOI18N
         labelID.setForeground(new java.awt.Color(255, 255, 255));
-        labelID.setText("00001");
+        labelID.setText("ID: "+String.valueOf(id));
 
         GroupLayout jPanel2Layout = new GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -173,14 +173,6 @@ public class UserView  extends JFrame {
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
         new LogIn().setVisible(true);
-    }
-    public static void main(String[] args) {
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new UserView().setVisible(true);
-            }
-        });
     }
 }
 

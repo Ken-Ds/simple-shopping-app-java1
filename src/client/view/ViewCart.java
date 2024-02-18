@@ -157,7 +157,7 @@ public class ViewCart extends JFrame {
     }
     private void backButton(java.awt.event.ActionEvent evt){
         this.dispose();
-        new UserView().setVisible(true);
+        new UserView(0,"Freddie").setVisible(true);
     }
     private void deleteButton(java.awt.event.ActionEvent evt){
         //TODO

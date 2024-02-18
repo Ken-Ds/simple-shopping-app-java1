@@ -1,5 +1,7 @@
 package server.model;
 import common.Account;
+import common.Cart;
+import common.ParseXMLFile;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -39,11 +41,11 @@ public class Server {
                     ObjectOutputStream writer = new ObjectOutputStream(clientSocket.getOutputStream());
             )
             {
-
+                Account account = null;
                 String string = (String) reader.readObject();
                 switch (string){
                     case "Login":
-                        Account account = (Account) reader.readObject();
+                        account = (Account) reader.readObject();
 
                         CheckIfUser authenticator = new CheckIfUser();
 
@@ -54,12 +56,20 @@ public class Server {
                             System.out.println("No Account Found!");
                             writer.writeObject(false);
                         }
+
+
                         break;
                     case  "Signup":
                         Account signAccount = (Account) reader.readObject();
                         System.out.println(signAccount);
                         AddUser addUser = new AddUser();
                         addUser.addAccount(signAccount.getUsername(), signAccount.getPassword());
+                        break;
+
+                    case "Cart":
+                        Account accountCart = (Account) reader.readObject();
+                        Cart cart = (Cart) reader.readObject();
+                        new ParseXMLFile().addProductsToCart(String.valueOf(account.getId()),cart);
                         break;
                 }
 

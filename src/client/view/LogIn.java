@@ -2,6 +2,7 @@ package client.view;
 
 import client.model.Connect;
 import common.Account;
+import common.CreateId;
 
 import javax.swing.*;
 import java.awt.*;
@@ -166,13 +167,13 @@ public class LogIn extends JFrame {
             connect.sendMessage("Login");
             String username = txtUsername.getText();
             String password = jTextField1.getText();
-            Account account = new Account(0, username, password, null);
+            Account account = new Account(Integer.parseInt(new CreateId().createIdAccount()), username, password, null);
             System.out.println(account.toString());
             connect.sendMessage(account);
             Boolean isAccount = (Boolean) connect.receiveMessage();
             this.dispose();
             if(isAccount){
-                new UserView().setVisible(true);
+                new UserView(account.getId(), account.getUsername()).setVisible(true);
             }else {
                 new LogIn().setVisible(true);
             }

@@ -87,6 +87,7 @@ public class ParseXMLFile {
             e.printStackTrace();
         }
     }
+
     public NodeList readXMLProduct(){
         NodeList nodes = null;
         try {
@@ -230,6 +231,66 @@ public class ParseXMLFile {
 
             transformer.transform(source, result);
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addProductsToCart(String id, Cart products) {
+        try {
+            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = docFactory.newDocumentBuilder();
+
+            Document document = documentBuilder.parse("src/res/accounts.xml");
+            Element rootElement = document.getDocumentElement();
+
+            NodeList accountList = document.getElementsByTagName("account");
+            for(int x = 0; x < accountList.getLength(); x++){
+                Node node = accountList.item(x);
+                if(node.getNodeType() == Node.ELEMENT_NODE){
+                    Element accountElement = (Element) node;
+                    String accountId = accountElement
+                            .getElementsByTagName("id")
+                            .item(0)
+                            .getTextContent();
+                    if(accountId.equals(id)){
+                        accountElement = (Element) accountElement.getElementsByTagName("cart").item(0);
+                        for (Product product : products.getProducts()) {
+
+                            Element productElement = document.createElement("product");
+                            accountElement.appendChild(productElement);
+
+                            Element idElement = document.createElement("id");
+                            idElement.appendChild(document.createTextNode(product.getId()));
+                            productElement.appendChild(idElement);
+
+                            Element nameElement = document.createElement("name");
+                            nameElement.appendChild(document.createTextNode(product.getName()));
+                            productElement.appendChild(nameElement);
+
+                            Element priceElement = document.createElement("price");
+                            priceElement.appendChild(document.createTextNode(product.getPrice()));
+                            productElement.appendChild(priceElement);
+
+                            Element descriptionElement = document.createElement("description");
+                            descriptionElement.appendChild(document.createTextNode(product.getDescription()));
+                            productElement.appendChild(descriptionElement);
+
+                            Element statusElement = document.createElement("status");
+                            statusElement.appendChild(document.createTextNode(product.getStatus()));
+                            productElement.appendChild(statusElement);
+                        }
+                    }
+                }
+            }
+
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(document);
+            StreamResult result = new StreamResult("src/res/products.xml");
+            transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION,"yes");
+
+            transformer.transform(source,result);
+        } catch (Exception e){
             e.printStackTrace();
         }
     }

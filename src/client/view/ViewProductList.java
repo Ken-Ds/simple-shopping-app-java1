@@ -1,5 +1,6 @@
 package client.view;
 
+import client.model.Connect;
 import common.Cart;
 import common.Product;
 import common.SetJTable;
@@ -7,6 +8,7 @@ import common.SetJTable;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ViewProductList extends JFrame {
@@ -43,7 +45,11 @@ public class ViewProductList extends JFrame {
         btnAddToCart.setText("Add to Cart");
         btnAddToCart.addActionListener(new java.awt.event.ActionListener(){
             public void actionPerformed(java.awt.event.ActionEvent evt){
-                addToCartButton(evt);
+                try {
+                    addToCartButton(evt);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -108,7 +114,7 @@ public class ViewProductList extends JFrame {
     }
     private void jButton1(java.awt.event.ActionEvent evt) {
         this.dispose();
-        new UserView().setVisible(true);
+        new UserView(0,"Freddie").setVisible(true);
     }
     private void searchButton(java.awt.event.ActionEvent evt){
         this.dispose();
@@ -117,7 +123,7 @@ public class ViewProductList extends JFrame {
     public String returnNameSearch() {
         return txtName.getText();
     }
-    private void addToCartButton(java.awt.event.ActionEvent evt){
+    private void addToCartButton(java.awt.event.ActionEvent evt) throws IOException {
         int selectedRow = jTable1.getSelectedRow();
         if (selectedRow != -1) {
             String name = (String) jTable1.getValueAt(selectedRow, 0);
@@ -131,6 +137,9 @@ public class ViewProductList extends JFrame {
             System.out.println("Selected: " + name + ", " + price + ", " + description);
 
             JOptionPane.showMessageDialog(this, "Product added to cart: " + name);
+            Connect connect = new Connect();
+            connect.createConnection();
+            connect.sendMessage("Cart");
         } else {
             // No row selected, display an error message or handle the case appropriately
             JOptionPane.showMessageDialog(this, "Please select a product to add to cart.");
