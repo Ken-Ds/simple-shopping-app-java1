@@ -57,11 +57,11 @@ public class UserView  extends JFrame {
                                 .addGap(143, 143, 143))
         );
 
-        jLabel1.setFont(new java.awt.Font("Sitka Display", 1, 31)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Sitka Display", Font.BOLD, 31)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("UPHILL");
 
-        btnAddToCart.setText("Add to Cart");
+        btnAddToCart.setText("View Cart");
         btnAddToCart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddToCartActionPerformed(evt);
@@ -82,11 +82,11 @@ public class UserView  extends JFrame {
             }
         });
 
-        labelName.setFont(new java.awt.Font("Sitka Display", 1, 20)); // NOI18N
+        labelName.setFont(new java.awt.Font("Sitka Display", Font.BOLD, 20)); // NOI18N
         labelName.setForeground(new java.awt.Color(255, 255, 255));
         labelName.setText("Emman ");
 
-        labelID.setFont(new java.awt.Font("Sitka Display", 1, 14)); // NOI18N
+        labelID.setFont(new java.awt.Font("Sitka Display", Font.BOLD, 14)); // NOI18N
         labelID.setForeground(new java.awt.Color(255, 255, 255));
         labelID.setText("00001");
 
@@ -165,14 +165,14 @@ public class UserView  extends JFrame {
 
     private void btnAddToCartActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
-        new AddToCart().setVisible(true);
+        new ViewCart().setVisible(true);
     }
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
         new LogIn().setVisible(true);
     }
-    public static void main(String args[]) {
+    public static void main(String[] args) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
