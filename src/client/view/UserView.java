@@ -11,6 +11,9 @@ public class UserView  extends JFrame {
     private JButton btnAddToCart = new JButton();
     private JButton btnViewProduct = new JButton();
     private JButton btnLogOut = new JButton();
+    private JLabel labelID = new JLabel();
+    private JLabel labelName = new JLabel();
+
 
     public UserView() {
         initComponents();
@@ -40,7 +43,7 @@ public class UserView  extends JFrame {
                                 .addComponent(jLabel3, GroupLayout.PREFERRED_SIZE, 254, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addContainerGap(231, Short.MAX_VALUE)
+                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel2)
                                 .addGap(64, 64, 64))
         );
@@ -48,13 +51,13 @@ public class UserView  extends JFrame {
                 jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addContainerGap(110, Short.MAX_VALUE)
-                                .addComponent(jLabel3, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3,GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel2, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
                                 .addGap(143, 143, 143))
         );
 
-        jLabel1.setFont(new java.awt.Font("Sitka Display", Font.BOLD, 31)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Sitka Display", 1, 31)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("UPHILL");
 
@@ -79,18 +82,38 @@ public class UserView  extends JFrame {
             }
         });
 
+        labelName.setFont(new java.awt.Font("Sitka Display", 1, 20)); // NOI18N
+        labelName.setForeground(new java.awt.Color(255, 255, 255));
+        labelName.setText("Emman ");
+
+        labelID.setFont(new java.awt.Font("Sitka Display", 1, 14)); // NOI18N
+        labelID.setForeground(new java.awt.Color(255, 255, 255));
+        labelID.setText("00001");
+
         GroupLayout jPanel2Layout = new GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
                 jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addComponent(jLabel1)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(25, 25, 25)
+                                                .addComponent(jLabel1)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE))
+                                        .addGroup(GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                                .addComponent(labelName))
+                                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                .addGap(45, 45, 45)
+                                                                .addComponent(labelID, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
+                                                                .addGap(0, 0, Short.MAX_VALUE)))
+                                                .addGap(40, 40, 40)))
                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                .addGap(0, 195, Short.MAX_VALUE)
                                                 .addComponent(btnAddToCart)
                                                 .addGap(31, 31, 31)
                                                 .addComponent(btnViewProduct)
@@ -108,12 +131,18 @@ public class UserView  extends JFrame {
                                         .addComponent(btnViewProduct)
                                         .addComponent(btnLogOut))
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                                .addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27))
+                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                        .addGroup(GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                                .addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(27, 27, 27))
+                                        .addGroup(GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                                .addComponent(labelName)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(labelID)
+                                                .addGap(36, 36, 36))))
         );
 
         GroupLayout layout = new GroupLayout(getContentPane());
-        setResizable(false);
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
                 layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -143,24 +172,8 @@ public class UserView  extends JFrame {
         this.dispose();
         new LogIn().setVisible(true);
     }
+    public static void main(String args[]) {
 
-    public static void main(String[] args) {
-        try {
-            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UserView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UserView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UserView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UserView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new UserView().setVisible(true);
@@ -168,4 +181,5 @@ public class UserView  extends JFrame {
         });
     }
 }
+
 

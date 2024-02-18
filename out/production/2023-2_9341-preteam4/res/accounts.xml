@@ -5,4 +5,4 @@
         <password>kahitanona</password>
         <cart/>
     </account>
-</data>
+<account><id>1</id><username/><password/></account><account><id>1</id><username/><password/></account></data>

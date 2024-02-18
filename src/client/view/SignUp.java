@@ -17,6 +17,7 @@ public class SignUp extends JFrame {
     private JLabel jLabel3 = new JLabel();
     private JTextField jTextField1 = new JTextField();
     private JButton btnSignUp = new JButton();
+    private JButton buttonBack = new JButton();
 
     public SignUp() {
         initComponents();
@@ -43,10 +44,17 @@ public class SignUp extends JFrame {
         jLabel3.setText("Password");
 
         btnSignUp.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14)); // NOI18N
-        btnSignUp.setText("SignUp");
+        btnSignUp.setText("Sign Up");
         btnSignUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSignUpActionPerformed(evt);
+            }
+        });
+        buttonBack.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 13)); // NOI18N
+        buttonBack.setText("Back");
+        buttonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonBackActionPerformed(evt);
             }
         });
 
@@ -77,6 +85,21 @@ public class SignUp extends JFrame {
                                         .addGroup(GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                                 .addComponent(btnSignUp, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE)
                                                 .addGap(77, 77, 77))))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(51, 51, 51)
+                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel3,javax.swing.GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(6, 6, 6)
+                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                        .addComponent(txtUsername)
+                                                        .addComponent(jTextField1))))
+                                .addContainerGap())
+                        .addGroup(GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(buttonBack, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+                                .addGap(119, 119, 119))
         );
         jPanel2Layout.setVerticalGroup(
                 jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -93,7 +116,9 @@ public class SignUp extends JFrame {
                                 .addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addGap(43, 43, 43)
                                 .addComponent(btnSignUp)
-                                .addContainerGap(139, Short.MAX_VALUE))
+                                .addContainerGap(139, Short.MAX_VALUE)
+                                .addComponent(buttonBack)
+                                .addGap(58, 58, 58))
         );
 
         GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
@@ -141,6 +166,11 @@ public class SignUp extends JFrame {
             System.out.println(e.getMessage());
         }
     }
+    private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {
+        this.dispose();
+        new LogIn().setVisible(true);
+    }
+
 
 
     public static void main(String[] args) {
