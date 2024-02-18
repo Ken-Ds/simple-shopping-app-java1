@@ -1,27 +1,28 @@
 package client.view;
+
 import common.SetJTable;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-public class ViewProductList extends JFrame{
-    private SetJTable set = new SetJTable();
+
+public class ViewProductList extends JFrame {
+    private JButton backButton = new JButton();
     private JPanel jPanel1 = new JPanel();
     private JScrollPane jScrollPane1 = new JScrollPane();
     private JTable jTable1 = new JTable();
     private JLabel jLabel1 = new JLabel();
     private JTextField txtName = new JTextField();
-    private JButton btnSearch = new JButton();
-    private JButton backButton = new JButton();
+    private JButton btnAddToCart = new JButton();
+    private JButton btnSearch1 = new JButton();
+    private SetJTable set = new SetJTable();
+
     public ViewProductList() {
         initComponents();
     }
 
     private void initComponents() {
         jTable1.setModel(set.setClientTable());
-
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
 
         jPanel1.setBackground(new java.awt.Color(110, 110, 110));
 
@@ -31,12 +32,24 @@ public class ViewProductList extends JFrame{
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Product Name  :");
 
-        btnSearch.setText("Search Product");
+        btnAddToCart.setText("Add to Cart");
+        btnAddToCart.addActionListener(new java.awt.event.ActionListener(){
+            public void actionPerformed(java.awt.event.ActionEvent evt){
+                addToCartButton(evt);
+            }
+        });
 
         backButton.setText("Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1(evt);
+            }
+        });
+
+        btnSearch1.setText("Search Product");
+        btnSearch1.addActionListener(new java.awt.event.ActionListener(){
+            public void actionPerformed(java.awt.event.ActionEvent evt){
+                searchButton(evt);
             }
         });
 
@@ -46,15 +59,17 @@ public class ViewProductList extends JFrame{
                 jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
+                                .addGap(10, 10, 10)
                                 .addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtName, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
-                                .addGap(62, 62, 62)
-                                .addComponent(btnSearch)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnSearch1)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnAddToCart)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(backButton)
-                                .addGap(30, 30, 30))
+                                .addGap(21, 21, 21))
         );
         jPanel1Layout.setVerticalGroup(
                 jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -63,14 +78,14 @@ public class ViewProductList extends JFrame{
                                 .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel1)
                                         .addComponent(txtName, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnSearch)
-                                        .addComponent(backButton))
+                                        .addComponent(btnAddToCart)
+                                        .addComponent(backButton)
+                                        .addComponent(btnSearch1))
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                                 .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 355, GroupLayout.PREFERRED_SIZE))
         );
 
         GroupLayout layout = new GroupLayout(getContentPane());
-        setResizable(false);
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
                 layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -80,31 +95,22 @@ public class ViewProductList extends JFrame{
                 layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
         pack();
     }
     private void jButton1(java.awt.event.ActionEvent evt) {
         this.dispose();
         new UserView().setVisible(true);
     }
+    private void searchButton(java.awt.event.ActionEvent evt){
 
+    }
+    private void addToCartButton(java.awt.event.ActionEvent evt){
+
+    }
 
     public static void main(String[] args) {
-        try {
-            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewProductList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewProductList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewProductList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewProductList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ViewProductList().setVisible(true);
