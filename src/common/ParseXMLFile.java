@@ -73,6 +73,10 @@ public class ParseXMLFile {
             passwordElement.appendChild(document.createTextNode(password));
             newAccount.appendChild(passwordElement);
 
+            Element cartElement = document.createElement("cart");
+            passwordElement.appendChild(document.createTextNode(""));
+            newAccount.appendChild(cartElement);
+
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(document);

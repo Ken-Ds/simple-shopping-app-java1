@@ -1,11 +1,5 @@
 package server.model;
-import client.controller.Controller;
-import client.model.AddUser;
-import client.model.CheckIfUser;
-import client.model.MainModel;
-import client.view.MainView;
 import common.Account;
-import common.ParseXMLFile;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -45,16 +39,31 @@ public class Server {
                     ObjectOutputStream writer = new ObjectOutputStream(clientSocket.getOutputStream());
             )
             {
-                Account account = (Account) reader.readObject();
-                CheckIfUser authenticator = new CheckIfUser();
 
-                if (authenticator.authenticate(account)) {
-                    System.out.println("Authenticated");
-                    writer.writeObject(true);
-                } else {
-                    System.out.println("No Account Found!");
-                    writer.writeObject(false);
+                String string = (String) reader.readObject();
+                switch (string){
+                    case "Login":
+                        Account account = (Account) reader.readObject();
+
+                        CheckIfUser authenticator = new CheckIfUser();
+
+                        if (authenticator.authenticate(account)) {
+                            System.out.println("Authenticated");
+                            writer.writeObject(true);
+                        } else {
+                            System.out.println("No Account Found!");
+                            writer.writeObject(false);
+                        }
+                        break;
+                    case  "Signup":
+                        Account signAccount = (Account) reader.readObject();
+                        System.out.println(signAccount);
+                        AddUser addUser = new AddUser();
+                        addUser.addAccount(signAccount.getUsername(), signAccount.getPassword());
+                        break;
                 }
+
+
             }catch (Exception e){
                 e.printStackTrace();
             }

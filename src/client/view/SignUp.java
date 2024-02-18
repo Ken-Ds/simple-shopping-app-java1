@@ -1,12 +1,12 @@
 package client.view;
 
-import client.model.AddUser;
-import client.model.Connect;
 import common.Account;
+import common.Cart;
+import server.model.AddUser;
+import client.model.Connect;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.ObjectOutputStream;
 
 public class SignUp extends JFrame {
     private JPanel jPanel1 = new JPanel();
@@ -155,12 +155,12 @@ public class SignUp extends JFrame {
     private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             Connect connect = new Connect();
+            connect.createConnection();
             String username = txtUsername.getText();
             String password = jTextField1.getText();
-            AddUser addUser = new AddUser();
-            addUser.addAccount(username, password);
-            System.out.println(addUser.toString());
-            connect.sendMessage(addUser);
+            connect.sendMessage("Signup");
+            Account account = new Account(0, username, password, new Cart());
+            connect.sendMessage(account);
         }
         catch (Exception e){
             System.out.println(e.getMessage());

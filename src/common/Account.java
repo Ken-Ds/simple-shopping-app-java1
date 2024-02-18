@@ -50,6 +50,11 @@ public class Account implements Serializable {
 
     @Override
     public String toString() {
-        return super.toString();
+        return "Account{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", cart=" + cart +
+                '}';
     }
 }

@@ -1,9 +1,12 @@
 package client.view;
 
+import common.Cart;
+import common.Product;
 import common.SetJTable;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class ViewProductList extends JFrame {
     private JButton backButton = new JButton();
@@ -16,12 +19,15 @@ public class ViewProductList extends JFrame {
     private JButton btnSearch1 = new JButton();
     private SetJTable set = new SetJTable();
 
+    ArrayList<Product> productList = new ArrayList<>();
+
     public ViewProductList() {
         initComponents();
     }
 
     private void initComponents() {
         jTable1.setModel(set.setClientTable());
+
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(110, 110, 110));
@@ -106,7 +112,23 @@ public class ViewProductList extends JFrame {
 
     }
     private void addToCartButton(java.awt.event.ActionEvent evt){
+        int selectedRow = jTable1.getSelectedRow();
+        if (selectedRow != -1) {
+            String name = (String) jTable1.getValueAt(selectedRow, 0);
+            String price = (String) jTable1.getValueAt(selectedRow, 1);
+            String description = (String) jTable1.getValueAt(selectedRow, 2);
 
+           Product product = new Product(name, price, description);
+            productList.add(product);
+            Cart cart = new Cart(null, productList);
+            System.out.println(cart);
+            System.out.println("Selected: " + name + ", " + price + ", " + description);
+
+            JOptionPane.showMessageDialog(this, "Product added to cart: " + name);
+        } else {
+            // No row selected, display an error message or handle the case appropriately
+            JOptionPane.showMessageDialog(this, "Please select a product to add to cart.");
+        }
     }
 
     public static void main(String[] args) {

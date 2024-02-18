@@ -163,6 +163,7 @@ public class LogIn extends JFrame {
         try {
             Connect connect = new Connect();
             connect.createConnection();
+            connect.sendMessage("Login");
             String username = txtUsername.getText();
             String password = jTextField1.getText();
             Account account = new Account(0, username, password, null);

@@ -27,4 +27,4 @@
         <description>asd</description>
         <status>Available</status>
     </product>
-<product><id>4</id><name>Rock</name><price>50</price><description>Loop</description><status>On Sale</status></product><product><id>5</id><name>Paper</name><price>1</price><description>paper</description><status>On Sale</status></product></data>
+<product><id>4</id><name>Rock</name><price>50</price><description>Loop</description><status>On Sale</status></product><product><id>5</id><name>Paper</name><price>1</price><description>paper</description><status>On Sale</status></product><product><id>6</id><name>Coke</name><price>12</price><description>1.5 ml</description><status>On Sale</status></product></data>
