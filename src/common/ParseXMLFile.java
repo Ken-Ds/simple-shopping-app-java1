@@ -194,7 +194,7 @@ public class ParseXMLFile {
         }
     }
 
-    public void editXMLProduct(String searchName, String price, String status) {
+    public void editXMLProduct(String searchID, String name, String price, String status) {
         try {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = docFactory.newDocumentBuilder();
@@ -207,18 +207,13 @@ public class ParseXMLFile {
                 Node node = productList.item(x);
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element product = (Element) node;
-                    String name = product.getElementsByTagName("name")
+                    String id = product.getElementsByTagName("id")
                             .item(0)
                             .getTextContent();
-                    if (name.equals(searchName)) {
-                        NodeList childNodes = product.getChildNodes();
-                        for (int y = 0; y < childNodes.getLength(); y++) {
-                            Node node1 = childNodes.item(y);
-                            if (node1.getNodeType() == Node.ELEMENT_NODE && node1.getNodeName().equals("price") || node1.getNodeName().equals("status")) {
-                                Element element = (Element) node1;
-                                element.setTextContent(node1.getNodeName().equals("price") ? price : status);
-                            }
-                        }
+                    if (id.equals(searchID)) {
+                        product.getElementsByTagName("name").item(0).setTextContent(name);
+                        product.getElementsByTagName("price").item(0).setTextContent(price);
+                        product.getElementsByTagName("status").item(0).setTextContent(status);
                         break;
                     }
                 }

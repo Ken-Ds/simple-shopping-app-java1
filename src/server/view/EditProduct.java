@@ -1,35 +1,36 @@
 package server.view;
-
+import javax.swing.*;
 import common.ParseXMLFile;
 import common.SetJTable;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 
 public class EditProduct extends JFrame {
+    private JTextField idTextField = new JTextField();
+    private JTable jTable1 = new JTable();
     private SetJTable set = new SetJTable();
     private JPanel jPanel1 = new JPanel();
     private JPanel jPanel2 = new JPanel();
-    private JLabel titleProduct = new JLabel();
-    private JLabel idLabel = new JLabel();
-    private JTextField idTextField = new JTextField();
-    private JLabel idLabel1 = new JLabel();
-    private JLabel idLabel2 = new JLabel();
-    private JTextField idTextField1 = new JTextField();
+    private JLabel jLabel1 = new JLabel();
+    private JLabel jLabel2 = new JLabel();
+    private JLabel nameLabel = new JLabel();
+    private JLabel priceLabel = new JLabel();
+    private JLabel statusLabel = new JLabel();
     private JButton editButton = new JButton();
     private JButton backButton = new JButton();
     private JComboBox<String> statusComboBox = new JComboBox<>();
+    private JTextField nameTextField = new JTextField();
+    private JTextField priceTextField = new JTextField();
     private JScrollPane jScrollPane1 = new JScrollPane();
-    private JTable jTable1 = new JTable();
 
     public EditProduct() {
         initComponents();
     }
 
     private void initComponents() {
-
         jTable1.setModel(set.setTable());
+
+
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -38,141 +39,143 @@ public class EditProduct extends JFrame {
 
         jPanel2.setBackground(new java.awt.Color(100, 122, 103));
 
-        titleProduct.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
-        titleProduct.setForeground(new java.awt.Color(255, 255, 255));
-        titleProduct.setText("Edit Product");
+        jLabel1.setFont(new java.awt.Font("Arial Black", Font.BOLD, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("EDIT PRODUCT");
 
-        idLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 13)); // NOI18N
-        idLabel.setForeground(new java.awt.Color(255, 255, 255));
-        idLabel.setText("Name            :");
+        jLabel2.setFont(new java.awt.Font("Arial Black", Font.BOLD, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("ID              :");
 
-        idTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                idTextFieldActionPerformed(evt);
-            }
-        });
+        nameLabel.setFont(new java.awt.Font("Arial Black", Font.BOLD, 12)); // NOI18N
+        nameLabel.setForeground(new java.awt.Color(255, 255, 255));
+        nameLabel.setText("NAME        :");
 
-        idLabel1.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 13)); // NOI18N
-        idLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        idLabel1.setText("Price              :");
+        priceLabel.setFont(new java.awt.Font("Arial Black", Font.BOLD, 12)); // NOI18N
+        priceLabel.setForeground(new java.awt.Color(255, 255, 255));
+        priceLabel.setText("PRICE       :");
 
-        idLabel2.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 13)); // NOI18N
-        idLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        idLabel2.setText("Status            :");
+        statusLabel.setFont(new java.awt.Font("Arial Black", Font.BOLD, 12)); // NOI18N
+        statusLabel.setForeground(new java.awt.Color(255, 255, 255));
+        statusLabel.setText("STATUS    :");
 
-        idTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                idTextField1ActionPerformed(evt);
-            }
-        });
-
-        editButton.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12)); // NOI18N
-        editButton.setText("Edit");
+        editButton.setFont(new java.awt.Font("Arial", Font.BOLD, 12)); // NOI18N
+        editButton.setText("EDIT");
         editButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editButtonActionPerformed(evt);
             }
         });
 
-        backButton.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12)); // NOI18N
-        backButton.setText("Back");
+        backButton.setFont(new java.awt.Font("Arial", Font.BOLD, 12)); // NOI18N
+        backButton.setText("BACK");
         backButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                backButton1ActionPerformed(evt);
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
             }
         });
 
-        statusComboBox.setModel(new DefaultComboBoxModel<>(new String[] { "Available", "Not Available" }));
+        statusComboBox.setModel(new DefaultComboBoxModel<>(new String[] { "Available", "Not Available", " " }));
         statusComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                statusComboBoxActionPerformed(evt);
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        idTextField.setToolTipText("");
+        idTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idTextFieldActionPerformed(evt);
+            }
+        });
+
+        nameTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameTextFieldActionPerformed(evt);
+            }
+        });
+
+        priceTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                priceTextFieldActionPerformed(evt);
             }
         });
 
         GroupLayout jPanel2Layout = new GroupLayout(jPanel2);
-        setResizable(false);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
                 jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(idLabel)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(idTextField, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
-                                                .addContainerGap(12, Short.MAX_VALUE))
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(titleProduct, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addGap(62, 62, 62))
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                                .addGap(19, 19, 19)
+                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
                                                         .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                .addComponent(idLabel2)
+                                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+                                                                        .addComponent(jLabel2, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                        .addComponent(nameLabel, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                        .addComponent(priceLabel, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                        .addComponent(statusLabel, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(statusComboBox, 0, 0, Short.MAX_VALUE))
-                                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                .addComponent(idLabel1)
-                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(idTextField1, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)))
-                                                .addGap(0, 0, Short.MAX_VALUE))))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(71, 71, 71)
-                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addComponent(backButton, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(editButton, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                                                        .addComponent(statusComboBox, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(priceTextField)
+                                                                        .addComponent(nameTextField)
+                                                                        .addComponent(idTextField)))))
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(83, 83, 83)
+                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(backButton)
+                                                        .addComponent(editButton))))
+                                .addContainerGap(51, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
                 jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addComponent(titleProduct)
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addComponent(idLabel)
-                                        .addComponent(idTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
+                                .addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(idLabel1)
-                                        .addComponent(idTextField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGap(20, 20, 20)
-                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addComponent(idLabel2)
+                                        .addComponent(jLabel2)
+                                        .addComponent(idTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(nameLabel)
+                                        .addComponent(nameTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(priceLabel)
+                                        .addComponent(priceTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(statusLabel)
                                         .addComponent(statusComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addComponent(editButton)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(backButton)
-                                .addGap(33, 33, 33))
+                                .addGap(18, 18, 18))
         );
 
         jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-        }
 
         GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
                 jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, 0)
                                 .addComponent(jPanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane1))
         );
         jPanel1Layout.setVerticalGroup(
                 jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, 0)
-                                .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jPanel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                                .addGap(0, 0, 0))
+                                .addContainerGap()
+                                .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 303, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         GroupLayout layout = new GroupLayout(getContentPane());
@@ -183,36 +186,39 @@ public class EditProduct extends JFrame {
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, 0)
-                                .addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }
 
-    private void idTextFieldActionPerformed(ActionEvent evt) {
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
-    private void idTextField1ActionPerformed(ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    private void editButtonActionPerformed(ActionEvent evt) {
-        new ParseXMLFile().editXMLProduct(returnID(),returnPrice(),returnStatus());
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        new ParseXMLFile().editXMLProduct(returnID(),returnName(),returnPrice(),returnStatus());
         this.dispose();
         new EditProduct().setVisible(true);
     }
 
-    private void backButton1ActionPerformed(ActionEvent evt) {
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
         new ViewProduct(new SetJTable().setTable()).setVisible(true);
     }
 
-    private void statusComboBoxActionPerformed(ActionEvent evt) {
+    private void idTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
+
+    private void nameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+
+    private void priceTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+
     public static void main(String[] args) {
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -230,19 +236,22 @@ public class EditProduct extends JFrame {
         } catch (UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(EditProduct.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new EditProduct().setVisible(true);
             }
         });
     }
-
     public String returnID(){
         return idTextField.getText();
     }
+    public String returnName(){
+        return nameTextField.getText();
+    }
 
     public String returnPrice(){
-        return idTextField1.getText();
+       return priceTextField.getText();
     }
 
     public String returnStatus(){

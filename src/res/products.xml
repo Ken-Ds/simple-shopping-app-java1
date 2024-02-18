@@ -1,10 +1,10 @@
 <data>
     <product>
         <id>0</id>
-        <name>Bag</name>
-        <price>400.00</price>
+        <name>Pen</name>
+        <price>10</price>
         <description>Yes</description>
-        <status>Sold</status>
+        <status>Available</status>
     </product>
     <product>
         <id>1</id>
@@ -15,16 +15,16 @@
     </product>
     <product>
         <id>2</id>
-        <name>Rock</name>
-        <price>20</price>
+        <name>Scissors</name>
+        <price>50</price>
         <description>Rocks</description>
-        <status>On Sale</status>
+        <status>Available</status>
     </product>
     <product>
         <id>3</id>
-        <name>asd</name>
-        <price>asd</price>
+        <name>Paper</name>
+        <price>5</price>
         <description>asd</description>
-        <status>On Sale</status>
+        <status>Available</status>
     </product>
-<product><id>4</id><name>Rock</name><price>50</price><description>Loop</description><status>On Sale</status></product></data>
+<product><id>4</id><name>Rock</name><price>50</price><description>Loop</description><status>On Sale</status></product><product><id>5</id><name>Paper</name><price>1</price><description>paper</description><status>On Sale</status></product></data>
