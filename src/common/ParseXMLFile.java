@@ -290,7 +290,7 @@ public class ParseXMLFile {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(document);
-            StreamResult result = new StreamResult("src/res/products.xml");
+            StreamResult result = new StreamResult(new File("src/res/accounts.xml"));
             transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
 
             transformer.transform(source, result);
