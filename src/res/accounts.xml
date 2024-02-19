@@ -3,6 +3,6 @@
         <id>0</id>
         <username>Freddie</username>
         <password>kahitanona</password>
-        <cart/>
+        <cart></cart>
     </account>
 <account><id>1</id><username/><password/></account><account><id>1</id><username/><password/></account></data>

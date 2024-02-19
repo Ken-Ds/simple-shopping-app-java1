@@ -309,4 +309,13 @@ public class SetJTable extends JTable {
 
         return model;
     }
+
+    public void cartView(String id){
+        NodeList nodes = xmlFile.readXMLClient();
+        Object[][] mod = new Object[nodes.getLength()][3];
+
+        for (int x = 0; x < nodes.getLength(); x++){
+
+        }
+    }
 }

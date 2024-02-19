@@ -1,5 +1,6 @@
 package client.view;
 
+import common.Cart;
 import common.SetJTable;
 import server.view.ViewProduct;
 
@@ -160,7 +161,7 @@ public class ViewCart extends JFrame {
         new UserView(0,"Freddie").setVisible(true);
     }
     private void deleteButton(java.awt.event.ActionEvent evt){
-        //TODO
+
     }
     private void searchButton(java.awt.event.ActionEvent evt){
         this.dispose();
