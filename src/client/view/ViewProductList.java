@@ -1,6 +1,7 @@
 package client.view;
 
 import client.model.Connect;
+import common.Account;
 import common.Cart;
 import common.Product;
 import common.SetJTable;
@@ -126,6 +127,10 @@ public class ViewProductList extends JFrame {
     private void addToCartButton(java.awt.event.ActionEvent evt) throws IOException {
         int selectedRow = jTable1.getSelectedRow();
         if (selectedRow != -1) {
+            Connect connect = new Connect();
+            connect.createConnection();
+
+            connect.sendMessage("Cart");
             String name = (String) jTable1.getValueAt(selectedRow, 0);
             String price = (String) jTable1.getValueAt(selectedRow, 1);
             String description = (String) jTable1.getValueAt(selectedRow, 2);
@@ -137,9 +142,9 @@ public class ViewProductList extends JFrame {
             System.out.println("Selected: " + name + ", " + price + ", " + description);
 
             JOptionPane.showMessageDialog(this, "Product added to cart: " + name);
-            Connect connect = new Connect();
-            connect.createConnection();
-            connect.sendMessage("Cart");
+
+            connect.sendMessage(new Account(0,"Freddie","kahitanona",null));
+            connect.sendMessage(cart);
         } else {
             // No row selected, display an error message or handle the case appropriately
             JOptionPane.showMessageDialog(this, "Please select a product to add to cart.");

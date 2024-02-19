@@ -18,7 +18,6 @@ public class Server {
                 if (clientSocket.isConnected()) {
                     System.out.println("Client is connected!");
                 }
-
                 Thread clientHandler = new ClientHandler(clientSocket);
                 clientHandler.start();
             }
@@ -69,10 +68,9 @@ public class Server {
                     case "Cart":
                         Account accountCart = (Account) reader.readObject();
                         Cart cart = (Cart) reader.readObject();
-                        new ParseXMLFile().addProductsToCart(String.valueOf(account.getId()),cart);
+                        new ParseXMLFile().addProductsToCart(String.valueOf(accountCart.getId()),cart);
                         break;
                 }
-
 
             }catch (Exception e){
                 e.printStackTrace();

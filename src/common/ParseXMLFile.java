@@ -13,6 +13,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
+import java.util.List;
 
 public class ParseXMLFile {
 
@@ -285,6 +286,7 @@ public class ParseXMLFile {
                         }
                     }
                 }
+
             }
 
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -325,5 +327,51 @@ public class ParseXMLFile {
             e.printStackTrace();
         }
         return cartList;
+    }
+
+    public void deleteCartProduct(String idAcc, String idProd) {
+        try {
+            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = docFactory.newDocumentBuilder();
+
+            Document document = documentBuilder.parse("src/res/accounts.xml");
+            Element rootElement = document.getDocumentElement();
+
+            NodeList productList = document.getElementsByTagName("account");
+            for (int x = 0; x < productList.getLength(); x++) {
+                Node node = productList.item(x);
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element productElement = (Element) node;
+                    String AccountId = productElement
+                            .getElementsByTagName("id")
+                            .item(0)
+                            .getTextContent();
+                    if (AccountId.equals(idAcc)) {
+                        NodeList cartNods = ((Element) node).getElementsByTagName("cart");
+                        for(int y = 0; y < cartNods.getLength(); y++){
+                            Node cartNode = cartNods.item(y);
+                            Element accountElementContents = (Element) cartNode;
+                            String productId = accountElementContents
+                                    .getElementsByTagName("id")
+                                    .item(0)
+                                    .getTextContent();
+                            if(productId.equals(idProd)){
+                                cartNode.getParentNode().removeChild(cartNode);
+                            }
+                        }
+                    }
+                }
+            }
+
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(document);
+            StreamResult result = new StreamResult("src/res/products.xml");
+            transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+
+            transformer.transform(source, result);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
