@@ -310,12 +310,65 @@ public class SetJTable extends JTable {
         return model;
     }
 
-    public void cartView(String id){
+    public DefaultTableModel cartView(String id) {
         NodeList nodes = xmlFile.readXMLClient();
         Object[][] mod = new Object[nodes.getLength()][3];
 
-        for (int x = 0; x < nodes.getLength(); x++){
+        for (int x = 0; x < nodes.getLength(); x++) {
+            Node node = nodes.item(x);
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                Element productElement = (Element) node;
+                String productId = productElement
+                        .getElementsByTagName("id")
+                        .item(0)
+                        .getTextContent();
+                if (productId.equals(id)) {
+                    NodeList nodes1 = productElement.getElementsByTagName("cart");
+                    for (int y = 0; y < nodes.getLength(); y++) {
+                        Node node1 = nodes1.item(y);
+                        Element element = (Element) node1;
+                        String name = element
+                                .getElementsByTagName("name")
+                                .item(0)
+                                .getTextContent();
+                        String price = element
+                                .getElementsByTagName("price")
+                                .item(0)
+                                .getTextContent();
+                        String description = element
+                                .getElementsByTagName("description")
+                                .item(0)
+                                .getTextContent();
 
+                        mod[y][0] = name;
+                        mod[y][1] = price;
+                        mod[y][2] = description;
+                    }
+                }
+            }
         }
+        DefaultTableModel model = new DefaultTableModel(
+                mod,
+                new String[]{
+                        "Name", "Price", "Description"
+                }
+        ) {
+            Class[] types = new Class[]{
+                    java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean[]{
+                    false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        };
+
+        return model;
     }
 }

@@ -24,16 +24,16 @@ public class ViewCart extends JFrame {
     private SetJTable set = new SetJTable();
     private DefaultTableModel model;
 
-    public ViewCart(DefaultTableModel dtm) {
-        initComponents(dtm);
+     public ViewCart(int userId, String userName) {
+        initComponents(userId, userName);
     }
 
-    private void initComponents(DefaultTableModel defaultTableModel) {
+    private void initComponents(int id, String name) {
         setResizable(false);
+
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         jPanel1.setBackground(new java.awt.Color(110, 110, 110));
-
-        jTable1.setModel(defaultTableModel);
+        jTable1.setModel(new SetJTable.cartView(id));
         jScrollPane1.setViewportView(jTable1);
 
         buttonDelete.setText("Delete from Cart");

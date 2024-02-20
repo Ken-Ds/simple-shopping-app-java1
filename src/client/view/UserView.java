@@ -167,7 +167,7 @@ public class UserView  extends JFrame {
 
     private void btnAddToCartActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
-        new ViewCart(new SetJTable().setClientTable()).setVisible(true);
+        new ViewCart().setVisible(true);
     }
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {
