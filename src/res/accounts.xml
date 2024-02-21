@@ -1,0 +1,9 @@
+<data>
+    <account>
+        <id>0</id>
+        <username>Freddie</username>
+        <password>kahitanona</password>
+        <cart>
+        <product><id/><name>Rock</name><price>50</price><description>Loop</description><status/></product><product><id/><name>Phone</name><price>7800.00</price><description>LOOOPY</description><status/></product><product><id/><name>Scissors</name><price>50</price><description>Rocks</description><status/></product></cart>
+    </account>
+</data>
