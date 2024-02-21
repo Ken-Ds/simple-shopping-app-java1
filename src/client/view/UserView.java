@@ -1,8 +1,12 @@
 package client.view;
+import client.model.buttons.userview.UVLogout;
+import client.model.buttons.userview.UVViewCart;
+import client.model.buttons.userview.UVViewProductList;
 import common.SetJTable;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class UserView  extends JFrame {
     private JPanel jPanel2 = new JPanel();
@@ -23,6 +27,9 @@ public class UserView  extends JFrame {
         userID = userId;
         userName = usersName;
         initComponents(userID,userName);
+        setBtnLogOutActionListener(new UVLogout(this));
+        setBtnAddToCartActionListener(new UVViewCart(this));
+        setBtnViewProductActionListener(new UVViewProductList(this));
     }
     private void initComponents(int id, String name) {
 
@@ -69,25 +76,13 @@ public class UserView  extends JFrame {
         jLabel1.setText("UPHILL");
 
         btnAddToCart.setText("View Cart");
-        btnAddToCart.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddToCartActionPerformed(evt);
-            }
-        });
+
 
         btnViewProduct.setText("View Product");
-        btnViewProduct.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewProductActionPerformed(evt);
-            }
-        });
+
 
         btnLogOut.setText("Logout");
-        btnLogOut.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogOutActionPerformed(evt);
-            }
-        });
+
 
         labelName.setFont(new java.awt.Font("Sitka Display", Font.BOLD, 20)); // NOI18N
         labelName.setForeground(new java.awt.Color(255, 255, 255));
@@ -165,20 +160,25 @@ public class UserView  extends JFrame {
         pack();
     }
 
-    private void btnViewProductActionPerformed(java.awt.event.ActionEvent evt) {
-        this.dispose();
-        new ViewProductList(new SetJTable().setClientTable()).setVisible(true);
+
+    public void setBtnAddToCartActionListener(ActionListener listener){
+        btnAddToCart.addActionListener(listener);
     }
 
-    private void btnAddToCartActionPerformed(java.awt.event.ActionEvent evt) {
-        this.dispose();
-        SetJTable setJTable = new SetJTable();
-        new ViewCart(userID,userName,setJTable.cartView(String.valueOf(userID))).setVisible(true);
+    public void setBtnLogOutActionListener(ActionListener listener){
+        btnLogOut.addActionListener(listener);
     }
 
-    private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {
-        this.dispose();
-        new LogIn().setVisible(true);
+    public void setBtnViewProductActionListener(ActionListener listener){
+        btnViewProduct.addActionListener(listener);
+    }
+
+    public int returnID(){
+        return userID;
+    }
+
+    public String returnUserName(){
+        return userName;
     }
 }
 
