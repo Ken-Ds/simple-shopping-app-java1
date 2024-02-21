@@ -1,9 +1,11 @@
 package server.view;
 import javax.swing.*;
-import common.ParseXMLFile;
 import common.SetJTable;
+import server.model.buttons.editproduct.BackHandler;
+import server.model.buttons.editproduct.SearchHandler;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class EditProduct extends JFrame {
     private JTextField idTextField = new JTextField();
@@ -25,6 +27,11 @@ public class EditProduct extends JFrame {
 
     public EditProduct() {
         initComponents();
+        setTitle("EDIT PRODUCTS");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setBackButton(new BackHandler(this));
+        setEditButton(new SearchHandler(this));
     }
 
     private void initComponents() {
@@ -36,67 +43,35 @@ public class EditProduct extends JFrame {
 
         jPanel2.setBackground(new java.awt.Color(100, 122, 103));
 
-        jLabel1.setFont(new java.awt.Font("Arial Black", Font.BOLD, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial Black", Font.BOLD, 14));
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("EDIT PRODUCT");
 
-        jLabel2.setFont(new java.awt.Font("Arial Black", Font.BOLD, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Arial Black", Font.BOLD, 12));
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("ID              :");
 
-        nameLabel.setFont(new java.awt.Font("Arial Black", Font.BOLD, 12)); // NOI18N
+        nameLabel.setFont(new java.awt.Font("Arial Black", Font.BOLD, 12));
         nameLabel.setForeground(new java.awt.Color(255, 255, 255));
         nameLabel.setText("NAME        :");
 
-        priceLabel.setFont(new java.awt.Font("Arial Black", Font.BOLD, 12)); // NOI18N
+        priceLabel.setFont(new java.awt.Font("Arial Black", Font.BOLD, 12));
         priceLabel.setForeground(new java.awt.Color(255, 255, 255));
         priceLabel.setText("PRICE       :");
 
-        statusLabel.setFont(new java.awt.Font("Arial Black", Font.BOLD, 12)); // NOI18N
+        statusLabel.setFont(new java.awt.Font("Arial Black", Font.BOLD, 12));
         statusLabel.setForeground(new java.awt.Color(255, 255, 255));
         statusLabel.setText("STATUS    :");
 
-        editButton.setFont(new java.awt.Font("Arial", Font.BOLD, 12)); // NOI18N
-        editButton.setText("EDIT");
-        editButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editButtonActionPerformed(evt);
-            }
-        });
+        editButton.setFont(new java.awt.Font("Arial", Font.BOLD, 12));
+        editButton.setText("Edit");
 
-        backButton.setFont(new java.awt.Font("Arial", Font.BOLD, 12)); // NOI18N
-        backButton.setText("BACK");
-        backButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButtonActionPerformed(evt);
-            }
-        });
+
+        backButton.setFont(new java.awt.Font("Arial", Font.BOLD, 12));
+        backButton.setText("Back");
+
 
         statusComboBox.setModel(new DefaultComboBoxModel<>(new String[] { "Available", "Not Available"}));
-        statusComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
-
-        idTextField.setToolTipText("");
-        idTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idTextFieldActionPerformed(evt);
-            }
-        });
-
-        nameTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameTextFieldActionPerformed(evt);
-            }
-        });
-
-        priceTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                priceTextFieldActionPerformed(evt);
-            }
-        });
 
         GroupLayout jPanel2Layout = new GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -189,57 +164,15 @@ public class EditProduct extends JFrame {
         pack();
     }
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+
+    public void setEditButton(ActionListener edit){
+        editButton.addActionListener(edit);
     }
 
-    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        new ParseXMLFile().editXMLProduct(returnID(),returnName(),returnPrice(),returnStatus());
-        this.dispose();
-        new EditProduct().setVisible(true);
+    public void setBackButton(ActionListener back){
+        backButton.addActionListener(back);
     }
 
-    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        this.dispose();
-        new ViewProduct(new SetJTable().setTable()).setVisible(true);
-    }
-
-    private void idTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    private void nameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    private void priceTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    public static void main(String[] args) {
-        try {
-            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditProduct.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditProduct.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditProduct.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditProduct.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new EditProduct().setVisible(true);
-            }
-        });
-    }
     public String returnID(){
         return idTextField.getText();
     }
@@ -250,7 +183,6 @@ public class EditProduct extends JFrame {
     public String returnPrice(){
        return priceTextField.getText();
     }
-
     public String returnStatus(){
         return statusComboBox.getSelectedItem().toString();
     }
