@@ -6,4 +6,4 @@
         <cart>
         <product><id/><name>Rock</name><price>50</price><description>Loop</description><status/></product><product><id/><name>Phone</name><price>7800.00</price><description>LOOOPY</description><status/></product><product><id/><name>Scissors</name><price>50</price><description>Rocks</description><status/></product></cart>
     </account>
-<account><id>1</id><username/><password/></account><account><id>1</id><username/><password/></account></data>
+</data>

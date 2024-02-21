@@ -1,9 +1,13 @@
 package server.view;
 import common.SetJTable;
+import server.model.buttons.viewproduct.VPBackHandler;
+import server.model.buttons.viewusers.VUBackHandler;
+import server.model.buttons.viewusers.VUSearchHandler;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class ViewUsers extends JFrame {
     private SetJTable set = new SetJTable();
@@ -19,6 +23,8 @@ public class ViewUsers extends JFrame {
 
     public ViewUsers(DefaultTableModel dTB) {
         initComponents(dTB);
+        setBackButtonActionListener(new VUBackHandler(this));
+        setSearchButtonActionListener(new VUSearchHandler(this));
     }
 
     private void initComponents(DefaultTableModel defaultTableModel) {
@@ -39,17 +45,7 @@ public class ViewUsers extends JFrame {
             }
         });
         searchButton.setText("Search");
-        searchButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchButtonActionPerformed(evt);
-            }
-        });
         backButton.setText("Back");
-        backButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButtonActionPerformed(evt);
-            }
-        });
         GroupLayout jPanel3Layout = new GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -121,16 +117,17 @@ public class ViewUsers extends JFrame {
     private void userIDTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
-    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        this.dispose();
-        new ViewUsers(set.searchByIDUserTable(returnSearchID())).setVisible(true);
-    }
-    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        this.dispose();
-        new AdminView().setVisible(true);
-    }
+
 
     public String returnSearchID(){
         return userIDTextField.getText();
+    }
+
+    public void setBackButtonActionListener(ActionListener listener){
+        backButton.addActionListener(listener);
+    }
+
+    public void setSearchButtonActionListener(ActionListener listener){
+        searchButton.addActionListener(listener);
     }
 }

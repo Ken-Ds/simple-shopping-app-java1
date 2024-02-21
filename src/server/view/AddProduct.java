@@ -81,11 +81,6 @@ public class AddProduct extends JFrame {
 
         btnAddList.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12)); // NOI18N
         btnAddList.setText("Add to List");
-        btnAddList.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                btnAddListActionPerformed(evt);
-            }
-        });
 
         GroupLayout jPanel2Layout = new GroupLayout(jPanel2);
         setResizable(false);
@@ -184,10 +179,6 @@ public class AddProduct extends JFrame {
 
     private void txtQuantityActionPerformed(ActionEvent evt) {
         // TODO add your handling code here:
-    }
-
-    private void btnAddListActionPerformed(java.awt.event.ActionEvent evt) {
-
     }
 
 

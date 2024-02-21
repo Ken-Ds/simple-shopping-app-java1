@@ -1,11 +1,14 @@
 package server.view;
 
 import common.SetJTable;
+import server.model.buttons.viewproduct.VPBackHandler;
+import server.model.buttons.viewproduct.VPEditHandler;
+import server.model.buttons.viewproduct.VPSearchHandler;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ViewProduct extends JFrame {
 
@@ -25,6 +28,9 @@ public class ViewProduct extends JFrame {
     private DefaultTableModel model;
     public ViewProduct(DefaultTableModel dTB){
         initComponents(dTB);
+        setEditButtonListener(new VPEditHandler(this));
+        setSearchProductButtonActionListener(new VPSearchHandler(this));
+        setBackActionListener(new VPBackHandler(this));
     }
     private void initComponents(DefaultTableModel defaultTableModels) {
 
@@ -43,35 +49,18 @@ public class ViewProduct extends JFrame {
         titleProduct.setForeground(new java.awt.Color(255, 255, 255));
         titleProduct.setText("View Product");
 
-        idTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                idTextFieldActionPerformed(evt);
-            }
-        });
+
 
         searchProductButton.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12)); // NOI18N
         searchProductButton.setText("Search Product");
-        searchProductButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                searchProductButtonActionPerformed(evt);
-            }
-        });
+
 
         backButton.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12)); // NOI18N
         backButton.setText("Back");
-        backButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                backButtonActionPerformed(evt);
-            }
-        });
 
         editButton.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12)); // NOI18N
         editButton.setText("Edit");
-        editButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                editButtonActionPerformed(evt);
-            }
-        });
+
 
         GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
         setResizable(false);
@@ -156,27 +145,20 @@ public class ViewProduct extends JFrame {
         pack();
     }
 
-     private void idTextFieldActionPerformed(ActionEvent evt) {
-
-    }
-
-    private void searchProductButtonActionPerformed(ActionEvent evt) {
-        this.dispose();
-        new ViewProduct(set.searchByIDProductTable(returnIDSearch())).setVisible(true);
-    }
-
-    private void backButtonActionPerformed(ActionEvent evt) {
-        this.dispose();
-        new AdminView().setVisible(true);
-    }
-
-    private void editButtonActionPerformed(ActionEvent evt) {
-        this.dispose();
-        new EditProduct().setVisible(true);
-    }
-
     public String returnIDSearch() {
         return idTextField.getText();
+    }
+
+    public void setBackActionListener(ActionListener listener){
+        backButton.addActionListener(listener);
+    }
+
+    public void setEditButtonListener(ActionListener lister){
+        editButton.addActionListener(lister);
+    }
+
+    public void setSearchProductButtonActionListener(ActionListener listener){
+        searchProductButton.addActionListener(listener);
     }
 }
 
