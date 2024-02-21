@@ -2,9 +2,11 @@ package server.view;
 import common.ParseXMLFile;
 import common.SetJTable;
 import org.w3c.dom.NodeList;
+import server.model.buttons.adminview.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.Set;
 
 public class AdminView extends JFrame {
@@ -30,7 +32,12 @@ public class AdminView extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
-
+        setExitButton(new ExitButtonHandler(this));
+        setViewProductButton(new ViewProductHandler(this));
+        setViewUserButton(new ViewUsersHandler(this));
+        setAddProductButton(new AddProductHandler(this));
+        setEditProductButton(new EditProductHandler(this));
+        setDeleteProductButton(new DeleteProductHandler(this));
     }
 
     private void initComponents() {
@@ -40,55 +47,36 @@ public class AdminView extends JFrame {
 
         jPanel2.setBackground(new java.awt.Color(100, 122, 103));
 
-        exitButton.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12)); // NOI18N
+        exitButton.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12));
         exitButton.setText("Exit");
-        exitButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exitButtonActionPerformed(evt);
-            }
-        });
 
-        deleteProductButton.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12)); // NOI18N
+        deleteProductButton.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12));
         deleteProductButton.setText("Delete Product");
-        deleteProductButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteProductButtonActionPerformed(evt);
-            }
-        });
 
-        editProductButton.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12)); // NOI18N
+
+        editProductButton.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12));
         editProductButton.setText("Edit Product");
-        editProductButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editProductButtonActionPerformed(evt);
-            }
-        });
 
-        labelUphill.setFont(new java.awt.Font("Sitka Display", Font.BOLD, 28)); // NOI18N
+        labelUphill.setFont(new java.awt.Font("Sitka Display", Font.BOLD, 28));
         labelUphill.setForeground(new java.awt.Color(255, 255, 255));
         labelUphill.setText("UPHILL");
 
-        addProductButton.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12)); // NOI18N
+        addProductButton.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12));
         addProductButton.setText("Add Product");
-        addProductButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addProductButtonActionPerformed(evt);
-            }
-        });
 
-        labelAdminName.setFont(new java.awt.Font("Sitka Display", Font.BOLD, 18)); // NOI18N
+        labelAdminName.setFont(new java.awt.Font("Sitka Display", Font.BOLD, 18));
         labelAdminName.setForeground(new java.awt.Color(255, 255, 255));
         labelAdminName.setText("ADMIN");
 
         labelSeller.setBackground(new java.awt.Color(255, 255, 255));
-        labelSeller.setFont(new java.awt.Font("Sitka Display", Font.PLAIN, 14)); // NOI18N
+        labelSeller.setFont(new java.awt.Font("Sitka Display", Font.PLAIN, 14));
         labelSeller.setForeground(new java.awt.Color(255, 255, 255));
         labelSeller.setText("Seller");
 
         jPanel1.setBackground(new java.awt.Color(198, 222, 198));
         jPanel1.setForeground(new java.awt.Color(198, 222, 198));
 
-        labelWelcome.setFont(new java.awt.Font("Segoe UI Semibold", Font.BOLD, 36)); // NOI18N
+        labelWelcome.setFont(new java.awt.Font("Segoe UI Semibold", Font.BOLD, 36));
         labelWelcome.setText("WELCOME TO DASHBOARD");
 
         GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
@@ -110,19 +98,10 @@ public class AdminView extends JFrame {
 
         viewProductButton.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12)); // NOI18N
         viewProductButton.setText("View Product");
-        viewProductButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewProductButtonActionPerformed(evt);
-            }
-        });
 
         viewUserButton.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12)); // NOI18N
         viewUserButton.setText("View Users");
-        viewUserButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewUserButtonActionPerformed(evt);
-            }
-        });
+
 
         GroupLayout jPanel2Layout = new GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -191,41 +170,30 @@ public class AdminView extends JFrame {
         );
 
         pack();
-    }// </editor-fold>
-
-    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        this.dispose();
+    }
+    public void setExitButton(ActionListener exit){
+        exitButton.addActionListener(exit);
     }
 
-    private void deleteProductButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        this.dispose();
-        new DeleteProduct().setVisible(true);
+    public void setDeleteProductButton(ActionListener delete){
+        deleteProductButton.addActionListener(delete);
     }
 
-    private void addProductButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        this.dispose();
-        new AddProduct().setVisible(true);
+    public void setAddProductButton(ActionListener add){
+        addProductButton.addActionListener(add);
     }
 
-    private void viewProductButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        this.dispose();
-        new ViewProduct(new SetJTable().setTable()).setVisible(true);
+    public void setViewProductButton(ActionListener viewProduct){
+        viewProductButton.addActionListener(viewProduct);
     }
 
-    private void editProductButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        this.dispose();
-        new EditProduct().setVisible(true);
+    public void setEditProductButton(ActionListener edit){
+        editProductButton.addActionListener(edit);
     }
 
-    private void viewUserButtonActionPerformed(java.awt.event.ActionEvent evt) {
-       this.dispose();
-       new ViewUsers(new SetJTable().setViewUserTable()).setVisible(true);
+    public void setViewUserButton(ActionListener viewUser){
+        viewUserButton.addActionListener(viewUser);
     }
-
-    /**
-     * @param args the command line arguments
-     */
-
 }
 
 
