@@ -1,11 +1,13 @@
 package client.view;
 
 import common.Cart;
+import common.ParseXMLFile;
 import common.SetJTable;
 import server.view.ViewProduct;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.View;
 import java.awt.*;
 
 public class ViewCart extends JFrame {
@@ -25,7 +27,7 @@ public class ViewCart extends JFrame {
     private DefaultTableModel model;
 
      public ViewCart(int userId, String userName) {
-        initComponents(userId, userName);
+        initComponents(UserView.userID, UserView.userName);
     }
 
     private void initComponents(int id, String name) {
@@ -33,7 +35,8 @@ public class ViewCart extends JFrame {
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         jPanel1.setBackground(new java.awt.Color(110, 110, 110));
-        jTable1.setModel(new SetJTable.cartView(id));
+        SetJTable setJTable = new SetJTable();
+        jTable1.setModel(setJTable.cartView(String.valueOf(id)));
         jScrollPane1.setViewportView(jTable1);
 
         buttonDelete.setText("Delete from Cart");
@@ -161,13 +164,16 @@ public class ViewCart extends JFrame {
         new UserView(0,"Freddie").setVisible(true);
     }
     private void deleteButton(java.awt.event.ActionEvent evt){
-
+        new ParseXMLFile().deleteCartProduct(String.valueOf(UserView.userID),deleteNameSearch());
+         this.dispose();
+         new ViewCart(UserView.userID,UserView.userName).setVisible(true);
     }
     private void searchButton(java.awt.event.ActionEvent evt){
         this.dispose();
-        new ViewCart(set.searchByNameProductTable(returnNameSearch())).setVisible(true);
+        new ViewCart(UserView.userID,UserView.userName).setVisible(true);
     }
     public String returnNameSearch() {
         return textSearchName.getText();
     }
+    public String deleteNameSearch() {return textDeleteName.getText(); }
 }

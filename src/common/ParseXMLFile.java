@@ -108,6 +108,37 @@ public class ParseXMLFile {
         return nodes;
     }
 
+    public NodeList getUserCart(String id) {
+        NodeList nodes = null;
+        try {
+            File inputFile = new File("src/res/accounts.xml");
+            DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = docBuilderFactory.newDocumentBuilder();
+            Document document = documentBuilder.parse(inputFile);
+            document.getDocumentElement().normalize();
+
+            NodeList nodeList = document.getElementsByTagName("account");
+            for (int x = 0; x < nodeList.getLength(); x++) {
+                Node node = nodeList.item(x);
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element accountElement = (Element) node;
+                    String accountID = accountElement
+                            .getElementsByTagName("id")
+                            .item(0)
+                            .getTextContent();
+                    if (accountID.equals(id)) {
+                        accountElement = (Element) accountElement.getElementsByTagName("cart")
+                                .item(0);
+                        nodes = accountElement.getElementsByTagName("product");
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return nodes;
+    }
+
     public NodeList readXMLClient() {
         NodeList clientNodes = null;
         try {
@@ -329,7 +360,7 @@ public class ParseXMLFile {
         return cartList;
     }
 
-    public void deleteCartProduct(String idAcc, String idProd) {
+    public void deleteCartProduct(String idAcc, String productName) {
         try {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = docFactory.newDocumentBuilder();
@@ -347,16 +378,18 @@ public class ParseXMLFile {
                             .item(0)
                             .getTextContent();
                     if (AccountId.equals(idAcc)) {
-                        NodeList cartNods = ((Element) node).getElementsByTagName("cart");
+                        productElement = (Element) productElement.getElementsByTagName("cart").item(0);
+                        NodeList cartNods = productElement.getElementsByTagName("product");
                         for(int y = 0; y < cartNods.getLength(); y++){
                             Node cartNode = cartNods.item(y);
                             Element accountElementContents = (Element) cartNode;
-                            String productId = accountElementContents
-                                    .getElementsByTagName("id")
+                            String prodName = accountElementContents
+                                    .getElementsByTagName("name")
                                     .item(0)
                                     .getTextContent();
-                            if(productId.equals(idProd)){
+                            if(prodName.equals(productName)){
                                 cartNode.getParentNode().removeChild(cartNode);
+                                break;
                             }
                         }
                     }
@@ -366,7 +399,7 @@ public class ParseXMLFile {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(document);
-            StreamResult result = new StreamResult("src/res/products.xml");
+            StreamResult result = new StreamResult("src/res/accounts.xml");
             transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
 
             transformer.transform(source, result);
