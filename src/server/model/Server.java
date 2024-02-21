@@ -44,15 +44,12 @@ public class Server {
                 String string = (String) reader.readObject();
                 switch (string){
                     case "Login":
-                        String userName = (String) reader.readObject();
-                        writer.writeObject(new ParseXMLFile().returnUserID(userName));
                         account = (Account) reader.readObject();
 
                         CheckIfUser authenticator = new CheckIfUser();
 
                         if (authenticator.authenticate(account)) {
                             System.out.println("Authenticated");
-
                             writer.writeObject(true);
                         } else {
                             System.out.println("No Account Found!");

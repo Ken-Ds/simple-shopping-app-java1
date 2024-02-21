@@ -1,10 +1,13 @@
 package server.view;
 import common.ParseXMLFile;
 import common.SetJTable;
+import server.model.buttons.deleteproduct.BackHandler;
+import server.model.buttons.deleteproduct.DeleteHandler;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class DeleteProduct extends JFrame {
@@ -20,6 +23,8 @@ public class DeleteProduct extends JFrame {
 
     public DeleteProduct() {
         initComponents();
+        setBackButton(new BackHandler(this));
+        setDeleteButton(new DeleteHandler(this));
     }
 
     private void initComponents() {
@@ -148,4 +153,7 @@ public class DeleteProduct extends JFrame {
     public String returnId(){
         return idTextField.getText();
     }
+    public void setBackButton(ActionListener listener) {backButton.addActionListener(listener);}
+    public void setDeleteButton(ActionListener listener) {deleteButton.addActionListener(listener);}
+
 }
