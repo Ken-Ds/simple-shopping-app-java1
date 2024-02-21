@@ -1,11 +1,14 @@
 package client.view;
 
 import client.model.Connect;
+import client.model.buttons.login.LoginHandler;
+import client.model.buttons.login.SignUpHandler;
 import common.Account;
 import common.CreateId;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
@@ -23,6 +26,8 @@ public class LogIn extends JFrame {
     public LogIn() {
         initComponents();
         setTitle("UPHILL App");
+        setLogInActionListener(new LoginHandler(this));
+        setSignUpActionListener(new SignUpHandler(this));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
@@ -188,5 +193,18 @@ public class LogIn extends JFrame {
         this.dispose();
         new SignUp().setVisible(true);
     }
+    public String returnUsername(){
+        return txtUsername.getText();
+    }
+    public String returnPassword(){
+        return txtUsername.getText();
+    }
+    public void setLogInActionListener(ActionListener listener){
+        btnLogIn.addActionListener(listener);
+    }
+    public void setSignUpActionListener(ActionListener listener){
+        buttonSignUp.addActionListener(listener);
+    }
+
 }
 

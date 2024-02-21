@@ -1,5 +1,7 @@
 package client.view;
 
+import client.model.buttons.signup.BackButtonActionListener;
+import client.model.buttons.signup.SignHandler;
 import common.Account;
 import common.Cart;
 import server.model.AddUser;
@@ -7,6 +9,7 @@ import client.model.Connect;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class SignUp extends JFrame {
     private JPanel jPanel1 = new JPanel();
@@ -21,6 +24,8 @@ public class SignUp extends JFrame {
 
     public SignUp() {
         initComponents();
+        setBtnSignUpActionListener(new SignHandler(this));
+        setButtonBackActionListener(new BackButtonActionListener(this));
         setTitle("UPHILL App");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -45,18 +50,9 @@ public class SignUp extends JFrame {
 
         btnSignUp.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14)); // NOI18N
         btnSignUp.setText("Sign Up");
-        btnSignUp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSignUpActionPerformed(evt);
-            }
-        });
+
         buttonBack.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 13)); // NOI18N
         buttonBack.setText("Back");
-        buttonBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonBackActionPerformed(evt);
-            }
-        });
 
         GroupLayout jPanel2Layout = new GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -152,24 +148,18 @@ public class SignUp extends JFrame {
         pack();
     }
 
-    private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {
-        try {
-            Connect connect = new Connect();
-            connect.createConnection();
-            String username = txtUsername.getText();
-            String password = jTextField1.getText();
-            connect.sendMessage("Signup");
-            Account account = new Account(0, username, password, new Cart());
-            connect.sendMessage(account);
-        }
-        catch (Exception e){
-            System.out.println(e.getMessage());
-        }
+    public String returnUsername(){
+        return txtUsername.getText();
     }
-    private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {
-        this.dispose();
-        new LogIn().setVisible(true);
+    public String returnPassword(){
+        return txtUsername.getText();
     }
 
+    public void setBtnSignUpActionListener(ActionListener listener){
+        btnSignUp.addActionListener(listener);
+    }
+    public void  setButtonBackActionListener(ActionListener listener){
+        buttonBack.addActionListener(listener);
+    }
 }
 
