@@ -44,6 +44,9 @@ public class Server {
                 String string = (String) reader.readObject();
                 switch (string){
                     case "Login":
+
+                        int id = new ParseXMLFile().returnUserID((String) reader.readObject());
+                        writer.writeObject(id);
                         account = (Account) reader.readObject();
 
                         CheckIfUser authenticator = new CheckIfUser();
