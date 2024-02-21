@@ -1,5 +1,8 @@
 package client.view;
 
+import client.model.buttons.viewcart.VCBackButton;
+import client.model.buttons.viewcart.VCDeleteButton;
+import client.model.buttons.viewcart.VCSearchButton;
 import common.Cart;
 import common.ParseXMLFile;
 import common.SetJTable;
@@ -9,6 +12,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.View;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class ViewCart extends JFrame {
     private JPanel jPanel1 = new JPanel();
@@ -28,6 +32,9 @@ public class ViewCart extends JFrame {
 
      public ViewCart(int userId, String userName, DefaultTableModel dFT) {
         initComponents(UserView.userID, UserView.userName, dFT);
+        setButtonBackActionListener(new VCBackButton(this));
+        setButtonDeleteActionListener(new VCDeleteButton(this));
+        setButtonSearchActionListener(new VCSearchButton(this));
     }
 
     private void initComponents(int id, String name, DefaultTableModel defaultTableModel) {
@@ -40,18 +47,9 @@ public class ViewCart extends JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         buttonDelete.setText("Delete from Cart");
-        buttonDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteButton(evt);
-            }
-        });
+
 
         buttonSearch.setText("Search Product");
-        buttonSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchButton(evt);
-            }
-        });
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -67,11 +65,6 @@ public class ViewCart extends JFrame {
         );
 
         buttonBack.setText("Back");
-        buttonBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButton(evt);
-            }
-        });
 
         jLabel1.setFont(new java.awt.Font("Sitka Display", Font.BOLD, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -159,21 +152,20 @@ public class ViewCart extends JFrame {
 
         pack();
     }
-    private void backButton(java.awt.event.ActionEvent evt){
-        this.dispose();
-        new UserView(UserView.userID,UserView.userName).setVisible(true);
-    }
-    private void deleteButton(java.awt.event.ActionEvent evt){
-        new ParseXMLFile().deleteCartProduct(String.valueOf(UserView.userID),deleteNameSearch());
-         this.dispose();
-         new ViewCart(UserView.userID,UserView.userName,set.cartView(String.valueOf(UserView.userID))).setVisible(true);
-    }
-    public void searchButton(java.awt.event.ActionEvent evt){
-        this.dispose();
-        new ViewCart(UserView.userID,UserView.userName,set.cartViewSearch(String.valueOf(UserView.userID),returnNameSearch())).setVisible(true);
-    }
     public String returnNameSearch() {
         return textSearchName.getText();
     }
-    public String deleteNameSearch() {return textDeleteName.getText(); }
+    public String deleteNameSearch() {
+         return textDeleteName.getText(); }
+    public void setButtonSearchActionListener(ActionListener listener){
+         buttonSearch.addActionListener(listener);
+    }
+
+    public void setButtonBackActionListener(ActionListener listener){
+         buttonBack.addActionListener(listener);
+    }
+
+    public void setButtonDeleteActionListener(ActionListener listener){
+         buttonDelete.addActionListener(listener);
+    }
 }
