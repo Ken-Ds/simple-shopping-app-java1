@@ -140,37 +140,6 @@ public class ParseXMLFile {
         return nodes;
     }
 
-    public NodeList getUserCart(String id) {
-        NodeList nodes = null;
-        try {
-            File inputFile = new File("src/res/accounts.xml");
-            DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder documentBuilder = docBuilderFactory.newDocumentBuilder();
-            Document document = documentBuilder.parse(inputFile);
-            document.getDocumentElement().normalize();
-
-            NodeList nodeList = document.getElementsByTagName("account");
-            for (int x = 0; x < nodeList.getLength(); x++) {
-                Node node = nodeList.item(x);
-                if (node.getNodeType() == Node.ELEMENT_NODE) {
-                    Element accountElement = (Element) node;
-                    String accountID = accountElement
-                            .getElementsByTagName("id")
-                            .item(0)
-                            .getTextContent();
-                    if (accountID.equals(id)) {
-                        accountElement = (Element) accountElement.getElementsByTagName("cart")
-                                .item(0);
-                        nodes = accountElement.getElementsByTagName("product");
-                    }
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return nodes;
-    }
-
     public NodeList readXMLClient() {
         NodeList clientNodes = null;
         try {

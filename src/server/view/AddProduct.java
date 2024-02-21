@@ -3,9 +3,13 @@ package server.view;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import common.ParseXMLFile;
 import common.SetJTable;
+import server.model.buttons.addproduct.AddHandler;
+import server.model.buttons.addproduct.BackHandler;
+
 public class AddProduct extends JFrame {
    private SetJTable set = new SetJTable();
     private JPanel jPanel2 = new JPanel();
@@ -24,6 +28,8 @@ public class AddProduct extends JFrame {
 
     public AddProduct() {
         initComponents();
+        setBackActionListener(new BackHandler(this));
+        setBtnAddList(new AddHandler(this));
     }
     private void initComponents() {
 
@@ -56,11 +62,6 @@ public class AddProduct extends JFrame {
 
         btnBack.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12)); // NOI18N
         btnBack.setText("Back");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
 
         priceLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12)); // NOI18N
         priceLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -177,11 +178,6 @@ public class AddProduct extends JFrame {
         // TODO add your handling code here:
     }
 
-    private void btnBackActionPerformed(ActionEvent evt) {
-        this.dispose();
-        new AdminView().setVisible(true);
-    }
-
     private void txtDescriptActionPerformed(ActionEvent evt) {
         // TODO add your handling code here:
     }
@@ -191,18 +187,9 @@ public class AddProduct extends JFrame {
     }
 
     private void btnAddListActionPerformed(java.awt.event.ActionEvent evt) {
-        new ParseXMLFile().addXMLProduct(returnName(),returnPrice(),returnDescription());
-        this.dispose();
-        new AddProduct().setVisible(true);
+
     }
 
-    public static void main(String[] args) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AddProduct().setVisible(true);
-            }
-        });
-    }
 
     public String returnName(){
         return txtName.getText();
@@ -214,5 +201,13 @@ public class AddProduct extends JFrame {
 
     public String returnDescription(){
         return txtDescript.getText();
+    }
+
+    public void setBackActionListener(ActionListener listener){
+        btnBack.addActionListener(listener);
+    }
+
+    public void setBtnAddList(ActionListener listener){
+        btnAddList.addActionListener(listener);
     }
 }
