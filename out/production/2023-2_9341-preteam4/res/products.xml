@@ -6,4 +6,4 @@
         <description>LOOOPY</description>
         <status>On Sale</status>
     </product>
-<product><id>1</id><name/><price/><description/><status>On Sale</status></product></data>
+<product><id>1</id><name/><price/><description/><status>On Sale</status></product><product><id>2</id><name>Hallow Blocks</name><price>50</price><description>Matigas</description><status>On Sale</status></product></data>
