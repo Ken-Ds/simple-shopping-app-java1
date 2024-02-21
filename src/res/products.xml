@@ -1,24 +1,9 @@
 <data>
-    
-    <product>
-        <id>1</id>
-        <name>Phone</name>
-        <price>7800.00</price>
-        <description>LOOOPY</description>
-        <status>Pending</status>
-    </product>
-    <product>
-        <id>2</id>
-        <name>Scissors</name>
-        <price>50</price>
-        <description>Rocks</description>
-        <status>Available</status>
-    </product>
-    <product>
-        <id>3</id>
-        <name>Paper</name>
-        <price>5</price>
-        <description>asd</description>
-        <status>Available</status>
-    </product>
-<product><id>4</id><name>Rock</name><price>50</price><description>Loop</description><status>On Sale</status></product><product><id>5</id><name>Paper</name><price>1</price><description>paper</description><status>On Sale</status></product><product><id>6</id><name>Cokes</name><price>15</price><description>1.5 ml</description><status>Not Available</status></product></data>
+    <account>
+        <id>0</id>
+        <username>Freddie</username>
+        <password>kahitanona</password>
+        <cart>
+        <product><id/><name>Phone</name><price>7800.00</price><description>LOOOPY</description><status/></product><product><id/><name>Scissors</name><price>50</price><description>Rocks</description><status/></product><product><id/><name>Rock</name><price>50</price><description>Loop</description><status/></product></cart>
+    </account>
+<account><id>1</id><username/><password/></account><account><id>1</id><username/><password/></account></data>

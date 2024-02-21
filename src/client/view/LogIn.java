@@ -167,7 +167,9 @@ public class LogIn extends JFrame {
             connect.sendMessage("Login");
             String username = txtUsername.getText();
             String password = jTextField1.getText();
-            Account account = new Account(Integer.parseInt(new CreateId().createIdAccount()), username, password, null);
+            connect.sendMessage(username);
+            int id = (int) connect.receiveMessage();
+            Account account = new Account(id, username, password, null);
             System.out.println(account.toString());
             connect.sendMessage(account);
             Boolean isAccount = (Boolean) connect.receiveMessage();
@@ -185,31 +187,6 @@ public class LogIn extends JFrame {
     private void buttonSignUpActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
         new SignUp().setVisible(true);
-    }
-
-
-    public static void main(String[] args) {
-        try {
-            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LogIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LogIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LogIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LogIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LogIn().setVisible(true);
-            }
-        });
     }
 }
 

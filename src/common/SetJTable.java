@@ -117,8 +117,9 @@ public class SetJTable extends JTable {
 
         for (int x = 0; x < nodes.getLength(); x++) {
             Node node = nodes.item(x);
+
             Element element = (Element) node;
-            String id = element
+                    String id = element
                     .getElementsByTagName("id")
                     .item(0)
                     .getTextContent();
@@ -311,40 +312,76 @@ public class SetJTable extends JTable {
     }
 
     public DefaultTableModel cartView(String id) {
-        NodeList nodes = xmlFile.readXMLClient();
+        NodeList nodes = xmlFile.getUserCart(id);
         Object[][] mod = new Object[nodes.getLength()][3];
 
         for (int x = 0; x < nodes.getLength(); x++) {
             Node node = nodes.item(x);
-            if (node.getNodeType() == Node.ELEMENT_NODE) {
-                Element productElement = (Element) node;
-                String productId = productElement
-                        .getElementsByTagName("id")
+            Element element = (Element) node;
+            String name = element
+                    .getElementsByTagName("name")
+                    .item(0)
+                    .getTextContent();
+            String price = element
+                    .getElementsByTagName("price")
+                    .item(0)
+                    .getTextContent();
+            String description = element
+                    .getElementsByTagName("description")
+                    .item(0)
+                    .getTextContent();
+            mod[x][0] = name;
+            mod[x][1] = price;
+            mod[x][2] = description;
+        }
+        DefaultTableModel model = new DefaultTableModel(
+                mod,
+                new String[]{
+                        "Name", "Price", "Description"
+                }
+        ) {
+            Class[] types = new Class[]{
+                    java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean[]{
+                    false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        };
+
+        return model;
+    }
+
+    public DefaultTableModel cartViewSearch(String id, String nameKey) {
+        NodeList nodes = xmlFile.getUserCart(id);
+        Object[][] mod = new Object[1][3];
+
+        for (int x = 0; x < nodes.getLength(); x++) {
+            Node node = nodes.item(x);
+            Element element = (Element) node;
+            String name = element
+                    .getElementsByTagName("name")
+                    .item(0)
+                    .getTextContent();
+            if(name.equals(nameKey)) {
+                String price = element
+                        .getElementsByTagName("price")
                         .item(0)
                         .getTextContent();
-                if (productId.equals(id)) {
-                    NodeList nodes1 = productElement.getElementsByTagName("cart");
-                    for (int y = 0; y < nodes.getLength(); y++) {
-                        Node node1 = nodes1.item(y);
-                        Element element = (Element) node1;
-                        String name = element
-                                .getElementsByTagName("name")
-                                .item(0)
-                                .getTextContent();
-                        String price = element
-                                .getElementsByTagName("price")
-                                .item(0)
-                                .getTextContent();
-                        String description = element
-                                .getElementsByTagName("description")
-                                .item(0)
-                                .getTextContent();
-
-                        mod[y][0] = name;
-                        mod[y][1] = price;
-                        mod[y][2] = description;
-                    }
-                }
+                String description = element
+                        .getElementsByTagName("description")
+                        .item(0)
+                        .getTextContent();
+                mod[0][0] = name;
+                mod[0][1] = price;
+                mod[0][2] = description;
             }
         }
         DefaultTableModel model = new DefaultTableModel(

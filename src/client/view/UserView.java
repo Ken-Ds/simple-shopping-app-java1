@@ -15,12 +15,17 @@ public class UserView  extends JFrame {
     private JButton btnLogOut = new JButton();
     private JLabel labelID = new JLabel();
     private JLabel labelName = new JLabel();
+    public static int userID;
+    public static String userName;
 
 
-    public UserView(int userId, String userName) {
-        initComponents(userId,userName);
+    public UserView(int userId, String usersName) {
+        userID = userId;
+        userName = usersName;
+        initComponents(userID,userName);
     }
     private void initComponents(int id, String name) {
+
         setResizable(false);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,7 +95,7 @@ public class UserView  extends JFrame {
 
         labelID.setFont(new java.awt.Font("Sitka Display", Font.BOLD, 14)); // NOI18N
         labelID.setForeground(new java.awt.Color(255, 255, 255));
-        labelID.setText("ID: "+String.valueOf(id));
+        labelID.setText("ID: "+ String.valueOf(id));
 
         GroupLayout jPanel2Layout = new GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -167,7 +172,8 @@ public class UserView  extends JFrame {
 
     private void btnAddToCartActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
-        new ViewCart().setVisible(true);
+        SetJTable setJTable = new SetJTable();
+        new ViewCart(userID,userName,setJTable.cartView(String.valueOf(userID))).setVisible(true);
     }
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {

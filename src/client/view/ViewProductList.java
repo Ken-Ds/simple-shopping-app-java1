@@ -115,7 +115,7 @@ public class ViewProductList extends JFrame {
     }
     private void jButton1(java.awt.event.ActionEvent evt) {
         this.dispose();
-        new UserView(0,"Freddie").setVisible(true);
+        new UserView(UserView.userID,UserView.userName).setVisible(true);
     }
     private void searchButton(java.awt.event.ActionEvent evt){
         this.dispose();
