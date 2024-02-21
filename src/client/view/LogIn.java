@@ -1,11 +1,14 @@
 package client.view;
 
 import client.model.Connect;
+import client.model.buttons.login.LoginHandler;
+import client.model.buttons.login.SignUpHandler;
 import common.Account;
 import common.CreateId;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
@@ -22,6 +25,8 @@ public class LogIn extends JFrame {
 
     public LogIn() {
         initComponents();
+        setLogInActionListener(new LoginHandler(this));
+        setSignUpActionListener(new SignUpHandler(this));
         setTitle("UPHILL App");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -47,18 +52,10 @@ public class LogIn extends JFrame {
 
         btnLogIn.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14)); // NOI18N
         btnLogIn.setText("Login");
-        btnLogIn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogInActionPerformed(evt);
-            }
-        });
+
         buttonSignUp.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14)); // NOI18N
         buttonSignUp.setText("Sign Up");
-        buttonSignUp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonSignUpActionPerformed(evt);
-            }
-        });
+
 
         GroupLayout jPanel2Layout = new GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -155,38 +152,17 @@ public class LogIn extends JFrame {
         pack();
     }
 
-    /**
-     * Logic of socket connection from client to server
-     * // TODO move this logic
-     * @param evt
-     */
-    private void btnLogInActionPerformed(java.awt.event.ActionEvent evt) {
-        try {
-            Connect connect = new Connect();
-            connect.createConnection();
-            connect.sendMessage("Login");
-            String username = txtUsername.getText();
-            String password = jTextField1.getText();
-            connect.sendMessage(username);
-            int id = (int) connect.receiveMessage();
-            Account account = new Account(id, username, password, null);
-            System.out.println(account.toString());
-            connect.sendMessage(account);
-            Boolean isAccount = (Boolean) connect.receiveMessage();
-            this.dispose();
-            if(isAccount){
-                new UserView(account.getId(), account.getUsername()).setVisible(true);
-            }else {
-                new LogIn().setVisible(true);
-            }
-        }
-        catch (Exception e){
-            System.out.println(e.getMessage());
-        }
+    public String returnUsername(){
+        return txtUsername.getText();
     }
-    private void buttonSignUpActionPerformed(java.awt.event.ActionEvent evt) {
-        this.dispose();
-        new SignUp().setVisible(true);
+    public String returnPassword(){
+        return txtUsername.getText();
+    }
+    public void setLogInActionListener(ActionListener listener){
+        btnLogIn.addActionListener(listener);
+    }
+    public void setSignUpActionListener(ActionListener listener){
+        buttonSignUp.addActionListener(listener);
     }
 }
 
