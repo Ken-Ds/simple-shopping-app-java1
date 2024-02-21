@@ -156,7 +156,7 @@ public class LogIn extends JFrame {
         return txtUsername.getText();
     }
     public String returnPassword(){
-        return txtUsername.getText();
+        return jTextField1.getText();
     }
     public void setLogInActionListener(ActionListener listener){
         btnLogIn.addActionListener(listener);
