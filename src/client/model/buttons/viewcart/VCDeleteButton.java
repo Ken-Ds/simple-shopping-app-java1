@@ -1,8 +1,10 @@
 package client.model.buttons.viewcart;
+import client.model.Connect;
 import client.view.UserView;
 import client.view.ViewCart;
 import common.ParseXMLFile;
 import common.SetJTable;
+import org.w3c.dom.NodeList;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,8 +19,16 @@ public class VCDeleteButton implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        viewCart.dispose();
-        new ParseXMLFile().deleteCartProduct(String.valueOf(UserView.userID),viewCart.deleteNameSearch());
-        new ViewCart(UserView.userID,UserView.userName,new SetJTable().cartView(String.valueOf(UserView.userID))).setVisible(true);
+        try {
+            Connect connect = new Connect();
+            connect.createConnection();
+            connect.sendMessage("DCart");
+            connect.sendMessage(UserView.userID);
+            connect.sendMessage(viewCart.deleteNameSearch());
+            viewCart.dispose();
+            new ViewCart(UserView.userID, UserView.userName, new SetJTable().cartView(String.valueOf(UserView.userID))).setVisible(true);
+        }catch (Exception e1){
+            e1.printStackTrace();
+        }
     }
 }

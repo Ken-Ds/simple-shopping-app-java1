@@ -30,7 +30,7 @@ public class ViewProductList extends JFrame {
 
     public ViewProductList(DefaultTableModel dft) {
         initComponents(dft);
-        setBtnSearch1ActionListener(new VPLBack(this));
+        setBackButtonActionListener(new VPLBack(this));
         setBtnAddToCartActionListener(new VPLAddProduct(this));
         setBtnSearch1ActionListener(new VPLSearchProduct(this));
     }

@@ -38,14 +38,14 @@ public class Server {
             try (
                     ObjectInputStream reader = new ObjectInputStream(clientSocket.getInputStream());
                     ObjectOutputStream writer = new ObjectOutputStream(clientSocket.getOutputStream());
-            )
-            {
+            ) {
                 Account account = null;
                 String string = (String) reader.readObject();
-                switch (string){
+                switch (string) {
                     case "Login":
-
-                        int id = new ParseXMLFile().returnUserID((String) reader.readObject());
+                        String name = (String) reader.readObject();
+                        int id = new ParseXMLFile().returnUserID(name);
+                        System.out.println(id);
                         writer.writeObject(id);
                         account = (Account) reader.readObject();
 
@@ -61,7 +61,7 @@ public class Server {
 
 
                         break;
-                    case  "Signup":
+                    case "Signup":
                         Account signAccount = (Account) reader.readObject();
                         System.out.println(signAccount);
                         AddUser addUser = new AddUser();
@@ -71,10 +71,14 @@ public class Server {
                     case "Cart":
                         Account accountCart = (Account) reader.readObject();
                         Cart cart = (Cart) reader.readObject();
-                        new ParseXMLFile().addProductsToCart(String.valueOf(accountCart.getId()),cart);
+                        new ParseXMLFile().addProductsToCart(String.valueOf(accountCart.getId()), cart);
+                        break;
+                    case "DCart":
+                        int userID = (int) reader.readObject();
+                        String deleteName = (String) reader.readObject();
+                        new ParseXMLFile().deleteCartProduct(String.valueOf(userID), deleteName);
                         break;
                 }
-
             }catch (Exception e){
                 e.printStackTrace();
             }

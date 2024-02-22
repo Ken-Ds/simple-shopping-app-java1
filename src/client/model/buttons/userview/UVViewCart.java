@@ -1,4 +1,5 @@
 package client.model.buttons.userview;
+import client.model.Connect;
 import client.view.UserView;
 import client.view.ViewCart;
 import common.ParseXMLFile;
@@ -19,8 +20,16 @@ public class UVViewCart implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        userView.dispose();
-        SetJTable setJTable = new SetJTable();
-        new ViewCart(userView.returnID(), userView.returnUserName(),setJTable.cartView(String.valueOf(userView.returnID()))).setVisible(true);
+        try {
+            userView.dispose();
+            SetJTable setJTable = new SetJTable();
+            Connect connect = new Connect();
+            connect.createConnection();
+            connect.sendMessage("GetCart");
+            connect.sendMessage(UserView.userID);
+            new ViewCart(userView.returnID(), userView.returnUserName(), setJTable.cartView(String.valueOf(userView.returnID()))).setVisible(true);
+        } catch (Exception e1){
+            e1.printStackTrace();
+        }
     }
 }

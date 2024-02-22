@@ -206,7 +206,7 @@ public class ParseXMLFile {
             DocumentBuilder documentBuilder = docFactory.newDocumentBuilder();
 
             Document document = documentBuilder.parse("src/res/products.xml");
-            Element rootElement = document.getDocumentElement();
+            document.getDocumentElement().normalize();
 
             NodeList productList = document.getElementsByTagName("product");
             for (int x = 0; x < productList.getLength(); x++) {
@@ -242,7 +242,7 @@ public class ParseXMLFile {
             DocumentBuilder documentBuilder = docFactory.newDocumentBuilder();
 
             Document document = documentBuilder.parse("src/res/products.xml");
-            Element rootElement = document.getDocumentElement();
+            document.getDocumentElement().normalize();
 
             NodeList productList = document.getElementsByTagName("product");
             for (int x = 0; x < productList.getLength(); x++) {
@@ -278,7 +278,7 @@ public class ParseXMLFile {
             DocumentBuilder documentBuilder = docFactory.newDocumentBuilder();
 
             Document document = documentBuilder.parse("src/res/accounts.xml");
-            Element rootElement = document.getDocumentElement();
+            document.getDocumentElement().normalize();
 
             NodeList accountList = document.getElementsByTagName("account");
             for (int x = 0; x < accountList.getLength(); x++) {
@@ -333,41 +333,13 @@ public class ParseXMLFile {
         }
     }
 
-    public NodeList searchUser(String idAcc) {
-        NodeList cartList = null;
-        try {
-            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder documentBuilder = docFactory.newDocumentBuilder();
-
-            Document document = documentBuilder.parse("src/res/accounts.xml");
-            NodeList accountList = document.getElementsByTagName("account");
-
-            for (int x = 0; x < accountList.getLength(); x++) {
-                Node node = accountList.item(x);
-                if (node.getNodeType() == Node.ELEMENT_NODE) {
-                    Element accountElement = (Element) node;
-                    String accountId = accountElement
-                            .getElementsByTagName("id")
-                            .item(0)
-                            .getTextContent();
-                    if (accountId.equals(idAcc)) {
-
-                    }
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return cartList;
-    }
-
     public void deleteCartProduct(String idAcc, String productName) {
         try {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = docFactory.newDocumentBuilder();
 
             Document document = documentBuilder.parse("src/res/accounts.xml");
-            Element rootElement = document.getDocumentElement();
+            document.getDocumentElement().normalize();
 
             NodeList productList = document.getElementsByTagName("account");
             for (int x = 0; x < productList.getLength(); x++) {
@@ -383,14 +355,16 @@ public class ParseXMLFile {
                         NodeList cartNods = productElement.getElementsByTagName("product");
                         for(int y = 0; y < cartNods.getLength(); y++){
                             Node cartNode = cartNods.item(y);
-                            Element accountElementContents = (Element) cartNode;
-                            String prodName = accountElementContents
-                                    .getElementsByTagName("name")
-                                    .item(0)
-                                    .getTextContent();
-                            if(prodName.equals(productName)){
-                                cartNode.getParentNode().removeChild(cartNode);
-                                break;
+                            if(cartNode.getNodeType() == Node.ELEMENT_NODE) {
+                                Element accountElementContents = (Element) cartNode;
+                                String prodName = accountElementContents
+                                        .getElementsByTagName("name")
+                                        .item(0)
+                                        .getTextContent();
+                                if (prodName.equals(productName)) {
+                                    cartNode.getParentNode().removeChild(cartNode);
+                                    break;
+                                }
                             }
                         }
                     }
@@ -412,23 +386,22 @@ public class ParseXMLFile {
     public int returnUserID(String username){
         int id = 0;
         try {
-            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder documentBuilder = docFactory.newDocumentBuilder();
-
+            DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = docBuilderFactory.newDocumentBuilder();
             Document document = documentBuilder.parse("src/res/accounts.xml");
-            Element rootElement = document.getDocumentElement();
+            document.getDocumentElement().normalize();
 
-            NodeList productList = document.getElementsByTagName("account");
-            for (int x = 0; x < productList.getLength(); x++) {
-                Node node = productList.item(x);
+            NodeList nodeList = document.getElementsByTagName("account");
+            for (int x = 0; x < nodeList.getLength(); x++) {
+                Node node = nodeList.item(x);
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
-                    Element productElement = (Element) node;
-                    String accountName = productElement
-                            .getElementsByTagName("name")
+                    Element accountElement = (Element) node;
+                    String accountName = accountElement
+                            .getElementsByTagName("username")
                             .item(0)
                             .getTextContent();
                     if (accountName.equals(username)) {
-                        String txtID = productElement
+                        String txtID = accountElement
                                 .getElementsByTagName("id")
                                 .item(0)
                                 .getTextContent();
