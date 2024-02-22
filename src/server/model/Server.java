@@ -1,11 +1,11 @@
 package server.model;
-import common.Account;
-import common.Cart;
-import common.ParseXMLFile;
+import common.*;
+import org.w3c.dom.NodeList;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class Server {
     public int port = 2023;
@@ -77,6 +77,32 @@ public class Server {
                         int userID = (int) reader.readObject();
                         String deleteName = (String) reader.readObject();
                         new ParseXMLFile().deleteCartProduct(String.valueOf(userID), deleteName);
+                        NodeList dCartNodes = new ParseXMLFile().getUserCart(String.valueOf(userID));
+                        ArrayList<Product> dCArtArrayList = new NodeListToArrayList().productArrayList(dCartNodes);
+                        writer.writeObject(dCArtArrayList);
+                        break;
+                    case "ViewP":
+                        NodeList nodes = new ParseXMLFile().readXMLProduct();
+                        NodeListToArrayList nodeListToArrayList = new NodeListToArrayList();
+                        ArrayList<Product> arrayList = nodeListToArrayList.productArrayList(nodes);
+                        writer.writeObject(arrayList);
+                        break;
+                    case "VPLSearch":
+                        NodeList nodesVPL = new ParseXMLFile().readXMLProduct();
+                        ArrayList<Product> vPLArrayList = new NodeListToArrayList().productArrayList(nodesVPL);
+                        writer.writeObject(vPLArrayList);
+                        break;
+                    case "ViewC":
+                        int viewCID = (int) reader.readObject();
+                        NodeList viewCNodes = new ParseXMLFile().getUserCart(String.valueOf(viewCID));
+                        ArrayList<Product> vCArrayList = new NodeListToArrayList().productArrayList(viewCNodes);
+                        writer.writeObject(vCArrayList);
+                        break;
+                    case "VCSearchBack":
+                        int vcSearchBackID = (int) reader.readObject();
+                        NodeList vCSearchBack = new ParseXMLFile().getUserCart(String.valueOf(vcSearchBackID));
+                        ArrayList<Product> vcSearchBackArrayList = new NodeListToArrayList().productArrayList(vCSearchBack);
+                        writer.writeObject(vcSearchBackArrayList);
                         break;
                 }
             }catch (Exception e){

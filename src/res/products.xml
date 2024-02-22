@@ -6,4 +6,4 @@
         <description>Matigas</description>
         <status>On Sale</status>
     </product>
-</data>
+<product><id>3</id><name>Rock</name><price>20</price><description>Matigas</description><status>On Sale</status></product></data>

@@ -1,12 +1,15 @@
 package client.model.buttons.viewproductlist;
+import client.model.Connect;
 import client.view.ViewProductList;
 import common.ParseXMLFile;
+import common.Product;
 import common.SetJTable;
 import server.view.AddProduct;
 import server.view.ViewProduct;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class VPLSearchProduct implements ActionListener {
 
@@ -18,7 +21,15 @@ public class VPLSearchProduct implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        viewProductList.dispose();
-        new ViewProductList(new SetJTable().searchByNameProductTable(viewProductList.returnNameSearch())).setVisible(true);
+        try {
+            Connect connect = new Connect();
+            connect.createConnection();
+            connect.sendMessage("VPLSearch");
+            ArrayList<Product> productArrayList = (ArrayList<Product>) connect.receiveMessage();
+            viewProductList.dispose();
+            new ViewProductList(new SetJTable().searchByNameProductTable(productArrayList,viewProductList.returnNameSearch())).setVisible(true);
+        }catch (Exception e1){
+            e1.printStackTrace();
+        }
     }
 }
