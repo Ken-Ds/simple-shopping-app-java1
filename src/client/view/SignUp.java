@@ -154,7 +154,7 @@ public class SignUp extends JFrame {
         return txtUsername.getText();
     }
     public String returnPassword(){
-        return txtUsername.getText();
+        return jTextField1.getText();
     }
 
     public void setBtnSignUpActionListener(ActionListener listener){

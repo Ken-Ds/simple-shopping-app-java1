@@ -27,6 +27,12 @@ public class SignHandler implements ActionListener {
             connect.sendMessage("Signup");
             Account account = new Account(0, username, password, new Cart());
             connect.sendMessage(account);
+            Boolean added = (Boolean) connect.receiveMessage();
+            if(added){
+                // J Option Existing
+            } else {
+                // J Option Not Existing
+            }
         }
         catch (Exception exception){
             System.out.println(exception.getMessage());

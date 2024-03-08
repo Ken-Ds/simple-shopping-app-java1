@@ -17,7 +17,11 @@ public class AddHandler implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         addProduct.dispose();
-        new ParseXMLFile().addXMLProduct(addProduct.returnName(),addProduct.returnPrice(),addProduct.returnDescription());
+        if(!new ParseXMLFile().checkProductIfExisting(addProduct.returnName())) {
+            new ParseXMLFile().addXMLProduct(addProduct.returnName(), addProduct.returnPrice(), addProduct.returnDescription());
+        } else {
+            // JOption existing product
+        }
         new AddProduct().setVisible(true);
     }
 }

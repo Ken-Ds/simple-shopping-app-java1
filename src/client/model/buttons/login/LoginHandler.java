@@ -3,8 +3,7 @@ import client.model.Connect;
 import client.view.LogIn;
 import client.view.UserView;
 import common.Account;
-import common.ParseXMLFile;
-import server.view.AddProduct;
+
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -33,7 +32,7 @@ public class LoginHandler implements ActionListener {
             Boolean isAccount = (Boolean) connect.receiveMessage();
             logIn.dispose();
             if (isAccount) {
-                new UserView(account.getId(), account.getUsername()).setVisible(true);
+                new UserView(account.getId(), account.getUsername(),).setVisible(true);
             } else {
                 new LogIn().setVisible(true);
             }

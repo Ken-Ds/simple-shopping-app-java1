@@ -21,7 +21,7 @@ public class VCSearchButton implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         try {
             Connect connect = new Connect();
-            connect.createConnection();
+            connect.createConnection(UserView.ipAddress);
             connect.sendMessage("VCSearchBack");
             connect.sendMessage(UserView.userID);
             ArrayList<Product> arrayList = (ArrayList<Product>) connect.receiveMessage();

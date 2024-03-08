@@ -13,6 +13,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class LogIn extends JFrame {
+
     private JPanel jPanel1 = new JPanel();
     private JPanel jPanel2 = new JPanel();
     private JLabel jLabel1 = new JLabel();
@@ -158,11 +159,16 @@ public class LogIn extends JFrame {
     public String returnPassword(){
         return jTextField1.getText();
     }
+
     public void setLogInActionListener(ActionListener listener){
         btnLogIn.addActionListener(listener);
     }
     public void setSignUpActionListener(ActionListener listener){
         buttonSignUp.addActionListener(listener);
+    }
+
+    public String returnIP(){
+        return ;
     }
 }
 

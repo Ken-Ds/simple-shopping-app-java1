@@ -64,14 +64,28 @@ public class Server {
                     case "Signup":
                         Account signAccount = (Account) reader.readObject();
                         System.out.println(signAccount);
+                        CheckIfUser checkIfUser = new CheckIfUser();
                         AddUser addUser = new AddUser();
-                        addUser.addAccount(signAccount.getUsername(), signAccount.getPassword());
+                        if(!checkIfUser.ifExisting(signAccount)) {
+                            addUser.addAccount(signAccount.getUsername(), signAccount.getPassword());
+                            writer.writeObject(true);
+                        }else {
+                            writer.writeObject(false);
+                        }
                         break;
 
                     case "Cart":
                         Account accountCart = (Account) reader.readObject();
                         Cart cart = (Cart) reader.readObject();
-                        new ParseXMLFile().addProductsToCart(String.valueOf(accountCart.getId()), cart);
+                        for (Product product : cart.getProducts()){
+                            // check if product is on sale
+                            if(new ParseXMLFile().returnProductStatus(product.getName()).equalsIgnoreCase("on sale")){
+                                new ParseXMLFile().addProductsToCart(String.valueOf(accountCart.getId()), cart);
+                                writer.writeObject(true);
+                                break;
+                            } else
+                                writer.writeObject(false);
+                        }
                         break;
                     case "DCart":
                         int userID = (int) reader.readObject();
@@ -84,7 +98,7 @@ public class Server {
                     case "ViewP":
                         NodeList nodes = new ParseXMLFile().readXMLProduct();
                         NodeListToArrayList nodeListToArrayList = new NodeListToArrayList();
-                        ArrayList<Product> arrayList = nodeListToArrayList.productArrayList(nodes);
+                        ArrayList<Product> arrayList = nodeListToArrayList.productArrayListOnSale(nodes);
                         writer.writeObject(arrayList);
                         break;
                     case "VPLSearch":

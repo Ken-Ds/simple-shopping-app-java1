@@ -14,9 +14,12 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class ParseXMLFile {
 
+    private static String accountPath= "";
+    private static String productsPath= "";
 
     /**
      * Checks Account is in the accounts.xml file
@@ -38,12 +41,64 @@ public class ParseXMLFile {
             for (int i = 0; i < nodes.getLength(); i++) {
                 Node node = nodes.item(i);
                 Element element = (Element) node;
-                ;
-                String id = element.getElementsByTagName("id").item(0).getTextContent();
+
                 String username = element.getElementsByTagName("username").item(0).getTextContent();
                 String password = element.getElementsByTagName("password").item(0).getTextContent();
-                String cart = element.getElementsByTagName("cart").item(0).getTextContent();
-                if (username.equalsIgnoreCase(checkUsername) && password.equalsIgnoreCase(checkPassword)) {
+
+                if (username.equals(checkUsername) && password.equals(checkPassword)) {
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean checkAccountIfExisting(String checkUsername) {
+        NodeList nodes = null;
+        try {
+            File inputFile = new File("src/res/accounts.xml");
+            DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = docBuilderFactory.newDocumentBuilder();
+            Document document = documentBuilder.parse(inputFile);
+            document.getDocumentElement().normalize();
+
+            nodes = document.getElementsByTagName("account");
+            for (int i = 0; i < nodes.getLength(); i++) {
+                Node node = nodes.item(i);
+                Element element = (Element) node;
+
+                String username = element.getElementsByTagName("username").item(0).getTextContent();
+                String password = element.getElementsByTagName("password").item(0).getTextContent();
+
+                if (username.equals(checkUsername)) {
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean checkProductIfExisting(String checkName) {
+        NodeList nodes = null;
+        try {
+            File inputFile = new File("src/res/products.xml");
+            DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = docBuilderFactory.newDocumentBuilder();
+            Document document = documentBuilder.parse(inputFile);
+            document.getDocumentElement().normalize();
+
+            nodes = document.getElementsByTagName("product");
+            for (int i = 0; i < nodes.getLength(); i++) {
+                Node node = nodes.item(i);
+                Element element = (Element) node;
+
+                String name = element.getElementsByTagName("name").item(0).getTextContent();
+
+                if (name.equalsIgnoreCase(checkName)) {
                     return true;
                 }
             }
@@ -85,6 +140,7 @@ public class ParseXMLFile {
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(document);
             StreamResult result = new StreamResult(new File("src/res/accounts.xml"));
+            transformer.setOutputProperty(OutputKeys.INDENT, "no");
             transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
             transformer.transform(source, result);
         } catch (Exception e) {
@@ -192,6 +248,7 @@ public class ParseXMLFile {
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(document);
             StreamResult result = new StreamResult(new File("src/res/products.xml"));
+            transformer.setOutputProperty(OutputKeys.INDENT, "no");
             transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
             transformer.transform(source, result);
         } catch (Exception e) {
@@ -228,6 +285,7 @@ public class ParseXMLFile {
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(document);
             StreamResult result = new StreamResult("src/res/products.xml");
+            transformer.setOutputProperty(OutputKeys.INDENT, "no");
             transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
 
             transformer.transform(source, result);
@@ -264,6 +322,7 @@ public class ParseXMLFile {
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(document);
             StreamResult result = new StreamResult("src/res/products.xml");
+            transformer.setOutputProperty(OutputKeys.INDENT, "no");
             transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
 
             transformer.transform(source, result);
@@ -297,7 +356,7 @@ public class ParseXMLFile {
                             accountElement.appendChild(productElement);
 
                             Element idElement = document.createElement("id");
-                            idElement.appendChild(document.createTextNode(product.getId()));
+                            idElement.appendChild(document.createTextNode(String.valueOf(returnProductID(product.getName()))));
                             productElement.appendChild(idElement);
 
                             Element nameElement = document.createElement("name");
@@ -315,6 +374,8 @@ public class ParseXMLFile {
                             Element statusElement = document.createElement("status");
                             statusElement.appendChild(document.createTextNode(product.getStatus()));
                             productElement.appendChild(statusElement);
+
+                            editXMLProductStatus(String.valueOf(returnProductID(product.getName())),"Ordered");
                         }
                     }
                 }
@@ -325,6 +386,42 @@ public class ParseXMLFile {
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(document);
             StreamResult result = new StreamResult(new File("src/res/accounts.xml"));
+            transformer.setOutputProperty(OutputKeys.INDENT, "no");
+            transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+
+            transformer.transform(source, result);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void editXMLProductStatus(String searchID, String status) {
+        try {
+            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = docFactory.newDocumentBuilder();
+
+            Document document = documentBuilder.parse("src/res/products.xml");
+            document.getDocumentElement().normalize();
+
+            NodeList productList = document.getElementsByTagName("product");
+            for (int x = 0; x < productList.getLength(); x++) {
+                Node node = productList.item(x);
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element product = (Element) node;
+                    String id = product.getElementsByTagName("id")
+                            .item(0)
+                            .getTextContent();
+                    if (id.equals(searchID)) {
+                        product.getElementsByTagName("status").item(0).setTextContent(status);
+                        break;
+                    }
+                }
+            }
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(document);
+            StreamResult result = new StreamResult("src/res/products.xml");
+            transformer.setOutputProperty(OutputKeys.INDENT, "no");
             transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
 
             transformer.transform(source, result);
@@ -362,6 +459,7 @@ public class ParseXMLFile {
                                         .item(0)
                                         .getTextContent();
                                 if (prodName.equals(productName)) {
+                                    editXMLProductStatus(String.valueOf(returnProductID(prodName)),"On sale");
                                     cartNode.getParentNode().removeChild(cartNode);
                                     break;
                                 }
@@ -375,6 +473,7 @@ public class ParseXMLFile {
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(document);
             StreamResult result = new StreamResult("src/res/accounts.xml");
+            transformer.setOutputProperty(OutputKeys.INDENT, "no");
             transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
 
             transformer.transform(source, result);
@@ -414,5 +513,70 @@ public class ParseXMLFile {
             e.printStackTrace();
         }
         return id;
+    }
+
+    public int returnProductID(String prodName){
+        int id = 0;
+        try {
+            DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = docBuilderFactory.newDocumentBuilder();
+            Document document = documentBuilder.parse("src/res/products.xml");
+            document.getDocumentElement().normalize();
+
+            NodeList nodeList = document.getElementsByTagName("product");
+            for (int x = 0; x < nodeList.getLength(); x++) {
+                Node node = nodeList.item(x);
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element accountElement = (Element) node;
+                    String accountName = accountElement
+                            .getElementsByTagName("name")
+                            .item(0)
+                            .getTextContent();
+                    if (accountName.equals(prodName)) {
+                        String txtID = accountElement
+                                .getElementsByTagName("id")
+                                .item(0)
+                                .getTextContent();
+                        id = Integer.parseInt(txtID);
+                        return id;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return id;
+    }
+
+    public String returnProductStatus(String prodName){
+        String status = "";
+        try {
+            DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = docBuilderFactory.newDocumentBuilder();
+            Document document = documentBuilder.parse("src/res/products.xml");
+            document.getDocumentElement().normalize();
+            NodeList nodeList = document.getElementsByTagName("product");
+            for (int x = 0; x < nodeList.getLength(); x++) {
+                Node node = nodeList.item(x);
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element accountElement = (Element) node;
+                    String accountName = accountElement
+                            .getElementsByTagName("name")
+                            .item(0)
+                            .getTextContent();
+                    if (accountName.equals(prodName)) {
+                        String txtID = accountElement
+                                .getElementsByTagName("status")
+                                .item(0)
+                                .getTextContent();
+                        status = txtID;
+                        return status;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return status;
     }
 }
