@@ -24,7 +24,7 @@ public class UVViewProductList implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         try {
             Connect connect = new Connect();
-            connect.createConnection();
+            connect.createConnection(userView.returnIpAddress());
             connect.sendMessage("ViewP");
             ArrayList<Product> productArrayList = (ArrayList<Product>) connect.receiveMessage();
             userView.dispose();

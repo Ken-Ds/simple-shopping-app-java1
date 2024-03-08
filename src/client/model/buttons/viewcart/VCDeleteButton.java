@@ -23,7 +23,7 @@ public class VCDeleteButton implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         try {
             Connect connect = new Connect();
-            connect.createConnection();
+            connect.createConnection(UserView.ipAddress);
             connect.sendMessage("DCart");
             connect.sendMessage(UserView.userID);
             connect.sendMessage(viewCart.deleteNameSearch());

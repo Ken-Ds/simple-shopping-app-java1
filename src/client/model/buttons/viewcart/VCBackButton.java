@@ -1,4 +1,5 @@
 package client.model.buttons.viewcart;
+import client.view.LogIn;
 import client.view.UserView;
 import client.view.ViewCart;
 import common.ParseXMLFile;
@@ -18,6 +19,7 @@ public class VCBackButton implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         viewCart.dispose();
-        new UserView(UserView.userID,UserView.userName).setVisible(true);
+        new UserView(UserView.userID,UserView.userName,new LogIn().returnIP()).setVisible(true);
+
     }
 }

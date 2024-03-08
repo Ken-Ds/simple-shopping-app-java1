@@ -1,4 +1,5 @@
 package client.model.buttons.viewproductlist;
+import client.view.LogIn;
 import client.view.UserView;
 import client.view.ViewProductList;
 import common.SetJTable;
@@ -17,6 +18,6 @@ public class VPLBack implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         viewProductList.dispose();
-        new UserView(viewProductList.returnId(), viewProductList.returnName()).setVisible(true);
+        new UserView(viewProductList.returnId(), viewProductList.returnName(),new LogIn().returnIP()).setVisible(true);
     }
 }

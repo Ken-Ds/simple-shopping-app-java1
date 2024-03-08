@@ -1,5 +1,6 @@
 package client.model.buttons.viewproductlist;
 import client.model.Connect;
+import client.view.UserView;
 import client.view.ViewProductList;
 import common.ParseXMLFile;
 import common.Product;
@@ -23,7 +24,7 @@ public class VPLSearchProduct implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         try {
             Connect connect = new Connect();
-            connect.createConnection();
+            connect.createConnection(UserView.ipAddress);
             connect.sendMessage("VPLSearch");
             ArrayList<Product> productArrayList = (ArrayList<Product>) connect.receiveMessage();
             viewProductList.dispose();

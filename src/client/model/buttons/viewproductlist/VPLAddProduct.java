@@ -1,5 +1,6 @@
 package client.model.buttons.viewproductlist;
 import client.model.Connect;
+import client.view.UserView;
 import client.view.ViewProductList;
 import common.Account;
 import common.Cart;
@@ -27,7 +28,7 @@ public class VPLAddProduct implements ActionListener {
             ArrayList<Product> productList = new ArrayList<>();
             if (selectedRow != -1) {
                 Connect connect = new Connect();
-                connect.createConnection();
+                connect.createConnection(UserView.ipAddress);
 
                 connect.sendMessage("Cart");
                 String name = (String) viewProductList.returnJTable1().getValueAt(selectedRow, 0);

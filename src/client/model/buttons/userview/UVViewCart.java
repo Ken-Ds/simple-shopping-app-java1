@@ -26,7 +26,7 @@ public class UVViewCart implements ActionListener {
             userView.dispose();
             SetJTable setJTable = new SetJTable();
             Connect connect = new Connect();
-            connect.createConnection();
+            connect.createConnection(userView.returnIpAddress());
             connect.sendMessage("ViewC");
             connect.sendMessage(UserView.userID);
             ArrayList<Product> arrayList = (ArrayList<Product>) connect.receiveMessage();

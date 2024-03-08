@@ -20,7 +20,7 @@ public class LoginHandler implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         try {
             Connect connect = new Connect();
-            connect.createConnection();
+            connect.createConnection(new LogIn().returnIP());
             connect.sendMessage("Login");
             String username = logIn.returnUsername();
             String password = logIn.returnPassword();
@@ -32,7 +32,7 @@ public class LoginHandler implements ActionListener {
             Boolean isAccount = (Boolean) connect.receiveMessage();
             logIn.dispose();
             if (isAccount) {
-                new UserView(account.getId(), account.getUsername(),).setVisible(true);
+                new UserView(account.getId(), account.getUsername(),new LogIn().returnIP()).setVisible(true);
             } else {
                 new LogIn().setVisible(true);
             }

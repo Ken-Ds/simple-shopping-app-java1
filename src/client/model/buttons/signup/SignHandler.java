@@ -1,6 +1,7 @@
 package client.model.buttons.signup;
 import client.model.Connect;
 import client.view.SignUp;
+import client.view.UserView;
 import common.Account;
 import common.Cart;
 import common.ParseXMLFile;
@@ -21,7 +22,7 @@ public class SignHandler implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         try {
             Connect connect = new Connect();
-            connect.createConnection();
+            connect.createConnection(UserView.ipAddress);
             String username = signUp.returnUsername();
             String password = signUp.returnPassword();
             connect.sendMessage("Signup");
