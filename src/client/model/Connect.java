@@ -13,9 +13,9 @@ public class Connect {
     private static ObjectOutputStream out;
     private static ObjectInputStream in;
 
-    public void createConnection() throws IOException{
+    public void createConnection(String ipAddress) throws IOException{
         try{
-            socket = new Socket("localhost",port);
+            socket = new Socket(ipAddress,port);
             out = new ObjectOutputStream(socket.getOutputStream());
             in = new ObjectInputStream(socket.getInputStream());
             System.out.println("Connected to Server");

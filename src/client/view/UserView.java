@@ -22,10 +22,12 @@ public class UserView  extends JFrame {
     public static int userID;
     public static String userName;
 
+    public static String ipAddress;
 
-    public UserView(int userId, String usersName) {
+    public UserView(int userId, String usersName, String ipAddressS) {
         userID = userId;
         userName = usersName;
+        ipAddress = ipAddressS;
         initComponents(userID,userName);
         setBtnLogOutActionListener(new UVLogout(this));
         setBtnAddToCartActionListener(new UVViewCart(this));
@@ -179,6 +181,10 @@ public class UserView  extends JFrame {
 
     public String returnUserName(){
         return userName;
+    }
+
+    public String returnIpAddress(){
+        return ipAddress;
     }
 }
 

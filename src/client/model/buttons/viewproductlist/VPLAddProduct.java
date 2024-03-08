@@ -40,10 +40,16 @@ public class VPLAddProduct implements ActionListener {
                 System.out.println(cart);
                 System.out.println("Selected: " + name + ", " + price + ", " + description);
 
-                JOptionPane.showMessageDialog(viewProductList, "Product added to cart: " + name);
+
 
                 connect.sendMessage(new Account(viewProductList.returnId(), viewProductList.returnName(), null, null));
                 connect.sendMessage(cart);
+                Boolean added = (Boolean) connect.receiveMessage();
+                if(added){
+                    JOptionPane.showMessageDialog(viewProductList, "Product added to cart: " + name);
+                }else {
+                    // not added
+                }
             } else {
                 // No row selected, display an error message or handle the case appropriately
                 JOptionPane.showMessageDialog(viewProductList, "Please select a product to add to cart.");
