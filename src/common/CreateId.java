@@ -15,7 +15,7 @@ public class CreateId {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = docFactory.newDocumentBuilder();
 
-            Document document = documentBuilder.parse("src/res/products.xml");
+            Document document = documentBuilder.parse("res/products.xml");
 
             NodeList productList = document.getElementsByTagName("product");
             String returnID = "0";
@@ -47,7 +47,7 @@ public class CreateId {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = docFactory.newDocumentBuilder();
 
-            Document document = documentBuilder.parse("src/res/accounts.xml");
+            Document document = documentBuilder.parse("res/accounts.xml");
             Element rootElement = document.getDocumentElement();
 
             NodeList productList = document.getElementsByTagName("account");

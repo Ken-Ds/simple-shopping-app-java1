@@ -7,6 +7,7 @@ import common.Cart;
 import common.ParseXMLFile;
 import server.view.AddProduct;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
