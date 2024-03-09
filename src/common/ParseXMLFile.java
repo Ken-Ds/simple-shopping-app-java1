@@ -13,13 +13,11 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
-import java.util.List;
-import java.util.regex.Pattern;
 
 public class ParseXMLFile {
 
-    private static String accountPath= "";
-    private static String productsPath= "";
+    private static String accountPath= "res/accounts.xml";
+    private static String productsPath= "res/products.xml";
 
     /**
      * Checks Account is in the accounts.xml file
@@ -31,7 +29,7 @@ public class ParseXMLFile {
     public boolean checkAccount(String checkUsername, String checkPassword) {
         NodeList nodes = null;
         try {
-            File inputFile = new File("src/res/accounts.xml");
+            File inputFile = new File(accountPath);
             DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = docBuilderFactory.newDocumentBuilder();
             Document document = documentBuilder.parse(inputFile);
@@ -58,7 +56,7 @@ public class ParseXMLFile {
     public boolean checkAccountIfExisting(String checkUsername) {
         NodeList nodes = null;
         try {
-            File inputFile = new File("src/res/accounts.xml");
+            File inputFile = new File(accountPath);
             DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = docBuilderFactory.newDocumentBuilder();
             Document document = documentBuilder.parse(inputFile);
@@ -85,7 +83,7 @@ public class ParseXMLFile {
     public boolean checkProductIfExisting(String checkName) {
         NodeList nodes = null;
         try {
-            File inputFile = new File("src/res/products.xml");
+            File inputFile = new File(productsPath);
             DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = docBuilderFactory.newDocumentBuilder();
             Document document = documentBuilder.parse(inputFile);
@@ -113,7 +111,7 @@ public class ParseXMLFile {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = docFactory.newDocumentBuilder();
 
-            Document document = documentBuilder.parse("src/res/accounts.xml");
+            Document document = documentBuilder.parse(accountPath);
             Element rootElement = document.getDocumentElement();
 
 
@@ -139,7 +137,7 @@ public class ParseXMLFile {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(document);
-            StreamResult result = new StreamResult(new File("src/res/accounts.xml"));
+            StreamResult result = new StreamResult(new File(accountPath));
             transformer.setOutputProperty(OutputKeys.INDENT, "no");
             transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
             transformer.transform(source, result);
@@ -151,7 +149,7 @@ public class ParseXMLFile {
     public NodeList readXMLProduct() {
         NodeList nodes = null;
         try {
-            File inputFile = new File("src/res/products.xml");
+            File inputFile = new File(productsPath);
             DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = docBuilderFactory.newDocumentBuilder();
             Document document = documentBuilder.parse(inputFile);
@@ -168,7 +166,7 @@ public class ParseXMLFile {
     public NodeList getUserCart(String id) {
         NodeList nodes = null;
         try {
-            File inputFile = new File("src/res/accounts.xml");
+            File inputFile = new File(accountPath);
             DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = docBuilderFactory.newDocumentBuilder();
             Document document = documentBuilder.parse(inputFile);
@@ -199,7 +197,7 @@ public class ParseXMLFile {
     public NodeList readXMLClient() {
         NodeList clientNodes = null;
         try {
-            File inputFile = new File("src/res/accounts.xml");
+            File inputFile = new File(accountPath);
             DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = docBuilderFactory.newDocumentBuilder();
             Document document = documentBuilder.parse(inputFile);
@@ -218,7 +216,7 @@ public class ParseXMLFile {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = docFactory.newDocumentBuilder();
 
-            Document document = documentBuilder.parse("src/res/products.xml");
+            Document document = documentBuilder.parse(productsPath);
             Element rootElement = document.getDocumentElement();
 
             Element newProduct = document.createElement("product");
@@ -247,7 +245,7 @@ public class ParseXMLFile {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(document);
-            StreamResult result = new StreamResult(new File("src/res/products.xml"));
+            StreamResult result = new StreamResult(new File(productsPath));
             transformer.setOutputProperty(OutputKeys.INDENT, "no");
             transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
             transformer.transform(source, result);
@@ -262,7 +260,7 @@ public class ParseXMLFile {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = docFactory.newDocumentBuilder();
 
-            Document document = documentBuilder.parse("src/res/products.xml");
+            Document document = documentBuilder.parse(productsPath);
             document.getDocumentElement().normalize();
 
             NodeList productList = document.getElementsByTagName("product");
@@ -284,7 +282,7 @@ public class ParseXMLFile {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(document);
-            StreamResult result = new StreamResult("src/res/products.xml");
+            StreamResult result = new StreamResult(productsPath);
             transformer.setOutputProperty(OutputKeys.INDENT, "no");
             transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
 
@@ -299,7 +297,7 @@ public class ParseXMLFile {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = docFactory.newDocumentBuilder();
 
-            Document document = documentBuilder.parse("src/res/products.xml");
+            Document document = documentBuilder.parse(productsPath);
             document.getDocumentElement().normalize();
 
             NodeList productList = document.getElementsByTagName("product");
@@ -321,7 +319,7 @@ public class ParseXMLFile {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(document);
-            StreamResult result = new StreamResult("src/res/products.xml");
+            StreamResult result = new StreamResult(productsPath);
             transformer.setOutputProperty(OutputKeys.INDENT, "no");
             transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
 
@@ -336,7 +334,7 @@ public class ParseXMLFile {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = docFactory.newDocumentBuilder();
 
-            Document document = documentBuilder.parse("src/res/accounts.xml");
+            Document document = documentBuilder.parse(accountPath);
             document.getDocumentElement().normalize();
 
             NodeList accountList = document.getElementsByTagName("account");
@@ -385,7 +383,7 @@ public class ParseXMLFile {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(document);
-            StreamResult result = new StreamResult(new File("src/res/accounts.xml"));
+            StreamResult result = new StreamResult(new File(accountPath));
             transformer.setOutputProperty(OutputKeys.INDENT, "no");
             transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
 
@@ -400,7 +398,7 @@ public class ParseXMLFile {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = docFactory.newDocumentBuilder();
 
-            Document document = documentBuilder.parse("src/res/products.xml");
+            Document document = documentBuilder.parse(productsPath);
             document.getDocumentElement().normalize();
 
             NodeList productList = document.getElementsByTagName("product");
@@ -420,7 +418,7 @@ public class ParseXMLFile {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(document);
-            StreamResult result = new StreamResult("src/res/products.xml");
+            StreamResult result = new StreamResult(productsPath);
             transformer.setOutputProperty(OutputKeys.INDENT, "no");
             transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
 
@@ -435,7 +433,7 @@ public class ParseXMLFile {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = docFactory.newDocumentBuilder();
 
-            Document document = documentBuilder.parse("src/res/accounts.xml");
+            Document document = documentBuilder.parse(accountPath);
             document.getDocumentElement().normalize();
 
             NodeList productList = document.getElementsByTagName("account");
@@ -472,7 +470,7 @@ public class ParseXMLFile {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(document);
-            StreamResult result = new StreamResult("src/res/accounts.xml");
+            StreamResult result = new StreamResult(accountPath);
             transformer.setOutputProperty(OutputKeys.INDENT, "no");
             transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
 
@@ -487,7 +485,7 @@ public class ParseXMLFile {
         try {
             DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = docBuilderFactory.newDocumentBuilder();
-            Document document = documentBuilder.parse("src/res/accounts.xml");
+            Document document = documentBuilder.parse(accountPath);
             document.getDocumentElement().normalize();
 
             NodeList nodeList = document.getElementsByTagName("account");
@@ -520,7 +518,7 @@ public class ParseXMLFile {
         try {
             DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = docBuilderFactory.newDocumentBuilder();
-            Document document = documentBuilder.parse("src/res/products.xml");
+            Document document = documentBuilder.parse(productsPath);
             document.getDocumentElement().normalize();
 
             NodeList nodeList = document.getElementsByTagName("product");
@@ -553,7 +551,7 @@ public class ParseXMLFile {
         try {
             DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = docBuilderFactory.newDocumentBuilder();
-            Document document = documentBuilder.parse("src/res/products.xml");
+            Document document = documentBuilder.parse(productsPath);
             document.getDocumentElement().normalize();
             NodeList nodeList = document.getElementsByTagName("product");
             for (int x = 0; x < nodeList.getLength(); x++) {

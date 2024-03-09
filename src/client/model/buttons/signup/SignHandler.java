@@ -7,6 +7,7 @@ import common.Cart;
 import common.ParseXMLFile;
 import server.view.AddProduct;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -30,9 +31,9 @@ public class SignHandler implements ActionListener {
             connect.sendMessage(account);
             Boolean added = (Boolean) connect.receiveMessage();
             if(added){
-                // J Option Existing
+                JOptionPane.showMessageDialog(signUp,"Account Created");
             } else {
-                // J Option Not Existing
+                JOptionPane.showMessageDialog(signUp,"Username has already been taken");
             }
         }
         catch (Exception exception){

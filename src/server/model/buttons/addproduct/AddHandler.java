@@ -3,6 +3,7 @@ import common.ParseXMLFile;
 import server.view.AddProduct;
 import server.view.AdminView;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,7 +21,7 @@ public class AddHandler implements ActionListener {
         if(!new ParseXMLFile().checkProductIfExisting(addProduct.returnName())) {
             new ParseXMLFile().addXMLProduct(addProduct.returnName(), addProduct.returnPrice(), addProduct.returnDescription());
         } else {
-            // JOption existing product
+            JOptionPane.showMessageDialog(addProduct,"Existing product");
         }
         new AddProduct().setVisible(true);
     }
