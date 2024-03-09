@@ -1,8 +1,7 @@
 package client.view;
-import client.model.buttons.userview.UVLogout;
-import client.model.buttons.userview.UVViewCart;
-import client.model.buttons.userview.UVViewProductList;
-import common.SetJTable;
+import client.controller.buttons.userview.UVLogout;
+import client.controller.buttons.userview.UVViewCart;
+import client.controller.buttons.userview.UVViewProductList;
 
 import javax.swing.*;
 import java.awt.*;

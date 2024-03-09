@@ -1,20 +1,14 @@
 package client.view;
 
-import client.model.Connect;
-import client.model.buttons.viewproductlist.VPLAddProduct;
-import client.model.buttons.viewproductlist.VPLBack;
-import client.model.buttons.viewproductlist.VPLSearchProduct;
-import common.Account;
-import common.Cart;
-import common.Product;
+import client.controller.buttons.viewproductlist.VPLAddProduct;
+import client.controller.buttons.viewproductlist.VPLBack;
+import client.controller.buttons.viewproductlist.VPLSearchProduct;
 import common.SetJTable;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.util.ArrayList;
 
 public class ViewProductList extends JFrame {
     private JButton backButton = new JButton();

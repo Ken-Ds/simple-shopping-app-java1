@@ -1,7 +1,7 @@
 package server.view;
 import common.ParseXMLFile;
 import org.w3c.dom.NodeList;
-import server.model.buttons.adminview.*;
+import server.controller.buttons.adminview.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;

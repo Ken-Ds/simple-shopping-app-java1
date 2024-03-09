@@ -1,7 +1,7 @@
 package server.view;
 import common.SetJTable;
-import server.model.buttons.viewusers.VUBackHandler;
-import server.model.buttons.viewusers.VUSearchHandler;
+import server.controller.buttons.viewusers.VUBackHandler;
+import server.controller.buttons.viewusers.VUSearchHandler;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

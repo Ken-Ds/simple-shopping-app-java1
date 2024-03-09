@@ -4,8 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import common.SetJTable;
-import server.model.buttons.addproduct.AddHandler;
-import server.model.buttons.addproduct.BackHandler;
+import server.controller.buttons.addproduct.AddHandler;
+import server.controller.buttons.addproduct.BackHandler;
 
 public class AddProduct extends JFrame {
     private SetJTable set = new SetJTable();

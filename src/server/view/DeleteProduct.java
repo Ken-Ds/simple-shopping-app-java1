@@ -1,7 +1,7 @@
 package server.view;
 import common.SetJTable;
-import server.model.buttons.deleteproduct.BackHandler;
-import server.model.buttons.deleteproduct.DeleteHandler;
+import server.controller.buttons.deleteproduct.BackHandler;
+import server.controller.buttons.deleteproduct.DeleteHandler;
 
 import javax.swing.*;
 import java.awt.*;

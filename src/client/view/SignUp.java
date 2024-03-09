@@ -1,12 +1,7 @@
 package client.view;
 
-import client.model.buttons.signup.BackButtonHandler;
-import client.model.buttons.signup.BackButtonHandler;
-import client.model.buttons.signup.SignHandler;
-import common.Account;
-import common.Cart;
-import server.model.AddUser;
-import client.model.Connect;
+import client.controller.buttons.signup.BackButtonHandler;
+import client.controller.buttons.signup.SignHandler;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,16 +1,12 @@
 package client.view;
 
-import client.model.buttons.viewcart.VCBackButton;
-import client.model.buttons.viewcart.VCDeleteButton;
-import client.model.buttons.viewcart.VCSearchButton;
-import common.Cart;
-import common.ParseXMLFile;
+import client.controller.buttons.viewcart.VCBackButton;
+import client.controller.buttons.viewcart.VCDeleteButton;
+import client.controller.buttons.viewcart.VCSearchButton;
 import common.SetJTable;
-import server.view.ViewProduct;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.View;
 import java.awt.*;
 import java.awt.event.ActionListener;
 

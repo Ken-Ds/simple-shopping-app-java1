@@ -2,8 +2,8 @@ package server.view;
 import javax.swing.*;
 
 import common.SetJTable;
-import server.model.buttons.editproduct.BackButtonHandler;
-import server.model.buttons.editproduct.EditButtonHandler;
+import server.controller.buttons.editproduct.BackButtonHandler;
+import server.controller.buttons.editproduct.EditButtonHandler;
 
 import java.awt.*;
 import java.awt.event.ActionListener;

@@ -1,8 +1,8 @@
 package client.view;
 
 
-import client.model.buttons.login.LoginHandler;
-import client.model.buttons.login.SignUpHandler;
+import client.controller.buttons.login.LoginHandler;
+import client.controller.buttons.login.SignUpHandler;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;

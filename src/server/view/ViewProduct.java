@@ -1,9 +1,9 @@
 package server.view;
 
 import common.SetJTable;
-import server.model.buttons.viewproduct.VPBackHandler;
-import server.model.buttons.viewproduct.VPEditHandler;
-import server.model.buttons.viewproduct.VPSearchHandler;
+import server.controller.buttons.viewproduct.VPBackHandler;
+import server.controller.buttons.viewproduct.VPEditHandler;
+import server.controller.buttons.viewproduct.VPSearchHandler;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
