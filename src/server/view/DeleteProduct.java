@@ -1,7 +1,6 @@
 package server.view;
 import common.SetJTable;
-import server.controller.buttons.deleteproduct.BackHandler;
-import server.controller.buttons.deleteproduct.DeleteHandler;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,8 +21,6 @@ public class DeleteProduct extends JFrame {
 
     public DeleteProduct() {
         initComponents();
-        setBackButton(new BackHandler(this));
-        setDeleteButton(new DeleteHandler(this));
     }
 
     private void initComponents() {

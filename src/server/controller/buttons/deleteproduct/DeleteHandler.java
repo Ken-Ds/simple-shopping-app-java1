@@ -18,6 +18,9 @@ public class DeleteHandler implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         deleteProduct.dispose();
         new ParseXMLFile().deleteXMLProduct(deleteProduct.returnId());
-        new DeleteProduct().setVisible(true);
+        DeleteProduct deleteProduct = new DeleteProduct();
+        deleteProduct.setBackButton(new BackHandler(deleteProduct));;
+        deleteProduct.setDeleteButton(new DeleteHandler(deleteProduct));
+        deleteProduct.setVisible(true);
     }
 }

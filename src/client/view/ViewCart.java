@@ -1,8 +1,5 @@
 package client.view;
 
-import client.controller.buttons.viewcart.VCBackButton;
-import client.controller.buttons.viewcart.VCDeleteButton;
-import client.controller.buttons.viewcart.VCSearchButton;
 import common.SetJTable;
 
 import javax.swing.*;
@@ -28,9 +25,6 @@ public class ViewCart extends JFrame {
 
      public ViewCart(int userId, String userName, DefaultTableModel dFT) {
         initComponents(UserView.userID, UserView.userName, dFT);
-        setButtonBackActionListener(new VCBackButton(this));
-        setButtonDeleteActionListener(new VCDeleteButton(this));
-        setButtonSearchActionListener(new VCSearchButton(this));
     }
 
     private void initComponents(int id, String name, DefaultTableModel defaultTableModel) {

@@ -16,6 +16,10 @@ public class VPSearchHandler implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         viewProduct.dispose();
-        new ViewProduct(new SetJTable().searchByIDProductTable(viewProduct.returnIDSearch())).setVisible(true);
+        ViewProduct viewProduct1 = new ViewProduct(new SetJTable().searchByIDProductTable(viewProduct.returnIDSearch()));
+        viewProduct1.setEditButtonListener(new VPEditHandler(viewProduct1));
+        viewProduct1.setSearchProductButtonActionListener(new VPSearchHandler(viewProduct1));
+        viewProduct1.setBackActionListener(new VPBackHandler(viewProduct1));
+        viewProduct1.setVisible(true);
     }
 }

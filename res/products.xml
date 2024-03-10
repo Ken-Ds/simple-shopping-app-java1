@@ -1,23 +1,23 @@
 <data>
     <product>
         <id>2</id>
-        <name>Rock</name>
-        <price>2</price>
+        <name>Loli</name>
+        <price>29.99</price>
         <description>Matigas</description>
-        <status>Available</status>
+        <status>On Sale</status>
     </product>
     <product>
         <id>3</id>
         <name>Rock</name>
-        <price>20</price>
+        <price>15</price>
         <description>Matigas</description>
-        <status>Ordered</status>
+        <status>On Sale</status>
     </product>
     <product>
         <id>4</id>
-        <name>R</name>
-        <price>2</price>
+        <name>Red</name>
+        <price>47</price>
         <description>Iphone</description>
-        <status>On sale</status>
+        <status>On Sale</status>
     </product>
-<product><id>0</id><name>Coke</name><price>20</price><description>Mismo</description><status>On Sale</status></product><product><id>0</id><name>Pepsi</name><price>20</price><description>qwe</description><status>On Sale</status></product></data>
+<product><id>5</id><name>Stick</name><price>15.99</price><description>Looks like a gun</description><status>Ordered</status></product></data>

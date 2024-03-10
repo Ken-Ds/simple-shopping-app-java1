@@ -27,7 +27,11 @@ public class VCDeleteButton implements ActionListener {
             connect.sendMessage(viewCart.deleteNameSearch());
             ArrayList<Product> arrayList = (ArrayList<Product>) connect.receiveMessage();
             viewCart.dispose();
-            new ViewCart(UserView.userID, UserView.userName, new SetJTable().cartView(arrayList)).setVisible(true);
+            ViewCart viewCart = new ViewCart(UserView.userID, UserView.userName, new SetJTable().cartView(arrayList));
+            viewCart.setButtonBackActionListener(new VCBackButton(viewCart));
+            viewCart.setButtonDeleteActionListener(new VCDeleteButton(viewCart));
+            viewCart.setButtonSearchActionListener(new VCSearchButton(viewCart));
+            viewCart.setVisible(true);
         }catch (Exception e1){
             e1.printStackTrace();
         }

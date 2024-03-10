@@ -25,7 +25,11 @@ public class VPLSearchProduct implements ActionListener {
             connect.sendMessage("VPLSearch");
             ArrayList<Product> productArrayList = (ArrayList<Product>) connect.receiveMessage();
             viewProductList.dispose();
-            new ViewProductList(new SetJTable().searchByNameProductTable(productArrayList,viewProductList.returnNameSearch())).setVisible(true);
+            ViewProductList viewProductList = new ViewProductList(new SetJTable().searchByNameProductTable(productArrayList,this.viewProductList.returnNameSearch()));
+            viewProductList.setBackButtonActionListener(new VPLBack(viewProductList));
+            viewProductList.setBtnAddToCartActionListener(new VPLAddProduct(viewProductList));
+            viewProductList.setBtnSearch1ActionListener(new VPLSearchProduct(viewProductList));
+            viewProductList.setVisible(true);
         }catch (Exception e1){
             e1.printStackTrace();
         }

@@ -1,5 +1,7 @@
 package client.controller.buttons.login;
 
+import client.controller.buttons.signup.BackButtonHandler;
+import client.controller.buttons.signup.SignHandler;
 import client.view.LogIn;
 import client.view.SignUp;
 
@@ -17,6 +19,9 @@ public class SignUpHandler implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         logIn.dispose();
-        new SignUp().setVisible(true);
+        SignUp signUp = new SignUp();
+        signUp.setBtnSignUpActionListener(new SignHandler(signUp));
+        signUp.setButtonBackActionListener(new BackButtonHandler(signUp));
+        signUp.setVisible(true);
     }
 }

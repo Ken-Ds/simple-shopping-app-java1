@@ -1,4 +1,7 @@
 package client.controller.buttons.viewproductlist;
+import client.controller.buttons.userview.UVLogout;
+import client.controller.buttons.userview.UVViewCart;
+import client.controller.buttons.userview.UVViewProductList;
 import client.view.LogIn;
 import client.view.UserView;
 import client.view.ViewProductList;
@@ -17,6 +20,10 @@ public class VPLBack implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         viewProductList.dispose();
-        new UserView(viewProductList.returnId(), viewProductList.returnName(),new LogIn().returnIP()).setVisible(true);
+        UserView userView = new UserView(viewProductList.returnId(), viewProductList.returnName(),new LogIn().returnIP());
+        userView.setBtnLogOutActionListener(new UVLogout(userView));
+        userView.setBtnAddToCartActionListener(new UVViewCart(userView));
+        userView.setBtnViewProductActionListener(new UVViewProductList(userView));
+        userView.setVisible(true);
     }
 }

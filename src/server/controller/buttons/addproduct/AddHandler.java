@@ -23,6 +23,9 @@ public class AddHandler implements ActionListener {
         } else {
             JOptionPane.showMessageDialog(addProduct,"Existing product");
         }
-        new AddProduct().setVisible(true);
+        AddProduct addProduct = new AddProduct();
+        addProduct.setBtnAddList(new AddHandler(addProduct));
+        addProduct.setBackActionListener(new BackHandler(addProduct));
+        addProduct.setVisible(true);
     }
 }

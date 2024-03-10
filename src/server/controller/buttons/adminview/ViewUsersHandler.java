@@ -1,6 +1,8 @@
 package server.controller.buttons.adminview;
 
 import common.SetJTable;
+import server.controller.buttons.viewusers.VUBackHandler;
+import server.controller.buttons.viewusers.VUSearchHandler;
 import server.view.AdminView;
 import server.view.ViewProduct;
 import server.view.ViewUsers;
@@ -17,6 +19,9 @@ public class ViewUsersHandler implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         adminView.dispose();
-        new ViewUsers(new SetJTable().setViewUserTable()).setVisible(true);
+        ViewUsers viewUsers = new ViewUsers(new SetJTable().setViewUserTable());
+        viewUsers.setBackButtonActionListener(new VUBackHandler(viewUsers));
+        viewUsers.setSearchButtonActionListener(new VUSearchHandler(viewUsers));
+        viewUsers.setVisible(true);
     }
 }

@@ -1,4 +1,6 @@
 package server.controller.buttons.viewproduct;
+import server.controller.buttons.editproduct.BackButtonHandler;
+import server.controller.buttons.editproduct.EditButtonHandler;
 import server.view.EditProduct;
 import server.view.ViewProduct;
 
@@ -16,6 +18,9 @@ public class VPEditHandler implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         viewProduct.dispose();
-        new EditProduct().setVisible(true);
+        EditProduct editProduct = new EditProduct();
+        editProduct.setEditButton(new EditButtonHandler(editProduct));
+        editProduct.setBackButton(new BackButtonHandler(editProduct));
+        editProduct.setVisible(true);
     }
 }

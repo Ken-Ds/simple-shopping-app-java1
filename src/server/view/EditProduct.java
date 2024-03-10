@@ -1,8 +1,6 @@
 package server.view;
 
 import common.SetJTable;
-import server.controller.buttons.editproduct.BackButtonHandler;
-import server.controller.buttons.editproduct.EditButtonHandler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,8 +27,6 @@ public class EditProduct extends JFrame {
         initComponents();
         setTitle("EDIT PRODUCTS");
         setLocationRelativeTo(null);
-        setEditButton(new EditButtonHandler(this));
-        setBackButton(new BackButtonHandler(this));
     }
 
     private void initComponents() {
@@ -69,7 +65,7 @@ public class EditProduct extends JFrame {
         backButton1.setText("Back");
 
 
-        statusComboBox.setModel(new DefaultComboBoxModel<>(new String[] { "Available", "Not Available" }));
+        statusComboBox.setModel(new DefaultComboBoxModel<>(new String[] { "On Sale", "Ordered" }));
 
 
         GroupLayout jPanel2Layout = new GroupLayout(jPanel2);

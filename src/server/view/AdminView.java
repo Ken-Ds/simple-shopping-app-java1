@@ -31,13 +31,6 @@ public class AdminView extends JFrame {
         setTitle("UPHILL App");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setVisible(true);
-        setExitButton(new ExitButtonHandler(this));
-        setViewProductButton(new ViewProductHandler(this));
-        setViewUserButton(new ViewUsersHandler(this));
-        setAddProductButton(new AddProductHandler(this));
-        setEditProductButton(new EditProductHandler(this));
-        setDeleteProductButton(new DeleteProductHandler(this));
     }
 
     private void initComponents() {

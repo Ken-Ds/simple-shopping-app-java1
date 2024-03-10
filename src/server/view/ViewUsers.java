@@ -23,8 +23,6 @@ public class ViewUsers extends JFrame {
 
     public ViewUsers(DefaultTableModel dTB) {
         initComponents(dTB);
-        setBackButtonActionListener(new VUBackHandler(this));
-        setSearchButtonActionListener(new VUSearchHandler(this));
     }
     private void initComponents(DefaultTableModel defaultTableModel) {
         jTable1.setModel(defaultTableModel);

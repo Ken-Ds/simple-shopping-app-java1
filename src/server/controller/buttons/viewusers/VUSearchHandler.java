@@ -17,6 +17,9 @@ public class VUSearchHandler implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         viewUsers.setVisible(false);
-        new ViewUsers(new SetJTable().searchByIDUserTable(viewUsers.returnSearchID())).setVisible(true);
+        ViewUsers viewUsers = new ViewUsers(new SetJTable().searchByIDUserTable(this.viewUsers.returnSearchID()));
+        viewUsers.setBackButtonActionListener(new VUBackHandler(viewUsers));
+        viewUsers.setSearchButtonActionListener(new VUSearchHandler(viewUsers));
+        viewUsers.setVisible(true);
     }
 }

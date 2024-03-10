@@ -1,4 +1,7 @@
 package client.controller.buttons.userview;
+import client.controller.buttons.viewproductlist.VPLAddProduct;
+import client.controller.buttons.viewproductlist.VPLBack;
+import client.controller.buttons.viewproductlist.VPLSearchProduct;
 import client.model.Connect;
 import client.view.UserView;
 import client.view.ViewProductList;
@@ -25,7 +28,11 @@ public class UVViewProductList implements ActionListener {
             connect.sendMessage("ViewP");
             ArrayList<Product> productArrayList = (ArrayList<Product>) connect.receiveMessage();
             userView.dispose();
-            new ViewProductList(new SetJTable().setClientTableArray(productArrayList)).setVisible(true);
+            ViewProductList viewProductList = new ViewProductList(new SetJTable().setClientTableArray(productArrayList));
+            viewProductList.setBackButtonActionListener(new VPLBack(viewProductList));
+            viewProductList.setBtnAddToCartActionListener(new VPLAddProduct(viewProductList));
+            viewProductList.setBtnSearch1ActionListener(new VPLSearchProduct(viewProductList));
+            viewProductList.setVisible(true);
         } catch (Exception e1){
             e1.printStackTrace();
         }

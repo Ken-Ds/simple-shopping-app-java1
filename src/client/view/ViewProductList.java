@@ -1,8 +1,5 @@
 package client.view;
 
-import client.controller.buttons.viewproductlist.VPLAddProduct;
-import client.controller.buttons.viewproductlist.VPLBack;
-import client.controller.buttons.viewproductlist.VPLSearchProduct;
 import common.SetJTable;
 
 import javax.swing.*;
@@ -24,9 +21,6 @@ public class ViewProductList extends JFrame {
 
     public ViewProductList(DefaultTableModel dft) {
         initComponents(dft);
-        setBackButtonActionListener(new VPLBack(this));
-        setBtnAddToCartActionListener(new VPLAddProduct(this));
-        setBtnSearch1ActionListener(new VPLSearchProduct(this));
     }
 
     private void initComponents(DefaultTableModel defaultTableModel) {

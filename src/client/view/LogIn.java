@@ -1,8 +1,5 @@
 package client.view;
 
-
-import client.controller.buttons.login.LoginHandler;
-import client.controller.buttons.login.SignUpHandler;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -28,12 +25,9 @@ public class LogIn extends JFrame {
 
     public LogIn() {
         initComponents();
-        setLogInActionListener(new LoginHandler(this));
-        setSignUpActionListener(new SignUpHandler(this));
         setTitle("UPHILL App");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setVisible(true);
     }
 
     private void initComponents() {

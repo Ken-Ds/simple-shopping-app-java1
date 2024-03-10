@@ -1,4 +1,6 @@
 package client.controller.buttons.userview;
+import client.controller.buttons.login.LoginHandler;
+import client.controller.buttons.login.SignUpHandler;
 import client.view.LogIn;
 import client.view.UserView;
 
@@ -16,6 +18,9 @@ public class UVLogout implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         userView.dispose();
-        new LogIn().setVisible(true);
+        LogIn logIn = new LogIn();
+        logIn.setLogInActionListener(new LoginHandler(logIn));
+        logIn.setSignUpActionListener(new SignUpHandler(logIn));
+        logIn.setVisible(true);
     }
 }

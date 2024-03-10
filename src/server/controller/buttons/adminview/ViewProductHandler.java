@@ -1,6 +1,9 @@
 package server.controller.buttons.adminview;
 
 import common.SetJTable;
+import server.controller.buttons.viewproduct.VPBackHandler;
+import server.controller.buttons.viewproduct.VPEditHandler;
+import server.controller.buttons.viewproduct.VPSearchHandler;
 import server.view.AdminView;
 import server.view.EditProduct;
 import server.view.ViewProduct;
@@ -17,6 +20,10 @@ public class ViewProductHandler implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         adminView.dispose();
-        new ViewProduct(new SetJTable().setTable()).setVisible(true);
+        ViewProduct viewProduct = new ViewProduct(new SetJTable().setTable());
+        viewProduct.setEditButtonListener(new VPEditHandler(viewProduct));
+        viewProduct.setSearchProductButtonActionListener(new VPSearchHandler(viewProduct));
+        viewProduct.setBackActionListener(new VPBackHandler(viewProduct));
+        viewProduct.setVisible(true);
     }
 }

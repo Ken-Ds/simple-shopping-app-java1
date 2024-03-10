@@ -1,4 +1,7 @@
 package client.controller.buttons.userview;
+import client.controller.buttons.viewcart.VCBackButton;
+import client.controller.buttons.viewcart.VCDeleteButton;
+import client.controller.buttons.viewcart.VCSearchButton;
 import client.model.Connect;
 import client.view.UserView;
 import client.view.ViewCart;
@@ -27,7 +30,11 @@ public class UVViewCart implements ActionListener {
             connect.sendMessage("ViewC");
             connect.sendMessage(UserView.userID);
             ArrayList<Product> arrayList = (ArrayList<Product>) connect.receiveMessage();
-            new ViewCart(userView.returnID(), userView.returnUserName(), setJTable.cartView(arrayList)).setVisible(true);
+            ViewCart viewCart = new ViewCart(userView.returnID(), userView.returnUserName(), setJTable.cartView(arrayList));
+            viewCart.setButtonBackActionListener(new VCBackButton(viewCart));
+            viewCart.setButtonDeleteActionListener(new VCDeleteButton(viewCart));
+            viewCart.setButtonSearchActionListener(new VCSearchButton(viewCart));
+            viewCart.setVisible(true);
         } catch (Exception e1){
             e1.printStackTrace();
         }

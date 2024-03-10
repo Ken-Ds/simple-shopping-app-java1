@@ -1,5 +1,7 @@
 package server.controller.buttons.adminview;
 
+import server.controller.buttons.editproduct.BackButtonHandler;
+import server.controller.buttons.editproduct.EditButtonHandler;
 import server.view.AdminView;
 import server.view.DeleteProduct;
 import server.view.EditProduct;
@@ -17,6 +19,9 @@ public class EditProductHandler implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         adminView.dispose();
-        new EditProduct().setVisible(true);
+        EditProduct editProduct = new EditProduct();
+        editProduct.setEditButton(new EditButtonHandler(editProduct));
+        editProduct.setBackButton(new BackButtonHandler(editProduct));
+        editProduct.setVisible(true);
     }
 }

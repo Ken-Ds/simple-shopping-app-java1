@@ -1,7 +1,5 @@
 package client.view;
-import client.controller.buttons.userview.UVLogout;
-import client.controller.buttons.userview.UVViewCart;
-import client.controller.buttons.userview.UVViewProductList;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,9 +26,6 @@ public class UserView  extends JFrame {
         userName = usersName;
         ipAddress = ipAddressS;
         initComponents(userID,userName);
-        setBtnLogOutActionListener(new UVLogout(this));
-        setBtnAddToCartActionListener(new UVViewCart(this));
-        setBtnViewProductActionListener(new UVViewProductList(this));
     }
     private void initComponents(int id, String name) {
 

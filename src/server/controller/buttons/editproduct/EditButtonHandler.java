@@ -20,6 +20,9 @@ public class EditButtonHandler implements ActionListener {
             new ParseXMLFile().editXMLProduct(id, editProduct.returnName(), editProduct.returnPrice(), editProduct.returnStatus());
         }
         editProduct.dispose();
-        new EditProduct().setVisible(true);
+        EditProduct editProduct = new EditProduct();
+        editProduct.setEditButton(new EditButtonHandler(editProduct));
+        editProduct.setBackButton(new BackButtonHandler(editProduct));
+        editProduct.setVisible(true);
     }
 }

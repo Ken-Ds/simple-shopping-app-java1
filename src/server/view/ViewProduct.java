@@ -1,9 +1,6 @@
 package server.view;
 
 import common.SetJTable;
-import server.controller.buttons.viewproduct.VPBackHandler;
-import server.controller.buttons.viewproduct.VPEditHandler;
-import server.controller.buttons.viewproduct.VPSearchHandler;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -30,9 +27,6 @@ public class ViewProduct extends JFrame {
     private DefaultTableModel model;
     public ViewProduct(DefaultTableModel dTB){
         initComponents(dTB);
-        setEditButtonListener(new VPEditHandler(this));
-        setSearchProductButtonActionListener(new VPSearchHandler(this));
-        setBackActionListener(new VPBackHandler(this));
     }
     private void initComponents(DefaultTableModel defaultTableModels) {
         jTable1.setModel(defaultTableModels);

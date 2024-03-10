@@ -1,4 +1,7 @@
 package client.controller.buttons.login;
+import client.controller.buttons.userview.UVLogout;
+import client.controller.buttons.userview.UVViewCart;
+import client.controller.buttons.userview.UVViewProductList;
 import client.model.Connect;
 import client.view.LogIn;
 import client.view.UserView;
@@ -32,9 +35,16 @@ public class LoginHandler implements ActionListener {
             Boolean isAccount = (Boolean) connect.receiveMessage();
             logIn.dispose();
             if (isAccount) {
-                new UserView(account.getId(), account.getUsername(),new LogIn().returnIP()).setVisible(true);
+                UserView userView = new UserView(account.getId(), account.getUsername(),new LogIn().returnIP());
+                userView.setBtnLogOutActionListener(new UVLogout(userView));
+                userView.setBtnAddToCartActionListener(new UVViewCart(userView));
+                userView.setBtnViewProductActionListener(new UVViewProductList(userView));
+                userView.setVisible(true);
             } else {
-                new LogIn().setVisible(true);
+                LogIn logIn = new LogIn();
+                logIn.setLogInActionListener(new LoginHandler(logIn));
+                logIn.setSignUpActionListener(new SignUpHandler(logIn));
+                logIn.setVisible(true);
             }
         } catch (Exception exception) {
             System.out.println(exception.getMessage());

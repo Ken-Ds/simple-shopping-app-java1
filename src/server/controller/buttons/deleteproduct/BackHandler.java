@@ -1,4 +1,5 @@
 package server.controller.buttons.deleteproduct;
+import server.controller.buttons.adminview.*;
 import server.view.AdminView;
 import server.view.DeleteProduct;
 
@@ -16,6 +17,13 @@ public class BackHandler implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         deleteProduct.dispose();
-        new AdminView().setVisible(true);
+        AdminView adminView = new AdminView();
+        adminView.setExitButton(new ExitButtonHandler(adminView));
+        adminView.setViewProductButton(new ViewProductHandler(adminView));
+        adminView.setViewUserButton(new ViewUsersHandler(adminView));
+        adminView.setAddProductButton(new AddProductHandler(adminView));
+        adminView.setEditProductButton(new EditProductHandler(adminView));
+        adminView.setDeleteProductButton(new DeleteProductHandler(adminView));
+        adminView.setVisible(true);
     }
 }

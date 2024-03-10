@@ -1,8 +1,5 @@
 package client.view;
 
-import client.controller.buttons.signup.BackButtonHandler;
-import client.controller.buttons.signup.SignHandler;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -20,12 +17,9 @@ public class SignUp extends JFrame {
 
     public SignUp() {
         initComponents();
-        setBtnSignUpActionListener(new SignHandler(this));
-        setButtonBackActionListener(new BackButtonHandler(this));
         setTitle("UPHILL App");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setVisible(true);
     }
 
     private void initComponents() {

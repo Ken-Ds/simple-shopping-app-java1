@@ -1,6 +1,8 @@
 package server.controller.buttons.adminview;
 
 import common.ParseXMLFile;
+import server.controller.buttons.addproduct.AddHandler;
+import server.controller.buttons.addproduct.BackHandler;
 import server.view.AddProduct;
 import server.view.AdminView;
 
@@ -17,6 +19,9 @@ public class AddProductHandler implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         adminView.dispose();
-        new AddProduct().setVisible(true);
+        AddProduct addProduct = new AddProduct();
+        addProduct.setBtnAddList(new AddHandler(addProduct));
+        addProduct.setBackActionListener(new BackHandler(addProduct));
+        addProduct.setVisible(true);
     }
 }
