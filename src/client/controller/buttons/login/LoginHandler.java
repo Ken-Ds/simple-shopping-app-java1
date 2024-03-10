@@ -23,7 +23,7 @@ public class LoginHandler implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         try {
             Connect connect = new Connect();
-            connect.createConnection(new LogIn().returnIP());
+            connect.createConnection(logIn.returnIP());
             connect.sendMessage("Login");
             String username = logIn.returnUsername();
             String password = logIn.returnPassword();

@@ -21,6 +21,7 @@ public class LogIn extends JFrame {
     private JLabel labelOR = new JLabel();
     private JSeparator separatorInORRight = new JSeparator();
     private JSeparator separatorInORLeft = new JSeparator();
+    public String ip = jTextField1.getText();
 
 
     public LogIn() {
