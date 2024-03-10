@@ -47,7 +47,7 @@ public class VPLAddProduct implements ActionListener {
                 if(added){
                     JOptionPane.showMessageDialog(viewProductList, "Product added to cart: " + name);
                 }else {
-                    // not added
+                    JOptionPane.showMessageDialog(viewProductList,"Product not added to cart.");
                 }
             } else {
                 // No row selected, display an error message or handle the case appropriately

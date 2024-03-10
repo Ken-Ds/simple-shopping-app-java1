@@ -1,10 +1,10 @@
 package server.view;
-import javax.swing.*;
 
 import common.SetJTable;
 import server.controller.buttons.editproduct.BackButtonHandler;
 import server.controller.buttons.editproduct.EditButtonHandler;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
@@ -192,4 +192,8 @@ public class EditProduct extends JFrame {
     public String returnStatus(){
         return statusComboBox.getSelectedItem().toString();
     }
+    public JTable returnJTable1(){
+        return jTable1;
+    }
+
 }

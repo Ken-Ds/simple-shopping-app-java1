@@ -1,10 +1,10 @@
 <data>
     <product>
         <id>2</id>
-        <name>Hallow</name>
+        <name>Rock</name>
         <price>2</price>
         <description>Matigas</description>
-        <status>Ordered</status>
+        <status>Available</status>
     </product>
     <product>
         <id>3</id>
@@ -20,4 +20,4 @@
         <description>Iphone</description>
         <status>On sale</status>
     </product>
-</data>
+<product><id>0</id><name>Coke</name><price>20</price><description>Mismo</description><status>On Sale</status></product><product><id>0</id><name>Pepsi</name><price>20</price><description>qwe</description><status>On Sale</status></product></data>
